@@ -180,7 +180,8 @@
     return '<div class="screen" style="padding:56px 96px 64px">' +
       '<div class="banners">' + banner(s, 'first') +
       '<div class="panel turn"><div class="muted" style="font-size:26px">دور الاختيار</div>' +
-      '<div class="t-' + s.turn + '" style="font-size:42px;font-weight:700">' + esc(turn.name) + '</div></div>' +
+      '<div class="t-' + s.turn + '" style="font-size:42px;font-weight:700">' + esc(turn.name) + '</div>' +
+      (s.doubleNext ? '<span class="chip lifeline" style="margin-top:8px;font-size:26px;padding:4px 22px">دبل</span>' : '') + '</div>' +
       banner(s, 'second') + '</div>' +
       '<div style="display:flex;justify-content:space-between;font-size:28px;margin-top:20px;height:44px">' +
       '<span class="muted">السؤال ' + Math.min(s.answered + 1, s.total) + ' من ' + s.total + '</span>' + last + '</div>' +
