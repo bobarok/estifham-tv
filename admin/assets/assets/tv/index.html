@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>إستفهام — شاشة التلفزيون</title>
+<style>
+  /* Served by the host's phone (DisplayServer). Kept dependency-free so it
+     runs on weak smart-TV browsers, and so the same page can later be the
+     Chromecast receiver. Drawn on a 1920x1080 stage scaled to the screen. */
+  @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-Regular.ttf); font-weight: 400; }
+  @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-Medium.ttf); font-weight: 500; }
+  @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-SemiBold.ttf); font-weight: 600; }
+  @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-Bold.ttf); font-weight: 700; }
+  :root {
+    --bg: #0E1726; --surface: #16223A; --raised: #1C2A45; --cream: #F3EEE3;
+    --muted: #A9B1C1; --disabled: #5E6A80; --border: rgba(243,238,227,.10);
+    --soft: rgba(243,238,227,.06); --gold: #D8B46A; --gold-soft: rgba(216,180,106,.12);
+    --gold-border: rgba(216,180,106,.45); --first: #7FA6D6; --second: #7DBA9C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+  body { font-family: Plex, "Segoe UI", Tahoma, sans-serif; color: var(--cream); }
+  #stage {
+    position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
+    background: var(--bg); transform-origin: center; overflow: hidden;
+  }
+  .screen { position: absolute; inset: 0; padding: 64px 110px; display: flex; flex-direction: column; }
+  .center { align-items: center; justify-content: center; text-align: center; }
+  .panel { background: var(--surface); border: 2px solid var(--soft); border-radius: 32px; }
+  .muted { color: var(--muted); }
+  .gold { color: var(--gold); }
+  .num { font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
+
+  .brand { width: 200px; height: 200px; border-radius: 58px; background: var(--surface);
+    border: 3px solid var(--gold-border); display: flex; align-items: center; justify-content: center;
+    font-size: 128px; font-weight: 700; color: var(--gold); line-height: 1; }
+  h1 { font-size: 140px; font-weight: 700; line-height: 1.15; }
+
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 34px; border-radius: 999px;
+    background: var(--raised); border: 2px solid var(--border); font-size: 38px; font-weight: 700; }
+  .chip.gold { background: var(--gold-soft); border-color: var(--gold-border); }
+  .chip.lifeline { background: var(--gold); color: var(--bg); border: 0; font-size: 32px; padding: 10px 28px; }
+
+  .dot { width: 22px; height: 22px; border-radius: 50%; flex: none; }
+  .t-first { color: var(--first); } .bg-first { background: var(--first); }
+  .t-second { color: var(--second); } .bg-second { background: var(--second); }
+
+  /* Board */
+  .banners { display: grid; grid-template-columns: 1fr 380px 1fr; gap: 28px; height: 180px; }
+  .banner { display: flex; align-items: center; gap: 20px; padding: 0 44px; }
+  .banner.turn-first { border-color: var(--first); background: rgba(127,166,214,.12); }
+  .banner.turn-second { border-color: var(--second); background: rgba(125,186,156,.12); }
+  .banner .name { font-size: 44px; font-weight: 700; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .banner .aids { font-size: 22px; color: var(--gold); margin-top: 4px; }
+  .banner .score { font-size: 92px; font-weight: 700; }
+  .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .grid { flex: 1; display: grid; grid-template-rows: repeat(6, 1fr); gap: 16px; margin-top: 16px; }
+  .row { display: grid; grid-template-columns: 300px repeat(6, 1fr); gap: 16px; }
+  .cat { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 12px;
+    font-size: 38px; font-weight: 700; border-radius: 20px; background: var(--surface); border: 2px solid rgba(216,180,106,.22); }
+  .tile { display: flex; align-items: center; justify-content: center; border-radius: 20px; font-size: 52px; font-weight: 700;
+    background: var(--raised); border: 2px solid var(--border); }
+  .tile.top { color: var(--gold); }
+  .tile.used { background: rgba(243,238,227,.02); border-color: rgba(243,238,227,.10); color: var(--disabled); font-size: 40px; text-decoration: line-through; }
+
+  /* Question */
+  .meta { display: flex; align-items: center; gap: 20px; }
+  .meta .spacer { flex: 1; }
+  .qbody { flex: 1; display: flex; gap: 70px; align-items: center; margin: 36px 0; min-height: 0; }
+  .qmain { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
+  .qmain img { min-height: 0; border-radius: 28px; object-fit: contain; }
+  .qtext { font-size: 76px; font-weight: 700; line-height: 1.5; text-align: center; }
+  .audio { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--gold); font-size: 40px; font-weight: 700; }
+  .audio .icon { font-size: 150px; line-height: 1; }
+  .timer { width: 360px; height: 360px; position: relative; flex: none; }
+  .timer svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+  .timer .label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .timer .value { font-size: 130px; font-weight: 700; line-height: 1; }
+  .timer .state { font-size: 32px; margin-top: 10px; }
+  .footer { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footer .panel { display: flex; align-items: center; gap: 16px; padding: 22px 40px; }
+  .footer .name { font-size: 38px; font-weight: 700; flex: 1; }
+  .footer .score { font-size: 60px; font-weight: 700; }
+  .footer .panel.hl-first { border-color: rgba(127,166,214,.45); }
+  .footer .panel.hl-second { border-color: rgba(125,186,156,.45); }
+
+  /* Answer */
+  .answer-card { width: 1400px; padding: 48px 60px 60px; border-radius: 44px; text-align: center;
+    background: rgba(216,180,106,.10); border: 3px solid rgba(216,180,106,.55); }
+  .answer-card .label { font-size: 38px; font-weight: 600; color: var(--gold); }
+  .answer-card .value { font-size: 104px; font-weight: 700; line-height: 1.4; margin-top: 18px; }
+  .reveal { animation: reveal .6s ease-out both; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(24px) scale(.96); } to { opacity: 1; transform: none; } }
+
+  /* Categories & results */
+  .slots { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; gap: 32px; margin-top: 72px; align-content: start; }
+  .slot { border: 3px solid var(--border); border-radius: 32px; display: flex; align-items: center; gap: 28px; padding: 0 40px; font-size: 56px; font-weight: 700; }
+  .slot.filled { background: var(--gold-soft); border-color: var(--gold-border); }
+  .slot .n { color: var(--gold); }
+  .results { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; margin-top: 72px; }
+  .result { display: flex; align-items: center; gap: 22px; padding: 44px 56px; border-radius: 40px; }
+  .result.win { border: 3px solid var(--gold); }
+  .result .name { font-size: 54px; font-weight: 700; flex: 1; text-align: start; }
+  .result .score { font-size: 110px; font-weight: 700; }
+
+  #status { position: fixed; bottom: 16px; left: 16px; padding: 8px 16px; border-radius: 12px;
+    background: rgba(0,0,0,.6); color: var(--muted); font: 16px Plex, sans-serif; display: none; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div id="status"></div>
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var statusEl = document.getElementById('status');
+
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+
+  function esc(t) {
+    return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function points(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function clock(s) { return s < 60 ? String(s) : Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  function team(state, id) { for (var i = 0; i < state.teams.length; i++) if (state.teams[i].id === id) return state.teams[i]; }
+
+  function idle() {
+    return '<div class="screen center"><div class="brand">؟</div>' +
+      '<h1 style="margin-top:48px">إستفهام</h1>' +
+      '<div class="muted" style="font-size:40px;margin-top:20px">بانتظار بدء اللعبة</div></div>';
+  }
+
+  function categories(s) {
+    var slots = '';
+    for (var i = 0; i < s.categoryCount; i++) {
+      var name = s.pickedCategories[i];
+      slots += name
+        ? '<div class="slot filled"><span class="n num">' + (i + 1) + '</span><span>' + esc(name) + '</span></div>'
+        : '<div class="slot"></div>';
+    }
+    return '<div class="screen" style="padding:110px 160px;align-items:center">' +
+      '<div style="font-size:96px;font-weight:700">اختيار الفئات</div>' +
+      '<div class="gold" style="font-size:44px;font-weight:700;margin-top:16px">' + s.pickedCategories.length + ' من ' + s.categoryCount + '</div>' +
+      '<div class="slots" style="width:100%">' + slots + '</div></div>';
+  }
+
+  function banner(s, id) {
+    var t = team(s, id);
+    var aids = t.lifelinesLeft.length ? 'وسائل: ' + t.lifelinesLeft.map(esc).join(' · ') : 'لا وسائل متبقية';
+    return '<div class="panel banner' + (s.turn === id ? ' turn-' + id : '') + '">' +
+      '<span class="dot bg-' + id + '"></span>' +
+      '<div style="flex:1;min-width:0"><div class="name">' + esc(t.name) + '</div><div class="aids">' + aids + '</div></div>' +
+      '<span class="score num">' + points(t.score) + '</span></div>';
+  }
+
+  function board(s) {
+    var turn = team(s, s.turn);
+    var last = '';
+    if (s.lastResult) {
+      last = s.lastResult === 'nobody'
+        ? '<span class="muted">السؤال السابق: لم يجب أحد</span>'
+        : '<span class="t-' + s.lastResult + '">السؤال السابق: ' + esc(team(s, s.lastResult).name) + '</span>';
+    }
+    var rows = s.board.map(function (c) {
+      return '<div class="row"><div class="cat">' + esc(c.name) + '</div>' + c.questions.map(function (q) {
+        return q.used
+          ? '<div class="tile used num">' + q.value + '</div>'
+          : '<div class="tile num' + (q.value >= 600 ? ' top' : '') + '">' + q.value + '</div>';
+      }).join('') + '</div>';
+    }).join('');
+    return '<div class="screen" style="padding:56px 96px 64px">' +
+      '<div class="banners">' + banner(s, 'first') +
+      '<div class="panel turn"><div class="muted" style="font-size:26px">دور الاختيار</div>' +
+      '<div class="t-' + s.turn + '" style="font-size:42px;font-weight:700">' + esc(turn.name) + '</div>' +
+      (s.doubleNext ? '<span class="chip lifeline" style="margin-top:8px;font-size:26px;padding:4px 22px">دبل</span>' : '') + '</div>' +
+      banner(s, 'second') + '</div>' +
+      '<div style="display:flex;justify-content:space-between;font-size:28px;margin-top:20px;height:44px">' +
+      '<span class="muted">السؤال ' + Math.min(s.answered + 1, s.total) + ' من ' + s.total + '</span>' + last + '</div>' +
+      '<div class="grid">' + rows + '</div></div>';
+  }
+
+  function meta(s, trailing) {
+    var q = s.question;
+    var lifelines = q.lifelines.length
+      ? '<div style="display:flex;gap:16px;margin-top:22px;flex-wrap:wrap">' +
+        q.lifelines.map(function (l) { return '<span class="chip lifeline">' + esc(l) + '</span>'; }).join('') + '</div>'
+      : '';
+    return '<div><div class="meta"><span class="chip">' + esc(q.category) + '</span>' +
+      '<span class="chip gold gold"><span class="num">' + q.value + '</span> نقطة</span><span class="spacer"></span>' + trailing + '</div>' + lifelines + '</div>';
+  }
+
+  function media(q, maxHeight) {
+    // The public Chromecast site only has opaque file names (mediaId).
+    var file = window.cast && window.cast.framework ? q.mediaId : q.media;
+    if (q.type === 'image' && file) {
+      return '<img src="media/' + encodeURI(file) + '" alt="" style="height:' + maxHeight + 'px;width:auto;max-width:1000px">';
+    }
+    if (q.type === 'audio') {
+      return '<div class="audio"><svg class="icon" viewBox="0 0 24 24" width="150" height="150" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.47 4.47 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06A9 9 0 0 0 14 3.23z"/></svg>سؤال صوتي</div>';
+    }
+    return '';
+  }
+
+  function footer(s, highlight) {
+    return '<div class="footer">' + ['first', 'second'].map(function (id) {
+      var t = team(s, id);
+      return '<div class="panel' + (highlight === id ? ' hl-' + id : '') + '"><span class="dot bg-' + id + '"></span>' +
+        '<span class="name">' + esc(t.name) + '</span><span class="score num">' + points(t.score) + '</span></div>';
+    }).join('') + '</div>';
+  }
+
+  function timer(s, color) {
+    var e = s.timer.elapsed, r = 170, c = 2 * Math.PI * r;
+    var progress = (e % 60) / 60;
+    return '<div class="timer"><svg viewBox="0 0 360 360">' +
+      '<circle cx="180" cy="180" r="' + r + '" fill="none" stroke="rgba(243,238,227,.08)" stroke-width="20"/>' +
+      '<circle cx="180" cy="180" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="20" stroke-linecap="round"' +
+      ' stroke-dasharray="' + c + '" stroke-dashoffset="' + c * (1 - progress) + '" style="transition:stroke-dashoffset .9s linear"/></svg>' +
+      '<div class="label"><span class="value num">' + clock(e) + '</span>' +
+      '<span class="state ' + (s.timer.running ? 'muted' : 'gold') + '">' + (s.timer.running ? 'جارٍ' : 'متوقف') + '</span></div></div>';
+  }
+
+  function question(s) {
+    var q = s.question, chooser = team(s, q.chosenBy);
+    var color = q.chosenBy === 'first' ? 'var(--first)' : 'var(--second)';
+    var trailing = '<span class="muted" style="font-size:32px">اختيار <b class="t-' + q.chosenBy + '">' + esc(chooser.name) + '</b></span>';
+    var hasMedia = q.type !== 'text';
+    return '<div class="screen">' + meta(s, trailing) +
+      '<div class="qbody"><div class="qmain">' + media(q, 420) +
+      '<div class="qtext" style="font-size:' + (hasMedia ? 60 : 84) + 'px">' + esc(q.text) + '</div></div>' +
+      timer(s, color) + '</div>' + footer(s, q.chosenBy) + '</div>';
+  }
+
+  function answer(s) {
+    var q = s.question;
+    var trailing = '<span class="chip" style="font-size:30px;font-weight:500;color:var(--muted)">بانتظار قرار المتحكم</span>';
+    return '<div class="screen">' + meta(s, trailing) +
+      '<div class="qmain" style="flex:1;gap:36px">' +
+      (q.type === 'image' ? media(q, 280) : '') +
+      '<div class="muted" style="font-size:52px;font-weight:600;text-align:center">' + esc(q.text) + '</div>' +
+      '<div class="answer-card reveal"><div class="label">✓ الإجابة الصحيحة</div><div class="value">' + esc(q.answer) + '</div></div>' +
+      '</div>' + footer(s) + '</div>';
+  }
+
+  function finished(s) {
+    var order = s.leader ? [s.leader, s.leader === 'first' ? 'second' : 'first'] : ['first', 'second'];
+    var title = s.leader
+      ? '<span class="t-' + s.leader + '">الفائز: ' + esc(team(s, s.leader).name) + '</span>'
+      : '<span class="gold">تعادل!</span>';
+    return '<div class="screen center" style="padding:120px">' +
+      '<div class="brand" style="width:150px;height:150px;font-size:96px;border-radius:44px;margin-bottom:24px">؟</div><h1 style="font-size:110px">انتهت اللعبة</h1>' +
+      '<div style="font-size:48px;font-weight:700;margin-top:12px">' + title + '</div>' +
+      '<div class="results">' + order.map(function (id) {
+        var t = team(s, id), win = s.leader === id;
+        return '<div class="panel result' + (win ? ' win' : '') + '"><span class="dot bg-' + id + '" style="width:26px;height:26px"></span>' +
+          '<span class="name">' + esc(t.name) + '</span><span class="score num">' + points(t.score) + '</span></div>';
+      }).join('') + '</div></div>';
+  }
+
+  function render(s) {
+    var html;
+    switch (s.status) {
+      case 'categories': html = categories(s); break;
+      case 'board': html = board(s); break;
+      case 'question': html = s.question ? question(s) : idle(); break;
+      case 'answer': html = s.question ? answer(s) : idle(); break;
+      case 'finished': html = finished(s); break;
+      default: html = idle();
+    }
+    stage.innerHTML = html;
+  }
+  // Also the entry point for other transports (e.g. a Chromecast receiver).
+  window.estifhamRender = render;
+
+  function showStatus(text) {
+    statusEl.textContent = text;
+    statusEl.style.display = text ? 'block' : 'none';
+  }
+
+  function connect() {
+    var ws;
+    try { ws = new WebSocket('ws://' + location.host + '/ws'); } catch (e) { return setTimeout(connect, 2000); }
+    showStatus('جارٍ الاتصال بالجوال…');
+    ws.onopen = function () { showStatus(''); };
+    ws.onmessage = function (e) { try { render(JSON.parse(e.data)); } catch (err) { /* ignore bad frames */ } };
+    ws.onclose = function () { showStatus('انقطع الاتصال بالجوال — جارٍ إعادة المحاولة…'); setTimeout(connect, 2000); };
+  }
+
+  // On a Chromecast (the page is loaded with the Cast receiver SDK by
+  // tool/build_cast_receiver.dart), the phone sends each state as a custom
+  // message instead of over the WebSocket.
+  function receive() {
+    var NS = 'urn:x-cast:app.estifham.tv';
+    var context = cast.framework.CastReceiverContext.getInstance();
+    context.addCustomMessageListener(NS, function (e) {
+      try { render(typeof e.data === 'string' ? JSON.parse(e.data) : e.data); } catch (err) { /* ignore bad messages */ }
+    });
+    var options = new cast.framework.CastReceiverOptions();
+    options.customNamespaces = {};
+    options.customNamespaces[NS] = cast.framework.system.MessageType.JSON;
+    options.disableIdleTimeout = true; // a quiz has long pauses without media
+    options.skipPlayersLoad = true;
+    context.start(options);
+  }
+
+  render({ status: 'home' });
+  if (window.cast && window.cast.framework) receive();
+  else if (location.protocol.indexOf('http') === 0) connect();
+})();
+</script>
+</body>
+</html>
