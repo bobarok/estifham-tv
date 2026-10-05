@@ -55,10 +55,11 @@
   .banner .aids { font-size: 22px; color: var(--gold); margin-top: 4px; }
   .banner .score { font-size: 92px; font-weight: 700; }
   .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .grid { flex: 1; display: grid; grid-template-rows: repeat(6, 1fr); gap: 16px; margin-top: 16px; }
-  .row { display: grid; grid-template-columns: 300px repeat(6, 1fr); gap: 16px; }
+  /* One column per category: its name on top, its questions going down. */
+  .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 16px; margin-top: 16px; min-height: 0; }
+  .col { display: grid; grid-template-rows: 120px repeat(6, 1fr); gap: 12px; min-height: 0; }
   .cat { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 12px;
-    font-size: 38px; font-weight: 700; border-radius: 20px; background: var(--surface); border: 2px solid rgba(216,180,106,.22); }
+    font-size: 36px; font-weight: 700; line-height: 1.2; border-radius: 20px; background: var(--surface); border: 2px solid rgba(216,180,106,.22); }
   .tile { display: flex; align-items: center; justify-content: center; border-radius: 20px; font-size: 52px; font-weight: 700;
     background: var(--raised); border: 2px solid var(--border); }
   .tile.top { color: var(--gold); }
@@ -174,8 +175,8 @@
         ? '<span class="muted">السؤال السابق: لم يجب أحد</span>'
         : '<span class="t-' + s.lastResult + '">السؤال السابق: ' + esc(team(s, s.lastResult).name) + '</span>';
     }
-    var rows = s.board.map(function (c) {
-      return '<div class="row"><div class="cat">' + esc(c.name) + '</div>' + c.questions.map(function (q) {
+    var columns = s.board.map(function (c) {
+      return '<div class="col"><div class="cat">' + esc(c.name) + '</div>' + c.questions.map(function (q) {
         return q.used
           ? '<div class="tile used num">' + q.value + '</div>'
           : '<div class="tile num' + (q.value >= 600 ? ' top' : '') + '">' + q.value + '</div>';
@@ -189,7 +190,7 @@
       banner(s, 'second') + '</div>' +
       '<div style="display:flex;justify-content:space-between;font-size:28px;margin-top:20px;height:44px">' +
       '<span class="muted">السؤال ' + Math.min(s.answered + 1, s.total) + ' من ' + s.total + '</span>' + last + '</div>' +
-      '<div class="grid">' + rows + '</div></div>';
+      '<div class="grid">' + columns + '</div></div>';
   }
 
   function meta(s, trailing) {
