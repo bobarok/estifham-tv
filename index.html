@@ -57,12 +57,12 @@
   .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; }
   /* One column per category: its name on top, its questions going down. */
   .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 16px; margin-top: 16px; min-height: 0; }
-  .col { display: grid; grid-template-rows: 120px repeat(6, 1fr); gap: 12px; min-height: 0; }
+  .col { display: grid; grid-template-rows: 120px repeat(6, 1fr); gap: 12px; min-height: 0;
+    padding: 10px; border-radius: 30px; border: 2px solid rgba(216,180,106,.28); background: rgba(216,180,106,.04); }
   .cat { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 12px;
-    font-size: 36px; font-weight: 700; line-height: 1.2; border-radius: 20px; background: var(--surface); border: 2px solid rgba(216,180,106,.22); }
+    font-size: 36px; font-weight: 700; line-height: 1.2; border-radius: 20px; background: var(--surface); border: 2px solid var(--gold-border); color: var(--gold); }
   .tile { display: flex; align-items: center; justify-content: center; border-radius: 20px; font-size: 52px; font-weight: 700;
     background: var(--raised); border: 2px solid var(--border); }
-  .tile.top { color: var(--gold); }
   .tile.used { background: rgba(243,238,227,.02); border-color: rgba(243,238,227,.10); color: var(--disabled); font-size: 40px; text-decoration: line-through; }
 
   /* Question */
@@ -179,7 +179,7 @@
       return '<div class="col"><div class="cat">' + esc(c.name) + '</div>' + c.questions.map(function (q) {
         return q.used
           ? '<div class="tile used num">' + q.value + '</div>'
-          : '<div class="tile num' + (q.value >= 600 ? ' top' : '') + '">' + q.value + '</div>';
+          : '<div class="tile num">' + q.value + '</div>';
       }).join('') + '</div>';
     }).join('');
     return '<div class="screen" style="padding:56px 96px 64px">' +
