@@ -47,20 +47,23 @@
   .t-second { color: var(--second); } .bg-second { background: var(--second); }
 
   /* Board */
-  .banners { display: grid; grid-template-columns: 1fr 380px 1fr; gap: 28px; height: 180px; }
+  /* minmax(0, 1fr): both team banners the same width whatever the names,
+     so the turn panel stays in the middle. */
+  .banners { display: grid; grid-template-columns: minmax(0, 1fr) 380px minmax(0, 1fr); gap: 28px; height: 180px; }
   .banner { display: flex; align-items: center; gap: 20px; padding: 0 44px; }
   .banner.turn-first { border-color: var(--first); background: rgba(127,166,214,.12); }
   .banner.turn-second { border-color: var(--second); background: rgba(125,186,156,.12); }
   .banner .name { font-size: 44px; font-weight: 700; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .banner .aids { font-size: 22px; color: var(--gold); margin-top: 4px; }
-  .banner .score { font-size: 92px; font-weight: 700; }
-  .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .banner .aids { font-size: 22px; color: var(--gold); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .banner .score { font-size: 92px; font-weight: 700; flex: none; white-space: nowrap; }
+  .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-width: 0; padding: 0 20px; }
+  .turn .who { font-size: 42px; font-weight: 700; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   /* One column per category: its name on top, its questions going down. */
   .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 16px; margin-top: 16px; min-height: 0; }
   .col { display: grid; grid-template-rows: 120px repeat(6, 1fr); gap: 12px; min-height: 0;
     padding: 10px; border-radius: 30px; border: 2px solid rgba(216,180,106,.28); background: rgba(216,180,106,.04); }
   .cat { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 12px;
-    font-size: 36px; font-weight: 700; line-height: 1.2; border-radius: 20px; background: var(--surface); border: 2px solid var(--gold-border); color: var(--gold); }
+    font-size: 36px; font-weight: 700; line-height: 1.2; border-radius: 20px; background: var(--surface); border: 2px solid var(--gold-border); color: var(--gold); overflow: hidden; min-width: 0; overflow-wrap: anywhere; }
   .tile { display: flex; align-items: center; justify-content: center; border-radius: 20px; font-size: 52px; font-weight: 700;
     background: var(--raised); border: 2px solid var(--border); }
   .tile.used { background: rgba(243,238,227,.02); border-color: rgba(243,238,227,.10); color: var(--disabled); font-size: 40px; text-decoration: line-through; }
@@ -185,7 +188,7 @@
     return '<div class="screen" style="padding:56px 96px 64px">' +
       '<div class="banners">' + banner(s, 'first') +
       '<div class="panel turn"><div class="muted" style="font-size:26px">دور الاختيار</div>' +
-      '<div class="t-' + s.turn + '" style="font-size:42px;font-weight:700">' + esc(turn.name) + '</div>' +
+      '<div class="who t-' + s.turn + '">' + esc(turn.name) + '</div>' +
       (s.doubleNext ? '<span class="chip lifeline" style="margin-top:8px;font-size:26px;padding:4px 22px">دبل</span>' : '') + '</div>' +
       banner(s, 'second') + '</div>' +
       '<div style="display:flex;justify-content:space-between;font-size:28px;margin-top:20px;height:44px">' +
@@ -281,6 +284,19 @@
     return '<div class="screen fullimg">' + media(s.question, 1000) + '</div>';
   }
 
+  // Long names shrink until they fit their box (down to a limit): a team
+  // name in its banner (then it ends in «…»), so both banners stay the same
+  // width, and a category name in its column header.
+  function fitNames() {
+    var names = stage.querySelectorAll('.banner .name, .turn .who, .cat');
+    for (var i = 0; i < names.length; i++) {
+      var el = names[i], size = parseFloat(getComputedStyle(el).fontSize);
+      while ((el.scrollWidth > el.clientWidth || el.scrollHeight > el.clientHeight) && size > 22) {
+        el.style.fontSize = (size -= 2) + 'px';
+      }
+    }
+  }
+
   function render(s) {
     var html;
     switch (s.status) {
@@ -305,6 +321,7 @@
       var img = stage.querySelector('.zoombox img');
       if (old && img && old.src === img.src && old.style.height === img.style.height) img.replaceWith(old);
       else if (img) img.addEventListener('load', function () { applyZoom(lastZoom); });
+      fitNames();
     }
     lastZoom = s.zoom;
     applyZoom(s.zoom);
