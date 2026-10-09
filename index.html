@@ -263,11 +263,37 @@
       '</div>' + footer(s) + '</div>';
   }
 
+  // «سؤال فاصل»: the question; once revealed, the answer and both guesses.
+  function tiebreak(s) {
+    var t = s.tieBreak;
+    if (!t) return idle();
+    var result = '';
+    if (t.answer !== null) {
+      // The answer in the middle on top, the two teams under it on each side.
+      result = '<div class="answer-card reveal" style="width:640px;margin:20px auto 0;padding:18px 28px"><div class="label">✓ الجواب</div><div class="value num">' + esc(t.answer) + '</div></div>' +
+        '<div style="display:flex;gap:28px;margin-top:24px">' +
+        ['first', 'second'].map(function (id) {
+          var win = t.winner === id, d = t.distances[id];
+          return '<div class="panel result' + (win ? ' win' : '') + '" style="flex:1;flex-direction:column;gap:6px;padding:24px">' +
+            '<span class="name">' + esc(team(s, id).name) + '</span>' +
+            '<span class="score num">' + esc(t.guesses[id]) + '</span>' +
+            '<span class="' + (win ? 'gold' : 'muted') + '" style="font-size:30px">' + (d === 0 ? 'بالضبط!' : 'بعيد بـ ' + points(d)) + '</span></div>';
+        }).join('') + '</div>' +
+        (t.winner ? '' : '<div class="gold" style="font-size:40px;font-weight:700;text-align:center;margin-top:20px">' + (t.distances.first === 0 && t.distances.second === 0 ? 'الثنين جابوها بالضبط!' : 'نفس البعد!') + ' سؤال ثاني يحسمها.</div>');
+    }
+    return '<div class="screen">' +
+      '<div style="display:flex;gap:20px"><span class="chip gold">سؤال فاصل</span><span class="chip">' + esc(t.category) + '</span></div>' +
+      '<div class="gold" style="font-size:40px;font-weight:600;margin-top:24px">تعادل! كل فريق يخمّن بالسر، والأقرب للجواب يفوز.</div>' +
+      '<div class="qmain" style="flex:1;margin-top:24px"><div style="font-size:72px;font-weight:700;text-align:center">' + esc(t.text) + '</div></div>' +
+      result + '</div>';
+  }
+
   function finished(s) {
     var order = s.leader ? [s.leader, s.leader === 'first' ? 'second' : 'first'] : ['first', 'second'];
     var title = s.leader
       ? '<span class="t-' + s.leader + '">الفائز: ' + esc(team(s, s.leader).name) + '</span>'
       : '<span class="gold">تعادل!</span>';
+    if (s.wonByTieBreak) title += ' <span class="gold" style="font-size:36px">(بالسؤال الفاصل)</span>';
     return '<div class="screen center" style="padding:120px">' +
       '<div class="brand" style="width:150px;height:150px;font-size:96px;border-radius:44px;margin-bottom:24px">؟</div><h1 style="font-size:110px">انتهت اللعبة</h1>' +
       '<div style="font-size:48px;font-weight:700;margin-top:12px">' + title + '</div>' +
@@ -305,6 +331,7 @@
       case 'question': html = s.question ? question(s) : idle(); break;
       case 'answer': html = s.question ? answer(s) : idle(); break;
       case 'finished': html = finished(s); break;
+      case 'tiebreak': html = tiebreak(s); break;
       default: html = idle();
     }
     // The host opened the question image full screen on the phone.
