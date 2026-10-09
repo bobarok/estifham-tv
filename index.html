@@ -381,7 +381,49 @@
     context.start(options);
   }
 
+  // Keep the TV awake: a quiz has long stretches with no media and no
+  // remote presses, after which TVs sleep or start their screensaver.
+  // The Wake Lock API needs https (the Chromecast page); elsewhere (the
+  // phone's Wi-Fi address) a tiny muted video playing in a corner keeps
+  // most TV browsers from treating the page as idle.
+  function keepAwake() {
+    var lock = null;
+    function requestLock() {
+      if (!navigator.wakeLock || document.visibilityState !== 'visible' || lock) return;
+      navigator.wakeLock.request('screen').then(function (l) {
+        lock = l;
+        l.addEventListener('release', function () { lock = null; });
+      }).catch(function () { /* not allowed here: the video below still runs */ });
+    }
+    document.addEventListener('visibilitychange', requestLock);
+    requestLock();
+
+    var canvas = document.createElement('canvas');
+    if (!canvas.captureStream) return;
+    canvas.width = canvas.height = 2;
+    var ctx = canvas.getContext('2d'), tick = 0;
+    var video = document.createElement('video');
+    video.muted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.style.cssText = 'position:fixed;right:0;bottom:0;width:2px;height:2px;opacity:0.01;pointer-events:none';
+    video.srcObject = canvas.captureStream(1);
+    document.body.appendChild(video);
+    function frame() {
+      // A changing frame, so the stream never stalls.
+      ctx.fillStyle = (tick++ % 2) ? '#0b1220' : '#0c1321';
+      ctx.fillRect(0, 0, 2, 2);
+    }
+    frame();
+    setInterval(frame, 1000);
+    function play() { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+    play();
+    // Some browsers pause hidden-tab media; start again when shown.
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') play(); });
+  }
+
   render({ status: 'home' });
+  keepAwake();
   if (window.cast && window.cast.framework) receive();
   else if (location.protocol.indexOf('http') === 0) connect();
 })();
