@@ -352,7 +352,55 @@
     }
     lastZoom = s.zoom;
     applyZoom(s.zoom);
+    playSound(s);
   }
+
+  // The question's sound, when the host taps «استمع» with the TV showing:
+  // each tap counts up sound.n and plays it from the start. A TV browser
+  // may refuse to play before someone presses a key: then a hint asks for
+  // OK on the remote, which plays it.
+  var tvAudio = new Audio(), soundN = null, soundFile = null, soundHint = null;
+  function playSound(s) {
+    var q = s.question, file = q && q.type === 'audio' ? (window.cast && window.cast.framework ? q.mediaId : q.media) : null;
+    var onScreen = file && (s.status === 'question' || s.status === 'answer');
+    if (!onScreen || file !== soundFile) {
+      tvAudio.pause();
+      hideSoundHint();
+      soundFile = onScreen ? file : null;
+    }
+    if (!onScreen || !s.sound) return;
+    if (!s.sound.playing) {
+      tvAudio.pause();
+      hideSoundHint();
+      return;
+    }
+    if (s.sound.n === soundN) return;
+    soundN = s.sound.n;
+    tvAudio.src = 'media/' + encodeURI(file);
+    tvAudio.currentTime = 0;
+    var p = tvAudio.play();
+    if (p && p.catch) p.catch(showSoundHint);
+  }
+  function showSoundHint() {
+    if (soundHint) return;
+    soundHint = document.createElement('div');
+    soundHint.className = 'panel';
+    soundHint.style.cssText = 'position:fixed;left:50%;top:40px;transform:translateX(-50%);padding:18px 36px;font-size:28px;font-weight:700;color:var(--gold);z-index:5';
+    soundHint.textContent = 'اضغط OK في الريموت لتشغيل الصوت';
+    document.body.appendChild(soundHint);
+  }
+  function hideSoundHint() {
+    if (soundHint) soundHint.remove();
+    soundHint = null;
+  }
+  function soundAllowed() {
+    if (!soundHint) return;
+    hideSoundHint();
+    tvAudio.currentTime = 0;
+    tvAudio.play().catch(function () {});
+  }
+  document.addEventListener('keydown', soundAllowed);
+  document.addEventListener('click', soundAllowed);
 
   // Shows the part of the image the host zoomed into on the phone: image
   // point (u, v), as fractions, in the middle, magnified s times.
