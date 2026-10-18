@@ -259,7 +259,8 @@
       '<div class="qmain" style="flex:1;gap:36px">' +
       (q.type === 'image' ? media(q, 280) : '') +
       '<div class="muted" style="font-size:52px;font-weight:600;text-align:center">' + esc(q.text) + '</div>' +
-      '<div class="answer-card reveal"><div class="label">✓ الإجابة الصحيحة</div><div class="value">' + esc(q.answer) + '</div></div>' +
+      '<div class="answer-card reveal"><div class="label">✓ الإجابة الصحيحة</div><div class="value">' + esc(q.answer) + '</div>' +
+        (q.nearby ? '<div class="label" style="margin-top:12px;color:var(--muted)">يُقبل أيضاً: ' + q.nearby[0] + ' أو ' + q.nearby[1] + '</div>' : '') + '</div>' +
       '</div>' + footer(s) + '</div>';
   }
 
