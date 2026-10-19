@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>إستفهام — شاشة التلفزيون</title>
+<title>استفهام — شاشة التلفزيون</title>
 <style>
   /* Served by the host's phone (DisplayServer). Kept dependency-free so it
      runs on weak smart-TV browsers, and so the same page can later be the
@@ -142,7 +142,7 @@
 
   function idle() {
     return '<div class="screen center"><div class="brand">؟</div>' +
-      '<h1 style="margin-top:48px">إستفهام</h1>' +
+      '<h1 style="margin-top:48px">استفهام</h1>' +
       '<div class="muted" style="font-size:40px;margin-top:20px">بانتظار بدء اللعبة</div></div>';
   }
 
@@ -258,7 +258,8 @@
       '<div class="qmain" style="flex:1;gap:36px">' +
       (q.type === 'image' ? media(q, 280) : '') +
       '<div class="muted" style="font-size:52px;font-weight:600;text-align:center">' + esc(q.text) + '</div>' +
-      '<div class="answer-card reveal"><div class="label">✓ الإجابة الصحيحة</div><div class="value">' + esc(q.answer) + '</div></div>' +
+      '<div class="answer-card reveal"><div class="label">✓ الإجابة الصحيحة</div><div class="value">' + esc(q.answer) + '</div>' +
+        (q.nearby ? '<div class="label" style="margin-top:12px;color:var(--muted)">يُقبل أيضاً: ' + q.nearby[0] + ' أو ' + q.nearby[1] + '</div>' : '') + '</div>' +
       '</div>' + footer(s) + '</div>';
   }
 
@@ -352,6 +353,23 @@
     lastZoom = s.zoom;
     applyZoom(s.zoom);
     playSound(s);
+    playEffect(s);
+  }
+
+  // The game's sound effects (a question opens, the answer, the result…),
+  // played here instead of on the phone while the TV shows the game. Each
+  // one counts up effect.n; the one already there when the page loads is
+  // not replayed.
+  var fxAudio = new Audio(), fxN;
+  function playEffect(s) {
+    var e = s.effect;
+    if (!e) { if (fxN === undefined) fxN = null; return; }
+    if (fxN === undefined) { fxN = e.n; return; }
+    if (e.n === fxN) return;
+    fxN = e.n;
+    fxAudio.src = 'sounds/' + encodeURIComponent(e.name) + '.wav';
+    var p = fxAudio.play();
+    if (p && p.catch) p.catch(showSoundHint);
   }
 
   // The question's sound, when the host taps «استمع» with the TV showing:
@@ -395,8 +413,10 @@
   function soundAllowed() {
     if (!soundHint) return;
     hideSoundHint();
-    tvAudio.currentTime = 0;
-    tvAudio.play().catch(function () {});
+    if (soundFile) {
+      tvAudio.currentTime = 0;
+      tvAudio.play().catch(function () {});
+    }
   }
   document.addEventListener('keydown', soundAllowed);
   document.addEventListener('click', soundAllowed);
