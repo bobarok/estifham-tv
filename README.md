@@ -17,18 +17,21 @@
 | Abdullah Geelah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Ful_medames_(arabic_meal).jpg |
 | Aconcagua (talk) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Lynx_Nationalpark_Bayerischer_Wald_01.jpg |
 | Adam Cuerden | Public domain | https://commons.wikimedia.org/wiki/File:Theodore_Roosevelt_by_the_Pach_Bros_(4x5_cropped)_(3).jpg |
-| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Nicaragua_(orthographic_projection).svg |
-| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Panama_(orthographic_projection).svg |
-| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Philippines_(orthographic_projection).svg |
+| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Guatemala_(orthographic_projection).svg |
 | Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Colombia_(orthographic_projection).svg |
 | Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Ecuador_(orthographic_projection).svg |
-| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Guatemala_(orthographic_projection).svg |
+| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Philippines_(orthographic_projection).svg |
+| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Panama_(orthographic_projection).svg |
+| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Nicaragua_(orthographic_projection).svg |
+| Addicted04 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Indonesia_(orthographic_projection).svg |
+| Addicted04 (talk) | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Chile_(orthographic_projection).svg |
 | Addicted04, Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Peru_(orthographic_projection).svg |
 | Adobe Inc. | Public domain | https://commons.wikimedia.org/wiki/File:Adobe_Acrobat_DC_logo_2020.svg |
 | Adobe Inc. | Public domain | https://commons.wikimedia.org/wiki/File:Adobe_Photoshop_CC_icon.svg |
 | Adriel anv00 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Gardenia_jasminoides_flower_Argentina.jpg |
 | Africa (orthographic projection).svg: Martin23230 LocationEritrea.svg: User:Rei-artur derivative work Sémhur | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Ethiopia_(Africa_orthographic_projection).svg |
 | Africa_(orthographic_projection).svg: Martin23230 derivative work: F l a n k e r, derivative work: Flappiefh | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Burkina_Faso_(orthographic_projection).svg |
+| Africa_(orthographic_projection).svg: Martin23230 derivative work: Nableezy (talk) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Egypt_(orthographic_projection).svg |
 | Africa_(orthographic_projection).svg: Martin23230 LocationEritrea.svg: User:Rei-artur derivative work: Sémhur (talk) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Eritrea_(Africa_orthographic_projection).svg |
 | After Alexander Roslin | Public domain | https://commons.wikimedia.org/wiki/File:Catherine_II_after_Roslin,_Rokotov_(1780s,_Kunsthistorisches_Museum).jpg |
 | After Frans Hals | Public domain | https://commons.wikimedia.org/wiki/File:Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg |
@@ -37,9 +40,9 @@
 | Ajay Suresh from New York, NY, USA | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Instant_Pot_(49907000991).jpg |
 | Alex38 | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Dragonblood_tree_in_Socotra_2.jpg |
 | Alexander Bassano | Public domain | https://commons.wikimedia.org/wiki/File:Queen_Victoria_by_Bassano.jpg |
-| Alexander Migl | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Citroen_2CV_1X7A7979.jpg |
-| Alexander Migl | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ferrari_Testarossa_IMG_3043.jpg |
 | Alexander Migl | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Pagani_Zonda_C12_%27chassis_001%27_Genf_2019_1Y7A5539.jpg |
+| Alexander Migl | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ferrari_Testarossa_IMG_3043.jpg |
+| Alexander Migl | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Citroen_2CV_1X7A7979.jpg |
 | Alexandre Cabanel | Public domain | https://commons.wikimedia.org/wiki/File:Alexandre_Cabanel_002.jpg |
 | Alexandre Prevot from Nancy, France | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Bentley_Continental_GT_First_Edition_(49919050697)_(cropped)_(cropped).jpg |
 | Ali Mujtaba | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ali_Mujtaba_WLM2017_FAISAL_MOSQUE_019.jpg |
@@ -62,7 +65,9 @@
 | ArnoldReinhold | CC BY 2.5 | https://commons.wikimedia.org/wiki/File:Rolodex.agr.jpg |
 | Arousing Appetites | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Fattoush_mixed-salad.jpg |
 | Artem.G | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Injera_with_eight_kinds_of_stew.jpg |
+| Artwin | Public domain | https://commons.wikimedia.org/wiki/File:Suriname_(orthographic_projection).svg |
 | ASDFGHJ | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Mongolia_(orthographic_projection).svg |
+| ASDFGHJ (talk) File:South Korea (orthographic projection).svg: User:Ksiom | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:North_Korea_(orthographic_projection).svg |
 | Ashley Pomeroy | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Casio_F-91W_5051.jpg |
 | Ashley Pomeroy | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Duracell_9_Volt_0849.jpg |
 | Ashley Pomeroy | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Toblerone_3362.jpg |
@@ -81,20 +86,20 @@
 | Benh LIEU SONG | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Ephesus_Celsus_Library_Fa%C3%A7ade.jpg |
 | Benh LIEU SONG (Flickr) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Pont_du_Gard_BLS.jpg |
 | Bernard Gagnon | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Joshua_Tree_01.jpg |
-| Bernard Gagnon | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Frontenac_02.jpg |
 | Bernard Gagnon | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Palmyra_03.jpg |
+| Bernard Gagnon | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Frontenac_02.jpg |
 | Bernard Landgraf | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Fischotter,_Lutra_Lutra.JPG |
-| Berthold Werner | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Katharinenkloster_Sinai_BW_2.jpg |
 | Berthold Werner | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Nivea_Creme_BW_2025-07-05_16-51-45_s.jpg |
 | Berthold Werner | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Alberobello_BW_2016-10-16_13-43-03.jpg |
+| Berthold Werner | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Katharinenkloster_Sinai_BW_2.jpg |
 | Bialetti Industrie | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Moka_Express_Bialetti.png |
 | BigBlobfish | CC0 | https://commons.wikimedia.org/wiki/File:Several_Pepsi_Cans.jpg |
-| Bill Bertram | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:ZXSpectrum48k.jpg |
 | Bill Bertram | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:Amiga500_system.jpg |
+| Bill Bertram | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:ZXSpectrum48k.jpg |
 | Biologg | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Pamukkale,_Denizli_2026_68.jpg |
-| Bjørn Christian Tørrissen | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Angkor_Wat.jpg |
-| Bjørn Christian Tørrissen | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Cliffs-Of-Moher-OBriens-From-South.JPG |
 | Bjørn Christian Tørrissen | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Shwedagon_Pagoda_2017.jpg |
+| Bjørn Christian Tørrissen | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Cliffs-Of-Moher-OBriens-From-South.JPG |
+| Bjørn Christian Tørrissen | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Angkor_Wat.jpg |
 | Bkar6190 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:%D9%85%D8%AF%D9%8A%D9%86%D8%A9_%D8%B4%D8%A8%D8%A7%D9%85_%D8%AD%D8%B6%D8%B1%D9%85%D9%88%D8%AA.jpg |
 | Blondinrikard Fröberg from Göteborg, Sweden | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Azadi_Tower_(29358497718).jpg |
 | Bluesky team | Public domain | https://commons.wikimedia.org/wiki/File:Bluesky_butterfly-logo-gradient.svg |
@@ -105,9 +110,9 @@
 | Brian Snelson from Hockley, Essex, England | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Lamborghini_Countach_-_Flickr_-_exfordy_(2)_(cropped-2).jpg |
 | C.Stadler/Bwag | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Wien_-_Stephansdom_(1).JPG |
 | C.Stadler/Bwag | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Wien_-_Schloss_Sch%C3%B6nbrunn.JPG |
-| Calreyn88 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2021_Chevrolet_Corvette_C8.jpg |
-| Calreyn88 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Bugatti_Chiron_1.jpg |
 | Calreyn88 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Lamborghini_Aventador_S_(44554).jpg |
+| Calreyn88 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Bugatti_Chiron_1.jpg |
+| Calreyn88 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2021_Chevrolet_Corvette_C8.jpg |
 | Canaan | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:SF_maig_2_cropped.jpg |
 | Canadianhockey91 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Lake_Bled_from_the_Mountain.jpg |
 | Carl Pietzner | Public domain | https://commons.wikimedia.org/wiki/File:Franz_Joseph_I_of_Austria.1910_(cropped).jpg |
@@ -117,15 +122,15 @@
 | Celuici | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Grand-Place,_Brussels_-_panorama,_June_2018.jpg |
 | Chainwit. | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Fanta_cans_in_Thailand_2021.jpg |
 | Chainwit. | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:East_facade_Hawa_Mahal_Jaipur_from_ground_level_(July_2022)_-_img_01.jpg |
-| Charles J. Sharp | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Philippine_tarsier_(Carlito_syrichta_fraterculus)_Bohol.jpg |
-| Charles J. Sharp | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:European_badger_(Meles_meles_taxus)_Drenthe.jpg |
 | Charles J. Sharp | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Meerkat_(Suricata_suricatta)_Tswalu.jpg |
 | Charles J. Sharp | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Muskox_(Ovibos_moschatus)_male_Dovrefjell_4.jpg |
+| Charles J. Sharp | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Philippine_tarsier_(Carlito_syrichta_fraterculus)_Bohol.jpg |
+| Charles J. Sharp | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:European_badger_(Meles_meles_taxus)_Drenthe.jpg |
 | Charles J. Sharp | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Arabian_oryx_(oryx_leucoryx).jpg |
 | Charles_Darwin_seated.jpg: Henry Maull (1829–1914) and John Fox (1832–1907) (Maull & Fox) [3] derivative work: Beao | Public domain | https://commons.wikimedia.org/wiki/File:Charles_Darwin_seated_crop.jpg |
 | chee.hong from Kuala Lumpur, Malaysia | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Nachos-cheese.jpg |
-| Chelsea Jay | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1996_McLaren_F1_Chassis_No_63_6.1_Front.jpg |
 | Chelsea Jay | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1971_Lamborghini_Miura_P400_SV.jpg |
+| Chelsea Jay | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1996_McLaren_F1_Chassis_No_63_6.1_Front.jpg |
 | Chensiyuan | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1_carcassonne_aerial_2016.jpg |
 | Chris Brown | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Scotland_Haggis.jpg |
 | Chris Woodrich | Public domain | https://commons.wikimedia.org/wiki/File:Heinz_Tomato_Ketchup,_Canada_(front),_2026-02-19.jpg |
@@ -136,10 +141,13 @@
 | code poet on flickr. | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Causeway-code_poet-4.jpg |
 | cogdogblog | CC0 | https://commons.wikimedia.org/wiki/File:2014-365-233_The_Basic_Brownie_Camera_(14809795240).jpg |
 | Colin | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Plasma_globe_60th.jpg |
-| Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Bolivia_(orthographic_projection).svg |
+| Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Madagascar_(orthographic_projection).svg |
+| Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Japan_(orthographic_projection).svg |
+| Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Jamaica_(orthographic_projection).svg |
+| Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Guyana_(orthographic_projection).svg |
 | Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Venezuela_(orthographic_projection).svg |
 | Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Uruguay_(orthographic_projection).svg |
-| Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Jamaica_(orthographic_projection).svg |
+| Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Bolivia_(orthographic_projection).svg |
 | Connormah, Ssolbergj (original) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Cuba_(orthographic_projection).svg |
 | Conrad 7 | CC0 | https://commons.wikimedia.org/wiki/File:Crayola_crayons.jpg |
 | Copy of Lysippos (?) | Public domain | https://commons.wikimedia.org/wiki/File:Socrates_Louvre.jpg |
@@ -165,6 +173,7 @@
 | Department of Defense. Department of the Army. Office of the Deputy Chief of Staff for Operations. U.S. Army Audiovisual Center. (ca. 1974 - 05/15/1984) | Public domain | https://commons.wikimedia.org/wiki/File:Richard_Nixon_presidential_portrait_(1).jpg |
 | derivative work: user:The Explaner | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Eupholidota.jpg |
 | derived work: MacedonianBoy | Public domain | https://commons.wikimedia.org/wiki/File:North_Macedonia_(orthographic_projection).svg |
+| Dexxter | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Argentina_(including_claimed_territories,_orthographic_projection).svg |
 | DiamondIIIXX | CC0 | https://commons.wikimedia.org/wiki/File:Pringles-165g-to-134g.jpg |
 | Didier B (Sam67fr) | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:Sainte_Chapelle_-_Upper_level_1.jpg |
 | Didier Descouens | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:(Venice)_Doge%27s_Palace_and_campanile_of_St._Mark%27s_Basilica_facing_the_sea.jpg |
@@ -177,6 +186,8 @@
 | Dropbox | Public domain | https://commons.wikimedia.org/wiki/File:Dropbox_Icon.svg |
 | Dwight Burdette | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Wedge_of_Laughing_Cow_spreadable_cheese_Original_Creamy_Swiss_flavor.JPG |
 | DY5W-sport | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Mitsubishi_V98_Pajero_Long_Body_Super_Exceed_3200_DI-D.JPG |
+| Eddo | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:El_Salvador_(orthographic_projection).svg |
+| Eddo | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Sweden_(orthographic_projection).svg |
 | EditQ | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Hall_of_Supreme_Harmony_(Forbidden_City)_1.jpg |
 | EecherplazGinkgo06.jpg: Cayambe derivative work: Ginkgotree (talk) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:GINKGOBAUM-2.jpg |
 | Ek2030372672 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:ULURU.jpg |
@@ -191,27 +202,27 @@
 | essetefano | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Parc_guell_-_panoramio.jpg |
 | Etcha | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Taj_Mahal_drawing_on_an_Etch-A-Sketch.jpg |
 | Ethereum Foundation | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Ethereum_logo_2014.svg |
-| Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Atari-Lynx-I-Handheld.jpg |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Nintendo-DS-Fat-Blue.png |
-| Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Neo-Geo-AES-Console-Set.png |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Atari-2600-Wood-4Sw-Set.png |
-| Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Sega-Saturn-Console-Set-Mk2.png |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:PlayStation-SCPH-1000-with-Controller.jpg |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:NES-Power-Glove.jpg |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Xbox-One-Kinect.jpg |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Sega-Game-Gear-WB.png |
-| Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Atari-Jaguar-Console-Set.jpg |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Nintendo-64-wController-L.jpg |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Sega-Mega-Drive-JP-Mk1-Console-Set.jpg |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Bounty-Split.jpg |
 | Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:NES-Console-Set.png |
 | Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:SNES-Mod1-Console-Set.png |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Skittles-Candies-Pile.jpg |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Bounty-Split.jpg |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Virtual-Boy-Set.png |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Wii-Console.png |
-| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Xbox-360-Pro-wController.jpg |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Nintendo-DS-Fat-Blue.png |
+| Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Atari-Lynx-I-Handheld.jpg |
 | Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Maltesers-Pile-and-Split.jpg |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Nintendo-64-wController-L.jpg |
 | Evan-Amos | CC0 | https://commons.wikimedia.org/wiki/File:Nokia-NGage-LL.png |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Skittles-Candies-Pile.jpg |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:PlayStation-SCPH-1000-with-Controller.jpg |
+| Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Sega-Saturn-Console-Set-Mk2.png |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:NES-Power-Glove.jpg |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Xbox-One-Kinect.jpg |
+| Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Neo-Geo-AES-Console-Set.png |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Wii-Console.png |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Virtual-Boy-Set.png |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Sega-Mega-Drive-JP-Mk1-Console-Set.jpg |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Atari-2600-Wood-4Sw-Set.png |
+| Evan-Amos | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Atari-Jaguar-Console-Set.jpg |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Xbox-360-Pro-wController.jpg |
+| Evan-Amos | Public domain | https://commons.wikimedia.org/wiki/File:Sega-Game-Gear-WB.png |
 | Evan-Amos, modified by Gunnar.offel | Public domain | https://commons.wikimedia.org/wiki/File:Nintendo-Game-Boy-Color-FL.png |
 | Everest700 | Public domain | https://commons.wikimedia.org/wiki/File:Chad_(orthographic_projection).svg |
 | Fakhri Mahmood | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Samrraa_05.jpg |
@@ -219,6 +230,8 @@
 | Fernando | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Perito_Moreno_Glacier_2023.jpg |
 | Fernando Losada Rodríguez | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Nymphaea_alba.001_-_Breendonk.jpg |
 | Fjat | CC0 | https://commons.wikimedia.org/wiki/File:Finland_(orthographic_projection).svg |
+| Flad | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Morocco_(orthographic_projection).svg |
+| Flappiefh | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Benin_(orthographic_projection_with_inset).svg |
 | Flappiefh | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Senegal_(orthographic_projection).svg |
 | Florstein (Telegram:WikiPhoto.Space) | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Winter_Palace_Panorama_4.jpg |
 | Ford Motor Company. Photographic Department | Public domain | https://commons.wikimedia.org/wiki/File:Henry_Ford_portrait_1915_original_(3x4_cropped).png |
@@ -232,14 +245,14 @@
 | Georges Chevalier | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:1926_Rabindrath_Tagore.jpg |
 | Gerka | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:PEZ_Soft_Dispensers.jpeg |
 | Gianfranco Gazzetti | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:KRAK_DES_CHEVALIERS_-_GAR_-_6-00.jpg |
-| Giles Laurent | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Capybaracropped.jpg |
 | Giles Laurent | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:006_Toco_toucan_in_Encontro_das_%C3%81guas_State_Park_Photo_by_Giles_Laurent.jpg |
 | Giles Laurent | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:015_Chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg |
+| Giles Laurent | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Capybaracropped.jpg |
 | GitHub | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:GitHub_Invertocat_Logo.svg |
 | Gold Pony | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:2020_Toyota_GR_Supra_(United_States).png |
-| Google | Public domain | https://commons.wikimedia.org/wiki/File:Google_Photos_icon_(2020-2025).svg |
 | Google | Public domain | https://commons.wikimedia.org/wiki/File:Google_Keep_2020_Logo.svg |
 | Google | Public domain | https://commons.wikimedia.org/wiki/File:Google_Meet_icon_(2020).svg |
+| Google | Public domain | https://commons.wikimedia.org/wiki/File:Google_Photos_icon_(2020-2025).svg |
 | Google | CC BY 2.5 | https://commons.wikimedia.org/wiki/File:Android_robot_(2014-2019).svg |
 | Google Inc. | Public domain | https://commons.wikimedia.org/wiki/File:Google_Translate_logo.svg |
 | GrandEscogriffe | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Galata_tower_01_23.jpg |
@@ -256,19 +269,20 @@
 | Heri nugroho | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Pradaksina.jpg |
 | Hiking in Jordan website and guidebook | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Ajloun_Castle.jpg |
 | hirosi SBM | Public domain | https://commons.wikimedia.org/wiki/File:N.macrophylla_x_lowii.jpg |
-| Holger Uwe Schmitt | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1977_bis_1980_wurde_die_Tempel_auf_der_Insel_Philae_auf_die_h%C3%B6her_gelegene_Insel_Agilka_versetzt._01.jpg |
 | Holger Uwe Schmitt | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1550_bis_1070_v._Chr._ca._wurde_der_Tempel_von_Luxor_erbaut._01.jpg |
+| Holger Uwe Schmitt | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1977_bis_1980_wurde_die_Tempel_auf_der_Insel_Philae_auf_die_h%C3%B6her_gelegene_Insel_Agilka_versetzt._01.jpg |
 | Hugo Erfurth | Public domain | https://commons.wikimedia.org/wiki/File:Max_Planck_by_Hugo_Erfurth_1938cr_-_restoration1.jpg |
 | Hunanuk | CC0 | https://commons.wikimedia.org/wiki/File:S%C3%BCleymaniyeMosqueIstanbul_(cropped).jpg |
 | Husseinal-mauktar | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:%D8%A7%D8%AB%D8%A7%D8%B1_%D8%A7%D9%84%D8%AD%D8%B6%D8%B1.jpg |
 | Hyacinthe Rigaud | Public domain | https://commons.wikimedia.org/wiki/File:Louis_XIV_of_France.jpg |
 | Ian Sewell | CC BY 2.5 | https://commons.wikimedia.org/wiki/File:AhuTongariki.JPG |
-| IFCAR | Public domain | https://commons.wikimedia.org/wiki/File:2011_Chevrolet_Caprice_PPV_--_12-06-2010_front.jpg |
 | IFCAR | Public domain | https://commons.wikimedia.org/wiki/File:Ford_Crown_Victoria_LX.jpg |
+| IFCAR | Public domain | https://commons.wikimedia.org/wiki/File:2011_Chevrolet_Caprice_PPV_--_12-06-2010_front.jpg |
 | Imag source: Martin23230;* Derivative work: by Marcos Elias de Oliveira Júnior talk! + — Marcos Elias de Oliveira Júnior fala! + (contact here) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Liberia_(orthographic_projection).svg |
-| Image source: Martin23230;* Derivative work: by Marcos Elias de Oliveira Júnior talk! + — Marcos Elias de Oliveira Júnior fala! + (contact here) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:C%C3%B4te_d%27Ivoire_(orthographic_projection).svg |
 | Image source: Martin23230;* Derivative work: by Marcos Elias de Oliveira Júnior talk! + — Marcos Elias de Oliveira Júnior fala! + (contact here) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Ghana_(orthographic_projection).svg |
+| Image source: Martin23230;* Derivative work: by Marcos Elias de Oliveira Júnior talk! + — Marcos Elias de Oliveira Júnior fala! + (contact here) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:C%C3%B4te_d%27Ivoire_(orthographic_projection).svg |
 | Imelenchon (original work) | Public domain | https://commons.wikimedia.org/wiki/File:Edificio_Fuller_(Flatiron)_en_2010_desde_el_Empire_State_crop_boxin.jpg |
+| Iraq (orthographic projection).svg Turkey (orthographic projection).svg: The Emirr derivative work: Izzedine | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Iraq_(orthographic_projection).svg |
 | Irbis1983 | Public domain | https://commons.wikimedia.org/wiki/File:Irbis4.JPG |
 | Izzedine | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Georgia_(orthographic_projection).svg |
 | Jack145945 | CC0 | https://commons.wikimedia.org/wiki/File:Ratatouille_home_cooked.jpg |
@@ -287,8 +301,8 @@
 | Johann Gottlieb Becker (1720-1782) | Public domain | https://commons.wikimedia.org/wiki/File:Immanuel_Kant_-_Gemaelde_1.jpg |
 | John Jabez Edwin Mayall | Public domain | https://commons.wikimedia.org/wiki/File:Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored.png |
 | JohnGold6000 | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Turkmenistan_(orthographic_projection).svg |
-| Joseph Karl Stieler | Public domain | https://commons.wikimedia.org/wiki/File:Goethe_(Stieler_1828).jpg |
 | Joseph Karl Stieler | Public domain | https://commons.wikimedia.org/wiki/File:Joseph_Karl_Stieler%27s_Beethoven_mit_dem_Manuskript_der_Missa_solemnis.jpg |
+| Joseph Karl Stieler | Public domain | https://commons.wikimedia.org/wiki/File:Goethe_(Stieler_1828).jpg |
 | Joseph-Siffred Duplessis | Public domain | https://commons.wikimedia.org/wiki/File:Joseph_Siffrein_Duplessis_-_Benjamin_Franklin_-_Google_Art_Project.jpg |
 | Joy | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Chocolate_con_churros_(27343655726).jpg |
 | Justus Sustermans | Public domain | https://commons.wikimedia.org/wiki/File:Galileo_Galilei_(1564-1642)_RMG_BHC2700.tiff |
@@ -300,8 +314,9 @@
 | Katma0601 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Mandrill_Albert_September_2015_Zoo_Berlin_(2).jpg |
 | Kattusa24 | Public domain | https://commons.wikimedia.org/wiki/File:Harira.png |
 | kcakduman | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Upper_Jeita_Grotto.jpg |
-| Keepscases | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Costa_Rica_(orthographic_projection).svg |
 | Keepscases | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Sudan_(orthographic_projection).svg |
+| Keepscases | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Costa_Rica_(orthographic_projection).svg |
+| Keepscases, perlshaper | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Saudi_Arabia_(orthographic_projection).svg |
 | Kenneth C. Zirkel | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Mainz_Gutenbergdenkmal_2016_(cropped).jpg |
 | kentronhayastan, Ssolbergj | Public domain | https://commons.wikimedia.org/wiki/File:Armenia_(orthographic_projection).svg |
 | Kevauto | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Tahoe_RST,_front_3.7.22.jpg |
@@ -320,11 +335,13 @@
 | Ksiom | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:South_Korea_(orthographic_projection).svg |
 | kspoddar | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Chickentandoori.jpg |
 | Kurt Dundy | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Libya_Ghadames_Old_Town_Rooftop_View.JPG |
+| L'Américain | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Syria_(orthographic_projection).svg |
+| L'Américain | Public domain | https://commons.wikimedia.org/wiki/File:Yemen_(orthographic_projection).svg |
+| L'Américain | Public domain | https://commons.wikimedia.org/wiki/File:Mauritania_(orthographic_projection).svg |
 | L'Américain | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Angola_(orthographic_projection).svg |
 | L'Américain | Public domain | https://commons.wikimedia.org/wiki/File:Algeria_(orthographic_projection).svg |
-| L'Américain | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Syria_(orthographic_projection).svg |
 | L'Américain | Public domain | https://commons.wikimedia.org/wiki/File:Zimbabwe_(orthographic_projection).svg |
-| L'Américain | Public domain | https://commons.wikimedia.org/wiki/File:Mauritania_(orthographic_projection).svg |
+| L'Américain | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Oman_(orthographic_projection).svg |
 | L'Américain (talk) | Public domain | https://commons.wikimedia.org/wiki/File:Libya_(orthographic_projection).svg |
 | Larry D. Moore | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Roomba_original.jpg |
 | Larry Miller | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:001_Tacos_de_carnitas,_carne_asada_y_al_pastor.jpg |
@@ -349,23 +366,26 @@
 | Luis Enrique Toro Moreno (1897-1933) | Public domain | https://commons.wikimedia.org/wiki/File:Sim%C3%B3n_Bol%C3%ADvar._Toro_Moreno,_Luis._1922,_Legislative_Palace,_La_Paz.png |
 | M 93 | CC BY-SA 3.0 de | https://commons.wikimedia.org/wiki/File:Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_(1),_5._April_2012,_D%C3%BCsseldorf.jpg |
 | M.Bitton | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ukraine_(orthographic_projection).svg |
+| M.Bitton | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Togo_(orthographic_projection).svg |
 | M.Bitton | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Rwanda_(orthographic_projection).svg |
 | Malene Thyssen | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Myresluger2.jpg |
 | Mandingoesque | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Kenya_(orthographic_projection).svg |
 | Marco Wydmuch | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Red_Dot_Award_Product_Design_2000-2018_Aibos.jpg |
 | Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Zambia_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Sierra_Leone_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | CC0 | https://commons.wikimedia.org/wiki/File:Uganda_(orthographic_projection).svg |
 | Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Albania_(orthographic_projection).svg |
 | Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Bosnia_and_Herzegovina_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | CC0 | https://commons.wikimedia.org/wiki/File:Guinea_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Malawi_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Mali_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Mozambique_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Namibia_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Niger_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Switzerland_(orthographic_projection).svg |
 | Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Tanzania_(orthographic_projection).svg |
-| Marcos Elias de Oliveira Júnior | CC0 | https://commons.wikimedia.org/wiki/File:Uganda_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Malawi_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Switzerland_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | CC0 | https://commons.wikimedia.org/wiki/File:Central_African_Republic_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Sierra_Leone_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Niger_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Namibia_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Mozambique_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Montenegro_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | Public domain | https://commons.wikimedia.org/wiki/File:Mali_(orthographic_projection).svg |
+| Marcos Elias de Oliveira Júnior | CC0 | https://commons.wikimedia.org/wiki/File:Guinea_(orthographic_projection).svg |
 | MAREK SZAREJKO from CLONMEL, IRELAND - POLAND | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Great_Mosque_of_Kairouan_Panorama_-_Grande_Mosqu%C3%A9e_de_Kairouan_Panorama.jpg |
 | Mariordo (Mario Roberto Durán Ortiz) | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Aerial_Foz_de_Igua%C3%A7u_26_Nov_2005.jpg |
 | Mark Fosh | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:St_Pauls_aerial_(cropped).jpg |
@@ -385,8 +405,8 @@
 | Michael | Public domain | https://commons.wikimedia.org/wiki/File:Coloured_sharpie_markers.jpg |
 | Michelle Naherny | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:VanillaMacaron.jpg |
 | Mick from Northamptonshire, England | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:BMW_Isetta_-_Flickr_-_mick_-_Lumix.jpg |
-| Microsoft | Public domain | https://commons.wikimedia.org/wiki/File:Visual_Studio_Code_1.35_icon.svg |
 | Microsoft | Public domain | https://commons.wikimedia.org/wiki/File:Xbox_one_logo.svg |
+| Microsoft | Public domain | https://commons.wikimedia.org/wiki/File:Visual_Studio_Code_1.35_icon.svg |
 | Microsoft Corporation | MIT | https://commons.wikimedia.org/wiki/File:Microsoft_Edge_logo_(2019).svg |
 | Mikko Lautamäki | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Red_and_blue_Chuck_Taylor_All-Stars_sneakers,_2010.jpg |
 | MiNe | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Sony_Discman_D-145_face_20160921b.jpg |
@@ -399,6 +419,7 @@
 | Mr Ikan &lt;*)))&gt;&lt; | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Malaysia_(orthographic_projection).svg |
 | Mr.choppers | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:1974_Lancia_Stratos_Stradale_at_Greenwich_2021,_front_left.jpg |
 | MrWalkr | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Agera_RST_Koenigsegg.jpg |
+| MSClaudiu | Public domain | https://commons.wikimedia.org/wiki/File:Norway_(orthographic_projection).svg |
 | MSClaudiu | Public domain | https://commons.wikimedia.org/wiki/File:Gabon_(orthographic_projection).svg |
 | MSClaudiu | Public domain | https://commons.wikimedia.org/wiki/File:Cameroon_(orthographic_projection).svg |
 | Muhammad Mahdi Karim | GFDL 1.2 | https://commons.wikimedia.org/wiki/File:Rambutan_white_background_alt.jpg |
@@ -407,8 +428,8 @@
 | Nadar | Public domain | https://commons.wikimedia.org/wiki/File:Claude_Monet_1899_Nadar_crop.jpg |
 | Nanosanchez | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Tanjung_Puting30477.jpg |
 | Napoleon Sarony | Public domain | https://commons.wikimedia.org/wiki/File:Tesla_circa_1890.jpeg |
-| NASA | Public domain | https://commons.wikimedia.org/wiki/File:Apollo_11_Launch_-_GPN-2000-000630.jpg |
 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:Io_highest_resolution_natural_color.png |
+| NASA | Public domain | https://commons.wikimedia.org/wiki/File:Apollo_11_Launch_-_GPN-2000-000630.jpg |
 | NASA / Voyager 2 / PDS / OPUS / Ardenau4 | CC0 | https://commons.wikimedia.org/wiki/File:Neptune_Voyager2_color_calibrated.png |
 | NASA, ESA, AURA/Caltech, Palomar Observatory The science team consists of: D. Soderblom and E. Nelan (STScI), F. Benedict and B. Arthur (U. Texas), and B. Jones (Lick Obs.) | Public domain | https://commons.wikimedia.org/wiki/File:Pleiades_large.jpg |
 | NASA, ESA, J. Hester and A. Loll (Arizona State University) | Public domain | https://commons.wikimedia.org/wiki/File:Crab_Nebula.jpg |
@@ -417,6 +438,7 @@
 | NASA/JPL-Caltech | Public domain | https://commons.wikimedia.org/wiki/File:Venus_from_Mariner_10.jpg |
 | NASA/JPL-Caltech/SwRI/MSSS/Kevin M. Gill | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Europa_-_Perijove_45_(cropped).png |
 | Naturedata | CC0 | https://commons.wikimedia.org/wiki/File:Rock_hyrax_Serengeti_National_Park.jpg |
+| Neq00 | CC0 | https://commons.wikimedia.org/wiki/File:Italy_(orthographic_projection).svg |
 | netzach farbiash | CC BY 2.5 | https://commons.wikimedia.org/wiki/File:PikiWiki_Israel_38769_Male_Ibex.jpg |
 | Nicolas de Largillière | CC0 | https://commons.wikimedia.org/wiki/File:Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_(1694-1778)_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_(cropped).jpg |
 | Nicolas Hadjisavvas | CC BY 2.5 | https://commons.wikimedia.org/wiki/File:Sheikh_Lotfallah_Esfahan.JPG |
@@ -424,6 +446,7 @@
 | Nikos Kitsakis | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Himeji_castle_in_may_2015.jpg |
 | Ninara from Helsinki, Finland | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Peterhof_Palace,_Saint_Petersburg,_Russia_(44408938295).jpg |
 | Ninrouter | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Iceland_(orthographic_projection).svg |
+| Ninrouter | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Djibouti_(orthographic_projection).svg |
 | Nixette | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Walrus_in_the_Russian_Arctic_National_Park,_Novaya_Zemlya_2015-2.jpg |
 | No machine-readable author provided. Kylet assumed (based on copyright claims). | CC BY 2.5 | https://commons.wikimedia.org/wiki/File:PerthVespa.jpg |
 | No machine-readable author provided. Rainer Zenz assumed (based on copyright claims). | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Lahmacun.jpg |
@@ -445,21 +468,23 @@
 | OSX | Public domain | https://commons.wikimedia.org/wiki/File:2009-2010_Nissan_GT-R_(R35)_coupe_01.jpg |
 | OSX | Public domain | https://commons.wikimedia.org/wiki/File:2015_Land_Rover_Defender_(L316_MY15)_90_3-door_wagon_(2015-10-24)_01.jpg |
 | Overlaet | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Lotus_Elise_Club_Racer_(front_quarter).jpg |
+| P30Carl | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Iran_(orthographic_projection).svg |
 | Pach Brothers | Public domain | https://commons.wikimedia.org/wiki/File:Guglielmo_Marconi.jpg |
 | Pat Hooper from Chicago, IL, USA | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Adansonia_grandidieri_Pat_Hooper.jpg |
 | Paul Nadar | Public domain | https://commons.wikimedia.org/wiki/File:Louis_Pasteur,_foto_av_Paul_Nadar,_Crisco_edit.jpg |
 | PayPal (Original design by Pentagram) | Public domain | https://commons.wikimedia.org/wiki/File:PayPal_2024_(Icon).svg |
 | Pedro Szekely from Los Angeles, USA | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Istanbul_(34223582516)_(cropped).jpg |
 | Perchybits | CC0 | https://commons.wikimedia.org/wiki/File:Sony_PlayStation_2.png |
-| Petar Milošević | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Hassan_Tower,_Rabat,_Marocco_(%D8%B5%D9%88%D9%85%D8%B9%D8%A9_%D8%AD%D8%B3%D8%A7%D9%86_).jpg |
 | Petar Milošević | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ksar_A%C3%AFt_Benhaddou,_Marocco_(%D8%A3%D9%8A%D8%AA_%D8%A8%D9%86_%D8%AD%D8%AF%D9%88%D8%8C_%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8,_%E2%B4%B0%E2%B5%A2%E2%B5%9C_%E2%B5%83%E2%B4%B0%E2%B4%B7%E2%B4%B7%E2%B5%93).jpg |
 | Petar Milošević | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Kalyan_Minaret,_Bukhara_(%D0%9C%D0%B8%D0%BD%D0%B0%D1%80%D0%B5%D1%82_%D0%9A%D0%B0%D0%BB%D1%8F%D0%BD_%D0%B2_%D0%91%D1%83%D1%85%D0%B0%D1%80%D0%B5,_Minorai_Kalon).jpg |
 | Petar Milošević | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Oval_Plaza_(Forum_Romanum,_Gerasa_-_Jerash,_Jordan)_-_%D8%B3%D8%A7%D8%AD%D8%A9_%D8%A7%D9%84%D9%86%D8%AF%D9%88%D8%A9,_%D8%AC%D8%B1%D8%B4.jpg |
+| Petar Milošević | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Hassan_Tower,_Rabat,_Marocco_(%D8%B5%D9%88%D9%85%D8%B9%D8%A9_%D8%AD%D8%B3%D8%A7%D9%86_).jpg |
 | Photo: chil, on Camptocamp.org Derivative work:Zacharie Grossen | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Matterhorn_from_Domh%C3%BCtte_-_2.jpg |
 | Photographer: B N Chagny | CC BY-SA 1.0 | https://commons.wikimedia.org/wiki/File:Sudan_Meroe_Pyramids_2001.JPG |
 | Picanteria karol | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Cebiche_de_corvina.JPG |
 | Pinterest | Public domain | https://commons.wikimedia.org/wiki/File:Pinterest-logo.png |
 | Psp-1000.jpg: Evan-Amos derivative work: Alphathon™ (talk) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:PSP-1000.png |
+| Queix | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Portugal_(orthographic_projection).svg |
 | Quercus acuta | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Shoyu_Ramen%EF%BC%88Tokyo_Ramen%EF%BC%89_-_01.jpg |
 | qulolup | CC0 | https://commons.wikimedia.org/wiki/File:Can_of_WD-40_(100ml)_(53753418908).jpg |
 | RaddP | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Flutter_logo.svg |
@@ -468,8 +493,8 @@
 | Raimond Spekking | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:K%C3%B6lner_Dom_-_Westfassade_2022_ohne_Ger%C3%BCst-0968_b.jpg |
 | Rakuten Viber | Public domain | https://commons.wikimedia.org/wiki/File:Viber_logo_2018_(without_text).svg |
 | Ralf Steinberger from Milan, Berlin + Munich, Italy + Germany | CC-BY-2.0 | https://en.wikipedia.org/wiki/File:Museum_of_Islamic_Art_in_Doha,_Qatar_(32673171432).jpg |
-| Rama & Musée Bolo | CC BY-SA 2.0 fr | https://commons.wikimedia.org/wiki/File:Apple_Newton-IMG_0454-cropped.jpg |
 | Rama & Musée Bolo | CC BY-SA 2.0 fr | https://commons.wikimedia.org/wiki/File:Apple_II-IMG_7064.jpg |
+| Rama & Musée Bolo | CC BY-SA 2.0 fr | https://commons.wikimedia.org/wiki/File:Apple_Newton-IMG_0454-cropped.jpg |
 | Ramirez | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Mostar_Old_Town_Panorama_2007.jpg |
 | Ran Kirlian | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Cryptoprocta_Ferox.JPG |
 | Raphael | Public domain | https://commons.wikimedia.org/wiki/File:Raffaello_Sanzio.jpg |
@@ -486,8 +511,8 @@
 | Rob | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Netherlands_(orthographic_projection).svg |
 | rob Stoeltje from loenen, netherlands | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Selimiye_Mosque_(15051985908)_(cropped).jpg |
 | Rob984 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Republic_of_Cyprus_(orthographic_projection).svg |
-| Rob984 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Jordan_(orthographic_projection).svg |
 | Rob984 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Czech_Republic_(orthographic_projection).svg |
+| Rob984 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Jordan_(orthographic_projection).svg |
 | Rob984 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Belarus_(orthographic_projection).svg |
 | Robert Kindermann aka RobertK | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:MussakasMeMelitsanesKePatates01.JPG |
 | Robur.q | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Vachellia_(ex_Acacia)_tortilis.jpg |
@@ -496,9 +521,9 @@
 | Rufus46 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Weissschwanzstachelschwein_Hystrix_indica_Tierpark_Hellabrunn-12_(cropped).jpg |
 | Ruud Zwart | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Djenne_great_mud_mosque.jpg |
 | Sailing moose | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Amorphophallus_titanum_(corpse_flower)_-_2.jpg |
+| Sailko | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Lalibela,_san_giorgio,_esterno_24.jpg |
 | Sailko | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Computer_macintosh_128k,_1984_(all_about_Apple_onlus).jpg |
 | Sailko | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Ignoto_portoghese,_ritratto_di_un_cavaliere_dell%27ordine_di_cristo,_1525-50_ca._02.jpg |
-| Sailko | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Lalibela,_san_giorgio,_esterno_24.jpg |
 | Sambawamba | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Lasagna_bolognese.jpg |
 | Samir Al-Ibrahem | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Al-Mustansriah_School_-_Main_door.jpg |
 | Sarang | Public domain | https://commons.wikimedia.org/wiki/File:Red_Bull_can_in_South_Korea_20130502.jpg |
@@ -509,6 +534,7 @@
 | Sergei Prokudin-Gorskii | Public domain | https://commons.wikimedia.org/wiki/File:Leo_Tolstoy_1908_Portrait_(3x4_cropped).jpg |
 | SerraKnightz | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Bowl_of_Meatball_pho.jpg |
 | Shagil Kannur | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:The_Golden_Temple_of_Amrithsar_7.jpg |
+| Shahid Parvez | GFDL | https://commons.wikimedia.org/wiki/File:Afghanistan_(orthographic_projection).svg |
 | Shahid Parvez. Based on a file by Ssolbergj | GFDL | https://commons.wikimedia.org/wiki/File:Nepal_(orthographic_projection).svg |
 | Shahid Parvez. Based on a file by User:Ssolbergj | GFDL | https://commons.wikimedia.org/wiki/File:Bhutan_(orthographic_projection).svg |
 | Shahid Parvez. Based on a file by User:Ssolbergj | GFDL | https://commons.wikimedia.org/wiki/File:Bangladesh_(orthographic_projection).svg |
@@ -524,6 +550,9 @@
 | Source file: Ssolbergj This file: Svenskbygderna (talk) | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Laos_(orthographic_projection).svg |
 | Source: aleehk82 [1] Derivative work: 丁 (talk) | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Black_x2_and_white_i2.jpg |
 | Sous Chef | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Dolsot-bibimbap.jpg |
+| Spain_(orthographic_projection).png: Neoespaña (talk) derivative work: L'Américain (talk) | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Spain_(orthographic_projection).svg |
+| Spesh531 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Burundi_(orthographic_projection).svg |
+| Ssolbergj | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Mexico_(orthographic_projection).svg |
 | Ssolbergj (source map), Connormah | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Paraguay_(orthographic_projection).svg |
 | Stahlkocher | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Mercedes-Benz_600_vl_silver_TCE.jpg |
 | Stan Shebs | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Lilium_candidum_1.jpg |
@@ -545,9 +574,9 @@
 | Tabler (https://github.com/tabler / https://web.archive.org/web/20230424163711/https://github.com/tabler) | MIT | https://commons.wikimedia.org/wiki/File:Tabler-icons_brand-discord.svg |
 | Tabler (https://github.com/tabler / https://web.archive.org/web/20230424163711/https://github.com/tabler) | MIT | https://commons.wikimedia.org/wiki/File:Tabler-icons_brand-swift.svg |
 | Taewangkorea | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ha_Long_Bay_in_2019.jpg |
-| Takeaway | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Tom_yam_kung_maenam.jpg |
-| Takeaway | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:2014_0531_Cr%C3%A8me_br%C3%BBl%C3%A9e_Doi_Mae_Salong_(cropped).jpg |
 | Takeaway | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Phat_Thai_kung_Chang_Khien_street_stall.jpg |
+| Takeaway | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:2014_0531_Cr%C3%A8me_br%C3%BBl%C3%A9e_Doi_Mae_Salong_(cropped).jpg |
+| Takeaway | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Tom_yam_kung_maenam.jpg |
 | Telegram Messenger LLP | Public domain | https://commons.wikimedia.org/wiki/File:Telegram_logo.svg |
 | Tencent Holdings Limited | PD | https://en.wikipedia.org/wiki/File:WeChat_logo.svg |
 | Tennen-Gas | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Lexus_LFA_001.JPG |
@@ -561,8 +590,8 @@
 | Thomas Backa from Turku, Finland | CC0 | https://commons.wikimedia.org/wiki/File:Polaroid_SX-70_(4462345243).jpg |
 | Thomas Hardy | Public domain | https://commons.wikimedia.org/wiki/File:Joseph_Haydn.jpg |
 | Thomas Schoch | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Welwitschia_mirabilis(2).jpg |
-| Thomas Wolf, www.foto-tw.de | CC BY-SA 3.0 de | https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_2013.jpg |
 | Thomas Wolf, www.foto-tw.de | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Brandenburger_Tor_abends.jpg |
+| Thomas Wolf, www.foto-tw.de | CC BY-SA 3.0 de | https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_2013.jpg |
 | Tirimy | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Jacckuwait.jpg |
 | Tomasz Sienicki [user: tsca, mail: tomasz.sienicki at gmail.com] | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Tamagotchi_0124_ubt.jpeg |
 | Toni Castillo Quero | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Mezquita_de_C%C3%B3rdoba_desde_el_aire_(C%C3%B3rdoba,_Espa%C3%B1a).jpg |
@@ -580,36 +609,37 @@
 | Ukabia | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Nigeria_(orthographic_projection).svg |
 | UN | Public domain | https://commons.wikimedia.org/wiki/File:Tajikistan_(orthographic_projection).svg |
 | UN, The original uploader was RaviC at English Wikipedia. | Public domain | https://commons.wikimedia.org/wiki/File:Kyrgyzstan_(orthographic_projection).svg |
-| Unidentified painter | Public domain | https://commons.wikimedia.org/wiki/File:Vivaldi.jpg |
 | Unidentified painter | Public domain | https://commons.wikimedia.org/wiki/File:Darnley_stage_3.jpg |
+| Unidentified painter | Public domain | https://commons.wikimedia.org/wiki/File:Vivaldi.jpg |
 | Unknown | Public domain | https://commons.wikimedia.org/wiki/File:Spotify_logo_without_text.svg |
-| Unknown | Public domain | https://commons.wikimedia.org/wiki/File:Wolf_howls.ogg |
-| Unknown | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Narcissus_poeticus_subsp._radiiflorus.1658.jpg |
-| Unknown | Public domain | https://commons.wikimedia.org/wiki/File:Mussolini_mezzobusto.jpg |
-| Unknown | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:TOYOTA_2000GT.jpg |
 | Unknown | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Poland_(orthographic_projection).svg |
+| Unknown | Public domain | https://commons.wikimedia.org/wiki/File:Mussolini_mezzobusto.jpg |
+| Unknown | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Turkey_(orthographic_projection).svg |
+| Unknown | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Narcissus_poeticus_subsp._radiiflorus.1658.jpg |
+| Unknown | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:TOYOTA_2000GT.jpg |
 | Unknown | Public domain | https://commons.wikimedia.org/wiki/File:Farouk-King-.jpg |
 | Unknown | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Somalia_(orthographic_projection).svg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Hirohito_in_dress_uniform_(cropped).jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Gregor_Mendel_2.jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Josip_Broz_Tito_uniform_portrait.jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Erwin_Schr%C3%B6dinger_-_Narodowe_Archiwum_Cyfrowe_(1-E-939).jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:James-Clerk-Maxwell-1831-1879.jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Rudolf_Diesel2.jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Helen_Keller_(circa_1904).jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:YuanEmperorAlbumGenghisPortrait.jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Jinnah1945c.jpg |
+| Unknown | Public domain | https://commons.wikimedia.org/wiki/File:Wolf_howls.ogg |
 | Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Otto_von_Bismarck_1885_(cropped).jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Neil_Armstrong_pose.jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Michael_Faraday_sitting_crop.jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Adam_Smith_The_Muir_portrait.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:James-Clerk-Maxwell-1831-1879.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Jinnah1945c.jpg |
 | Unknown authorUnknown author | CC0 | https://commons.wikimedia.org/wiki/File:Alexander_Graham_Bell_1895_NPG_77_363.jpg |
-| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Ho_Chi_Minh_-_1946_Portrait_(cropped).jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Rudolf_Diesel2.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Adam_Smith_The_Muir_portrait.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Neil_Armstrong_pose.jpg |
 | Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Alexander_Mosaic_detail_of_Alexander_the_Great_(3x4_cropped).jpg |
-| Unknown authorUnknown author | CC BY-SA 3.0 de | https://commons.wikimedia.org/wiki/File:Werner_Heisenberg_Portrait_(3x4_cropped).jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Josip_Broz_Tito_uniform_portrait.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Ho_Chi_Minh_-_1946_Portrait_(cropped).jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Gregor_Mendel_2.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Hirohito_in_dress_uniform_(cropped).jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:YuanEmperorAlbumGenghisPortrait.jpg |
 | Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:BellK_218_Gertrude_Bell_in_Iraq_in_1909_age_41.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Helen_Keller_(circa_1904).jpg |
 | Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Alfred_Nobel3.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Michael_Faraday_sitting_crop.jpg |
+| Unknown authorUnknown author | CC BY-SA 3.0 de | https://commons.wikimedia.org/wiki/File:Werner_Heisenberg_Portrait_(3x4_cropped).jpg |
 | Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Nikolaus_Kopernikus_MOT.jpg |
+| Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Erwin_Schr%C3%B6dinger_-_Narodowe_Archiwum_Cyfrowe_(1-E-939).jpg |
 | Unknown authorUnknown author | Public domain | https://commons.wikimedia.org/wiki/File:Charles_Babbage_-_1860.jpg |
 | Unknown authorUnknown author; Restored by Yann Forget and Adam Cuerden | Public domain | https://commons.wikimedia.org/wiki/File:Edgar_Allan_Poe,_circa_1849,_restored,_squared_off.jpg |
 | unknown; a copy of the painting of François II Quesnel, which was made for Gérard Edelinck en 1691[réf. nécessaire]. | Public domain | https://commons.wikimedia.org/wiki/File:Blaise_Pascal_Versailles,_circa_1690.JPG |
@@ -625,13 +655,13 @@
 | Vandelizer | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:LotusDelhi.jpg |
 | Varun Pabrai | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Plumeria_rubra-4.JPG |
 | Vasily Perov | Public domain | https://commons.wikimedia.org/wiki/File:Vasily_Perov_-_%D0%9F%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82_%D0%A4.%D0%9C.%D0%94%D0%BE%D1%81%D1%82%D0%BE%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_-_Google_Art_Project.jpg |
-| Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2018_Audi_R8_Coupe_V10_plus_Front.jpg |
 | Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2016_Smart_Fortwo_Passion_Automatic_1.0_Front.jpg |
-| Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2019_Rolls-Royce_Phantom_V12_Automatic_6.75.jpg |
-| Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2018_Land_Rover_Discovery_Luxury_HSE_TD6_3.0_Front.jpg |
-| Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1960_Austin_Seven_Mini_850cc_Front.jpg |
 | Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2020_Volkswagen_Golf_Style_1.5_Front.jpg |
 | Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2016_BMW_i8.jpg |
+| Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:1960_Austin_Seven_Mini_850cc_Front.jpg |
+| Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2018_Land_Rover_Discovery_Luxury_HSE_TD6_3.0_Front.jpg |
+| Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2019_Rolls-Royce_Phantom_V12_Automatic_6.75.jpg |
+| Vauxford | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2018_Audi_R8_Coupe_V10_plus_Front.jpg |
 | Version 1 by Nohat (concept by Paullusmagnus); Wikimedia. | CC-BY-SA-3.0 | https://en.wikipedia.org/wiki/File:Wikipedia-logo-v2.svg |
 | Violetamyftari | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Speca_te_mbushura_me_mish.JPG |
 | Vyacheslav Argenberg | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Old_Tbilisi,_Georgian_khachapuri,_Georgia.jpg |
