@@ -16,7 +16,7 @@
     --bg: #E8F2F4; --surface: #FFFFFF; --raised: #F4F8FB; --cream: #0B1220;
     --muted: #55657A; --disabled: #9AA8B8; --border: rgba(25,99,194,.22);
     --soft: rgba(25,99,194,.12); --gold: #FFBE0C; --gold-text: #946500; --gold-soft: rgba(255,190,12,.15);
-    --gold-border: #FFBE0C; --primary: #1963C2; --primary-dark: #124A93; --first: #1963C2; --second: #0B1220;
+    --gold-border: #FFBE0C; --primary: #1963C2; --primary-dark: #124A93; --first: #1963C2; --second: #1963C2;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 100%; height: 100%; background: var(--bg); overflow: hidden; }
@@ -52,9 +52,8 @@
   .banners { display: grid; grid-template-columns: minmax(0, 1fr) 380px minmax(0, 1fr); gap: 28px; height: 180px; }
   .banner { display: flex; align-items: center; gap: 20px; padding: 0 44px; }
   .banner.turn-first { border-color: var(--first); background: rgba(25,99,194,.10); }
-  .banner.turn-second { border-color: var(--second); background: rgba(11,18,32,.06); }
+  .banner.turn-second { border-color: var(--second); background: rgba(25,99,194,.10); }
   .banner .name { font-size: 44px; font-weight: 700; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .banner .aids { font-size: 22px; color: var(--gold-text); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .banner .score { font-size: 92px; font-weight: 700; flex: none; white-space: nowrap; }
   .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-width: 0; padding: 0 20px; }
   .turn .who { font-size: 42px; font-weight: 700; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -91,7 +90,7 @@
   .footer .name { font-size: 38px; font-weight: 700; flex: 1; }
   .footer .score { font-size: 60px; font-weight: 700; }
   .footer .panel.hl-first { border-color: rgba(25,99,194,.45); }
-  .footer .panel.hl-second { border-color: rgba(11,18,32,.45); }
+  .footer .panel.hl-second { border-color: rgba(25,99,194,.45); }
 
   /* Answer */
   .answer-card { width: 1400px; padding: 48px 60px 60px; border-radius: 44px; text-align: center;
@@ -163,10 +162,9 @@
 
   function banner(s, id) {
     var t = team(s, id);
-    var aids = t.lifelinesLeft.length ? 'وسائل: ' + t.lifelinesLeft.map(esc).join(' · ') : 'لا وسائل متبقية';
     return '<div class="panel banner' + (s.turn === id ? ' turn-' + id : '') + '">' +
       '<span class="dot bg-' + id + '"></span>' +
-      '<div style="flex:1;min-width:0"><div class="name">' + esc(t.name) + '</div><div class="aids">' + aids + '</div></div>' +
+      '<div style="flex:1;min-width:0"><div class="name">' + esc(t.name) + '</div></div>' +
       '<span class="score num">' + points(t.score) + '</span></div>';
   }
 
