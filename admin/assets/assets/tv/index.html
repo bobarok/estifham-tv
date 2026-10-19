@@ -13,13 +13,13 @@
   @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-SemiBold.ttf); font-weight: 600; }
   @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-Bold.ttf); font-weight: 700; }
   :root {
-    --bg: #0E1726; --surface: #16223A; --raised: #1C2A45; --cream: #F3EEE3;
-    --muted: #A9B1C1; --disabled: #5E6A80; --border: rgba(243,238,227,.10);
-    --soft: rgba(243,238,227,.06); --gold: #D8B46A; --gold-soft: rgba(216,180,106,.12);
-    --gold-border: rgba(216,180,106,.45); --first: #7FA6D6; --second: #7DBA9C;
+    --bg: #E8F2F4; --surface: #FFFFFF; --raised: #F4F8FB; --cream: #0B1220;
+    --muted: #55657A; --disabled: #9AA8B8; --border: rgba(25,99,194,.22);
+    --soft: rgba(25,99,194,.12); --gold: #FFBE0C; --gold-text: #946500; --gold-soft: rgba(255,190,12,.15);
+    --gold-border: #FFBE0C; --primary: #1963C2; --primary-dark: #124A93; --first: #1963C2; --second: #0B1220;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+  html, body { width: 100%; height: 100%; background: var(--bg); overflow: hidden; }
   body { font-family: Plex, "Segoe UI", Tahoma, sans-serif; color: var(--cream); }
   #stage {
     position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
@@ -29,18 +29,18 @@
   .center { align-items: center; justify-content: center; text-align: center; }
   .panel { background: var(--surface); border: 2px solid var(--soft); border-radius: 32px; }
   .muted { color: var(--muted); }
-  .gold { color: var(--gold); }
+  .gold { color: var(--gold-text); }
   .num { font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
 
   .brand { width: 200px; height: 200px; border-radius: 58px; background: var(--surface);
-    border: 3px solid var(--gold-border); display: flex; align-items: center; justify-content: center;
-    font-size: 128px; font-weight: 700; color: var(--gold); line-height: 1; }
+    border: 4px solid var(--gold-border); display: flex; align-items: center; justify-content: center;
+    font-size: 128px; font-weight: 700; color: var(--gold-text); line-height: 1; }
   h1 { font-size: 140px; font-weight: 700; line-height: 1.15; }
 
   .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 34px; border-radius: 999px;
     background: var(--raised); border: 2px solid var(--border); font-size: 38px; font-weight: 700; }
   .chip.gold { background: var(--gold-soft); border-color: var(--gold-border); }
-  .chip.lifeline { background: var(--gold); color: var(--bg); border: 0; font-size: 32px; padding: 10px 28px; }
+  .chip.lifeline { background: var(--gold); color: #000; border: 0; font-size: 32px; padding: 10px 28px; }
 
   .dot { width: 22px; height: 22px; border-radius: 50%; flex: none; }
   .t-first { color: var(--first); } .bg-first { background: var(--first); }
@@ -51,22 +51,22 @@
      so the turn panel stays in the middle. */
   .banners { display: grid; grid-template-columns: minmax(0, 1fr) 380px minmax(0, 1fr); gap: 28px; height: 180px; }
   .banner { display: flex; align-items: center; gap: 20px; padding: 0 44px; }
-  .banner.turn-first { border-color: var(--first); background: rgba(127,166,214,.12); }
-  .banner.turn-second { border-color: var(--second); background: rgba(125,186,156,.12); }
+  .banner.turn-first { border-color: var(--first); background: rgba(25,99,194,.10); }
+  .banner.turn-second { border-color: var(--second); background: rgba(11,18,32,.06); }
   .banner .name { font-size: 44px; font-weight: 700; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .banner .aids { font-size: 22px; color: var(--gold); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .banner .aids { font-size: 22px; color: var(--gold-text); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .banner .score { font-size: 92px; font-weight: 700; flex: none; white-space: nowrap; }
   .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-width: 0; padding: 0 20px; }
   .turn .who { font-size: 42px; font-weight: 700; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   /* One column per category: its name on top, its questions going down. */
   .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 16px; margin-top: 16px; min-height: 0; }
   .col { display: grid; grid-template-rows: 120px repeat(6, 1fr); gap: 12px; min-height: 0;
-    padding: 10px; border-radius: 30px; border: 2px solid rgba(216,180,106,.28); background: rgba(216,180,106,.04); }
+    padding: 10px; border-radius: 30px; border: 2px solid rgba(25,99,194,.18); background: rgba(25,99,194,.04); }
   .cat { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 12px;
-    font-size: 36px; font-weight: 700; line-height: 1.2; border-radius: 20px; background: var(--surface); border: 2px solid var(--gold-border); color: var(--gold); overflow: hidden; min-width: 0; overflow-wrap: anywhere; }
+    font-size: 36px; font-weight: 700; line-height: 1.2; border-radius: 20px; background: var(--primary); border: 2px solid var(--primary-dark); color: #fff; overflow: hidden; min-width: 0; overflow-wrap: anywhere; }
   .tile { display: flex; align-items: center; justify-content: center; border-radius: 20px; font-size: 52px; font-weight: 700;
     background: var(--raised); border: 2px solid var(--border); }
-  .tile.used { background: rgba(243,238,227,.02); border-color: rgba(243,238,227,.10); color: var(--disabled); font-size: 40px; text-decoration: line-through; }
+  .tile.used { background: rgba(11,18,32,.04); border-color: rgba(11,18,32,.08); color: var(--disabled); font-size: 40px; text-decoration: line-through; }
 
   /* Question */
   .meta { display: flex; align-items: center; gap: 20px; }
@@ -79,7 +79,7 @@
   .fullimg .zoombox img { max-width: 1840px !important; }
   .zoombox img { transform-origin: 0 0; transition: transform 0.12s linear; }
   .qtext { font-size: 76px; font-weight: 700; line-height: 1.5; text-align: center; }
-  .audio { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--gold); font-size: 40px; font-weight: 700; }
+  .audio { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--gold-text); font-size: 40px; font-weight: 700; }
   .audio .icon { font-size: 150px; line-height: 1; }
   .timer { width: 360px; height: 360px; position: relative; flex: none; }
   .timer svg { position: absolute; inset: 0; transform: rotate(-90deg); }
@@ -90,13 +90,13 @@
   .footer .panel { display: flex; align-items: center; gap: 16px; padding: 22px 40px; }
   .footer .name { font-size: 38px; font-weight: 700; flex: 1; }
   .footer .score { font-size: 60px; font-weight: 700; }
-  .footer .panel.hl-first { border-color: rgba(127,166,214,.45); }
-  .footer .panel.hl-second { border-color: rgba(125,186,156,.45); }
+  .footer .panel.hl-first { border-color: rgba(25,99,194,.45); }
+  .footer .panel.hl-second { border-color: rgba(11,18,32,.45); }
 
   /* Answer */
   .answer-card { width: 1400px; padding: 48px 60px 60px; border-radius: 44px; text-align: center;
-    background: rgba(216,180,106,.10); border: 3px solid rgba(216,180,106,.55); }
-  .answer-card .label { font-size: 38px; font-weight: 600; color: var(--gold); }
+    background: #FFF8E1; border: 3px solid rgba(255,190,12,.7); }
+  .answer-card .label { font-size: 38px; font-weight: 600; color: var(--gold-text); }
   .answer-card .value { font-size: 104px; font-weight: 700; line-height: 1.4; margin-top: 18px; }
   .reveal { animation: reveal .6s ease-out both; }
   @keyframes reveal { from { opacity: 0; transform: translateY(24px) scale(.96); } to { opacity: 1; transform: none; } }
@@ -105,7 +105,7 @@
   .slots { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; gap: 32px; margin-top: 72px; align-content: start; }
   .slot { border: 3px solid var(--border); border-radius: 32px; display: flex; align-items: center; gap: 28px; padding: 0 40px; font-size: 56px; font-weight: 700; }
   .slot.filled { background: var(--gold-soft); border-color: var(--gold-border); }
-  .slot .n { color: var(--gold); }
+  .slot .n { color: var(--gold-text); }
   .results { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; margin-top: 72px; }
   .result { display: flex; align-items: center; gap: 22px; padding: 44px 56px; border-radius: 40px; }
   .result.win { border: 3px solid var(--gold); }
@@ -233,7 +233,7 @@
     var e = s.timer.elapsed, r = 170, c = 2 * Math.PI * r;
     var progress = (e % 60) / 60;
     return '<div class="timer"><svg viewBox="0 0 360 360">' +
-      '<circle cx="180" cy="180" r="' + r + '" fill="none" stroke="rgba(243,238,227,.08)" stroke-width="20"/>' +
+      '<circle cx="180" cy="180" r="' + r + '" fill="none" stroke="rgba(11,18,32,.08)" stroke-width="20"/>' +
       '<circle cx="180" cy="180" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="20" stroke-linecap="round"' +
       ' stroke-dasharray="' + c + '" stroke-dashoffset="' + c * (1 - progress) + '" style="transition:stroke-dashoffset .9s linear"/></svg>' +
       '<div class="label"><span class="value num">' + clock(e) + '</span>' +
@@ -402,7 +402,7 @@
     if (soundHint) return;
     soundHint = document.createElement('div');
     soundHint.className = 'panel';
-    soundHint.style.cssText = 'position:fixed;left:50%;top:40px;transform:translateX(-50%);padding:18px 36px;font-size:28px;font-weight:700;color:var(--gold);z-index:5';
+    soundHint.style.cssText = 'position:fixed;left:50%;top:40px;transform:translateX(-50%);padding:18px 36px;font-size:28px;font-weight:700;color:var(--gold-text);z-index:5';
     soundHint.textContent = 'اضغط OK في الريموت لتشغيل الصوت';
     document.body.appendChild(soundHint);
   }
