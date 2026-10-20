@@ -91,6 +91,12 @@
   .footer .score { font-size: 60px; font-weight: 700; }
   .footer .panel.hl-first { border-color: rgba(25,99,194,.45); }
   .footer .panel.hl-second { border-color: rgba(25,99,194,.45); }
+  .footer .panel.with-aids { flex-wrap: wrap; row-gap: 14px; }
+  .footer .aids { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; }
+  .footer .aid { text-align: center; font-size: 24px; font-weight: 700; padding: 8px 6px; border-radius: 999px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    color: var(--gold-text); background: var(--gold-soft); border: 2px solid var(--gold-border); }
+  .footer .aid.used { color: var(--disabled); background: transparent; border-color: var(--soft); text-decoration: line-through; }
 
   /* Answer */
   .answer-card { width: 1400px; padding: 48px 60px 60px; border-radius: 44px; text-align: center;
@@ -220,11 +226,19 @@
     return '';
   }
 
-  function footer(s, highlight) {
+  // The four lifelines, in the app's order.
+  var LIFELINES = ['إجابتان', 'استريح', 'دبل', 'بوق السؤال'];
+
+  // withAids: each team's lifelines under its name and score (on the question):
+  // gold while left, faded and struck out once used.
+  function footer(s, highlight, withAids) {
     return '<div class="footer">' + ['first', 'second'].map(function (id) {
       var t = team(s, id);
-      return '<div class="panel' + (highlight === id ? ' hl-' + id : '') + '"><span class="dot bg-' + id + '"></span>' +
-        '<span class="name">' + esc(t.name) + '</span><span class="score num">' + points(t.score) + '</span></div>';
+      var aids = withAids ? '<div class="aids">' + LIFELINES.map(function (l) {
+        return '<span class="aid' + (t.lifelinesLeft.indexOf(l) < 0 ? ' used' : '') + '">' + esc(l) + '</span>';
+      }).join('') + '</div>' : '';
+      return '<div class="panel' + (highlight === id ? ' hl-' + id : '') + (withAids ? ' with-aids' : '') + '"><span class="dot bg-' + id + '"></span>' +
+        '<span class="name">' + esc(t.name) + '</span><span class="score num">' + points(t.score) + '</span>' + aids + '</div>';
     }).join('') + '</div>';
   }
 
@@ -247,7 +261,7 @@
     return '<div class="screen">' + meta(s, trailing) +
       '<div class="qbody"><div class="qmain">' + media(q, 420) +
       '<div class="qtext" style="font-size:' + (hasMedia ? 60 : 84) + 'px">' + esc(q.text) + '</div></div>' +
-      timer(s, color) + '</div>' + footer(s, q.chosenBy) + '</div>';
+      timer(s, color) + '</div>' + footer(s, q.chosenBy, true) + '</div>';
   }
 
   function answer(s) {
