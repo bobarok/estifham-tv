@@ -40,6 +40,8 @@
   .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 34px; border-radius: 999px;
     background: var(--raised); border: 2px solid var(--border); font-size: 38px; font-weight: 700; }
   .chip.gold { background: var(--gold-soft); border-color: var(--gold-border); }
+  .chip.double { margin-top: 8px; font-size: 28px; font-weight: 700; padding: 4px 26px; background: var(--gold); color: #000; border: 2px solid var(--gold); }
+  .chip.double.off { background: transparent; color: var(--disabled); border-color: var(--border); text-decoration: line-through; }
   .chip.lifeline { background: var(--gold); color: #000; border: 0; font-size: 32px; padding: 10px 28px; }
 
   .dot { width: 22px; height: 22px; border-radius: 50%; flex: none; }
@@ -193,7 +195,8 @@
       '<div class="banners">' + banner(s, 'first') +
       '<div class="panel turn"><div class="muted" style="font-size:26px">دور الاختيار</div>' +
       '<div class="who t-' + s.turn + '">' + esc(turn.name) + '</div>' +
-      (s.doubleNext ? '<span class="chip lifeline" style="margin-top:8px;font-size:26px;padding:4px 22px">دبل</span>' : '') + '</div>' +
+      // The picking team's «دبل»: yellow while it still has it, off once chosen.
+      '<span class="chip double' + (turn.lifelinesLeft.indexOf('دبل') >= 0 && !s.doubleNext ? '' : ' off') + '">دبل</span></div>' +
       banner(s, 'second') + '</div>' +
       '<div style="display:flex;justify-content:space-between;font-size:28px;margin-top:20px;height:44px">' +
       '<span class="muted">السؤال ' + Math.min(s.answered + 1, s.total) + ' من ' + s.total + '</span>' + last + '</div>' +
