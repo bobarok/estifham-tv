@@ -16,7 +16,7 @@
     --bg: #E8F2F4; --surface: #FFFFFF; --raised: #F4F8FB; --cream: #0B1220;
     --muted: #55657A; --disabled: #9AA8B8; --border: rgba(25,99,194,.22);
     --soft: rgba(25,99,194,.12); --gold: #FFBE0C; --gold-text: #946500; --gold-soft: rgba(255,190,12,.15);
-    --gold-border: #FFBE0C; --primary: #1963C2; --primary-dark: #124A93; --first: #1963C2; --second: #0B1220;
+    --gold-border: #FFBE0C; --primary: #1963C2; --primary-dark: #124A93; --first: #1963C2; --second: #1963C2;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 100%; height: 100%; background: var(--bg); overflow: hidden; }
@@ -40,6 +40,8 @@
   .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 34px; border-radius: 999px;
     background: var(--raised); border: 2px solid var(--border); font-size: 38px; font-weight: 700; }
   .chip.gold { background: var(--gold-soft); border-color: var(--gold-border); }
+  .chip.double { margin-top: 8px; font-size: 28px; font-weight: 700; padding: 4px 26px; background: var(--gold); color: #000; border: 2px solid var(--gold); }
+  .chip.double.off { background: transparent; color: var(--disabled); border-color: var(--border); text-decoration: line-through; }
   .chip.lifeline { background: var(--gold); color: #000; border: 0; font-size: 32px; padding: 10px 28px; }
 
   .dot { width: 22px; height: 22px; border-radius: 50%; flex: none; }
@@ -52,9 +54,8 @@
   .banners { display: grid; grid-template-columns: minmax(0, 1fr) 380px minmax(0, 1fr); gap: 28px; height: 180px; }
   .banner { display: flex; align-items: center; gap: 20px; padding: 0 44px; }
   .banner.turn-first { border-color: var(--first); background: rgba(25,99,194,.10); }
-  .banner.turn-second { border-color: var(--second); background: rgba(11,18,32,.06); }
+  .banner.turn-second { border-color: var(--second); background: rgba(25,99,194,.10); }
   .banner .name { font-size: 44px; font-weight: 700; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .banner .aids { font-size: 22px; color: var(--gold-text); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .banner .score { font-size: 92px; font-weight: 700; flex: none; white-space: nowrap; }
   .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-width: 0; padding: 0 20px; }
   .turn .who { font-size: 42px; font-weight: 700; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -91,7 +92,13 @@
   .footer .name { font-size: 38px; font-weight: 700; flex: 1; }
   .footer .score { font-size: 60px; font-weight: 700; }
   .footer .panel.hl-first { border-color: rgba(25,99,194,.45); }
-  .footer .panel.hl-second { border-color: rgba(11,18,32,.45); }
+  .footer .panel.hl-second { border-color: rgba(25,99,194,.45); }
+  .footer .panel.with-aids { flex-wrap: wrap; row-gap: 14px; }
+  .footer .aids { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; }
+  .footer .aid { text-align: center; font-size: 24px; font-weight: 700; padding: 8px 6px; border-radius: 999px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    color: var(--gold-text); background: var(--gold-soft); border: 2px solid var(--gold-border); }
+  .footer .aid.used { color: var(--disabled); background: transparent; border-color: var(--soft); text-decoration: line-through; }
 
   /* Answer */
   .answer-card { width: 1400px; padding: 48px 60px 60px; border-radius: 44px; text-align: center;
@@ -162,10 +169,9 @@
 
   function banner(s, id) {
     var t = team(s, id);
-    var aids = t.lifelinesLeft.length ? 'وسائل: ' + t.lifelinesLeft.map(esc).join(' · ') : 'لا وسائل متبقية';
     return '<div class="panel banner' + (s.turn === id ? ' turn-' + id : '') + '">' +
       '<span class="dot bg-' + id + '"></span>' +
-      '<div style="flex:1;min-width:0"><div class="name">' + esc(t.name) + '</div><div class="aids">' + aids + '</div></div>' +
+      '<div style="flex:1;min-width:0"><div class="name">' + esc(t.name) + '</div></div>' +
       '<span class="score num">' + points(t.score) + '</span></div>';
   }
 
@@ -188,7 +194,8 @@
       '<div class="banners">' + banner(s, 'first') +
       '<div class="panel turn"><div class="muted" style="font-size:26px">دور الاختيار</div>' +
       '<div class="who t-' + s.turn + '">' + esc(turn.name) + '</div>' +
-      (s.doubleNext ? '<span class="chip lifeline" style="margin-top:8px;font-size:26px;padding:4px 22px">دبل</span>' : '') + '</div>' +
+      // The picking team's «دبل»: yellow while it still has it, off once chosen.
+      '<span class="chip double' + (turn.lifelinesLeft.indexOf('دبل') >= 0 && !s.doubleNext ? '' : ' off') + '">دبل</span></div>' +
       banner(s, 'second') + '</div>' +
       '<div style="display:flex;justify-content:space-between;font-size:28px;margin-top:20px;height:44px">' +
       '<span class="muted">السؤال ' + Math.min(s.answered + 1, s.total) + ' من ' + s.total + '</span>' + last + '</div>' +
@@ -221,11 +228,19 @@
     return '';
   }
 
-  function footer(s, highlight) {
+  // The four lifelines, in the app's order.
+  var LIFELINES = ['إجابتان', 'استريح', 'دبل', 'بوق السؤال'];
+
+  // withAids: each team's lifelines under its name and score (on the question):
+  // gold while left, faded and struck out once used.
+  function footer(s, highlight, withAids) {
     return '<div class="footer">' + ['first', 'second'].map(function (id) {
       var t = team(s, id);
-      return '<div class="panel' + (highlight === id ? ' hl-' + id : '') + '"><span class="dot bg-' + id + '"></span>' +
-        '<span class="name">' + esc(t.name) + '</span><span class="score num">' + points(t.score) + '</span></div>';
+      var aids = withAids ? '<div class="aids">' + LIFELINES.map(function (l) {
+        return '<span class="aid' + (t.lifelinesLeft.indexOf(l) < 0 ? ' used' : '') + '">' + esc(l) + '</span>';
+      }).join('') + '</div>' : '';
+      return '<div class="panel' + (highlight === id ? ' hl-' + id : '') + (withAids ? ' with-aids' : '') + '"><span class="dot bg-' + id + '"></span>' +
+        '<span class="name">' + esc(t.name) + '</span><span class="score num">' + points(t.score) + '</span>' + aids + '</div>';
     }).join('') + '</div>';
   }
 
@@ -248,7 +263,7 @@
     return '<div class="screen">' + meta(s, trailing) +
       '<div class="qbody"><div class="qmain">' + media(q, 420) +
       '<div class="qtext" style="font-size:' + (hasMedia ? 60 : 84) + 'px">' + esc(q.text) + '</div></div>' +
-      timer(s, color) + '</div>' + footer(s, q.chosenBy) + '</div>';
+      timer(s, color) + '</div>' + footer(s, q.chosenBy, true) + '</div>';
   }
 
   function answer(s) {

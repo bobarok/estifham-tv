@@ -1,11 +1,11 @@
 {
-    "name": "estifham",
-    "short_name": "estifham",
+    "name": "استفهام",
+    "short_name": "استفهام",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#E8F2F4",
+    "background_color": "#FFFFFF",
     "theme_color": "#1963C2",
-    "description": "A new Flutter project.",
+    "description": "استفهام — لعبة أسئلة عربية لفريقين.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
