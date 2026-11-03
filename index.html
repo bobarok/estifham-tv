@@ -266,9 +266,8 @@
   }
 
   function idle() {
-    return '<div class="screen center">' + logo() +
-      '<h1 style="margin-top:24px">استفهام</h1>' +
-      '<div class="muted" style="font-size:40px;font-weight:700;margin-top:12px">بانتظار بدء اللعبة</div></div>';
+    return '<div class="screen center">' + logo().replace('class="logo"', 'class="logo" style="width:480px;height:480px"') +
+      '<div class="muted" style="font-size:40px;font-weight:700;margin-top:24px">بانتظار بدء اللعبة</div></div>';
   }
 
   // The whole catalog, so the room chooses together: the columns that give
@@ -517,6 +516,12 @@
   // Long names shrink until they fit their box (down to a limit): a team
   // name in its card (then it ends in «…»), and a category name on top of
   // its column. A long question or answer shrinks until its box holds it.
+  // Text centred in its box overflows on both sides, which scrollHeight misses.
+  function lineCount(el) {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    return range.getClientRects().length;
+  }
   function fitNames() {
     var names = stage.querySelectorAll('.tname, .cat .name, .catpill .name, .result .name, .ctile .name, .whose span');
     for (var i = 0; i < names.length; i++) {
@@ -524,8 +529,14 @@
       // Cairo's letters are taller than their line, so height is only checked
       // on the category names, which may take two lines.
       var cls = el.parentNode.className, tile = cls.indexOf('ctile') === 0, twoLines = cls === 'cat' || tile;
-      while ((el.scrollWidth > el.clientWidth || (twoLines && el.scrollHeight > size * 3.2)) && size > (tile ? 18 : 22)) {
-        el.style.fontSize = (size -= 2) + 'px';
+      while ((el.scrollWidth > el.clientWidth || (twoLines && el.scrollHeight > size * 3.2) || (tile && lineCount(el) > 2)) &&
+          size > (tile ? 19 : 22)) {
+        el.style.fontSize = (size -= 1) + 'px';
+      }
+      // Still too long to read in two lines: three, with a smaller picture.
+      if (tile && lineCount(el) > 2) {
+        var pic = el.parentNode.querySelector('.catimg');
+        if (pic) pic.style.width = pic.style.height = '36%';
       }
     }
     var box = stage.querySelector('.fitbox');
