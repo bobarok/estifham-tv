@@ -7,128 +7,205 @@
 <style>
   /* Served by the host's phone (DisplayServer). Kept dependency-free so it
      runs on weak smart-TV browsers, and so the same page can later be the
-     Chromecast receiver. Drawn on a 1920x1080 stage scaled to the screen. */
-  @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-Regular.ttf); font-weight: 400; }
-  @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-Medium.ttf); font-weight: 500; }
-  @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-SemiBold.ttf); font-weight: 600; }
-  @font-face { font-family: Plex; src: url(fonts/IBMPlexSansArabic-Bold.ttf); font-weight: 700; }
+     Chromecast receiver. Drawn on a 1920x1080 stage scaled to the screen.
+     Every path is relative: fonts/, categories/, brand/, media/ and sounds/
+     sit next to the page on the phone and on the public Chromecast site. */
+  @font-face { font-family: Cairo; src: url(fonts/Cairo-Variable.ttf) format("truetype"); font-weight: 200 1000; }
+  @font-face { font-family: "Baloo Bhaijaan 2"; src: url(fonts/BalooBhaijaan2-Variable.ttf) format("truetype"); font-weight: 400 800; }
   :root {
-    --bg: #E8F2F4; --surface: #FFFFFF; --raised: #F4F8FB; --cream: #0B1220;
-    --muted: #55657A; --disabled: #9AA8B8; --border: rgba(25,99,194,.22);
-    --soft: rgba(25,99,194,.12); --gold: #FFBE0C; --gold-text: #946500; --gold-soft: rgba(255,190,12,.15);
-    --gold-border: #FFBE0C; --primary: #1963C2; --primary-dark: #124A93; --first: #1963C2; --second: #1963C2;
+    --bg: #F6F9FD; --surface: #FFFFFF; --raised: #EDF2F8; --ink: #1F2B47; --muted: #6B7A90; --disabled: #A9B6C7;
+    --border: #D6E6F7; --border-strong: #C3CEDD; --press: #E3ECF6;
+    --gold: #FFC53D; --gold-text: #B8740A; --gold-soft: #FFF3D9; --gold-border: #F5C342;
+    --first: #4DA3F0; --first-text: #1C7DD6; --first-soft: #EAF4FD;
+    --second: #F58A2B; --second-text: #E0721A; --second-soft: #FFF1E3;
+    --red: #E5484D; --red-text: #C9353A; --red-soft: #FDECEC; --red-border: #F4B4B6;
+    --tile600: #FFF8E6; --tile600-border: #F3D27A; --tile600-text: #A86A05; --nobody: #B8C4D4;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 100%; height: 100%; background: var(--bg); overflow: hidden; }
-  body { font-family: Plex, "Segoe UI", Tahoma, sans-serif; color: var(--cream); }
+  body { font-family: Cairo, "Segoe UI", Tahoma, sans-serif; color: var(--ink); }
   #stage {
     position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
     background: var(--bg); transform-origin: center; overflow: hidden;
   }
-  .screen { position: absolute; inset: 0; padding: 64px 110px; display: flex; flex-direction: column; }
+  .blob { position: absolute; border-radius: 50%; }
+  .screen { position: absolute; inset: 0; padding: 40px 56px 36px; display: flex; flex-direction: column; }
   .center { align-items: center; justify-content: center; text-align: center; }
-  .panel { background: var(--surface); border: 2px solid var(--soft); border-radius: 32px; }
+  .panel { background: var(--surface); border: 4px solid var(--border); border-radius: 32px; }
   .muted { color: var(--muted); }
   .gold { color: var(--gold-text); }
-  .num { font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
+  .num { font-family: "Baloo Bhaijaan 2", Cairo, sans-serif; font-weight: 800; font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
+  .t-first { color: var(--first-text); }
+  .t-second { color: var(--second-text); }
 
-  .brand { width: 200px; height: 200px; border-radius: 58px; background: var(--surface);
-    border: 4px solid var(--gold-border); display: flex; align-items: center; justify-content: center;
-    font-size: 128px; font-weight: 700; color: var(--gold-text); line-height: 1; }
-  h1 { font-size: 140px; font-weight: 700; line-height: 1.15; }
+  .logo { width: 300px; height: 300px; object-fit: contain; display: block; }
+  h1 { font-size: 140px; font-weight: 900; line-height: 1.25; }
 
-  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 34px; border-radius: 999px;
-    background: var(--raised); border: 2px solid var(--border); font-size: 38px; font-weight: 700; }
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 8px 34px; border-radius: 999px;
+    background: var(--surface); border: 4px solid var(--border); font-size: 38px; font-weight: 800; }
   .chip.gold { background: var(--gold-soft); border-color: var(--gold-border); }
-  .chip.double { margin-top: 8px; font-size: 28px; font-weight: 700; padding: 4px 26px; background: var(--gold); color: #000; border: 2px solid var(--gold); }
-  .chip.double.off { background: transparent; color: var(--disabled); border-color: var(--border); text-decoration: line-through; }
-  .chip.lifeline { background: var(--gold); color: #000; border: 0; font-size: 32px; padding: 10px 28px; }
 
-  .dot { width: 22px; height: 22px; border-radius: 50%; flex: none; }
-  .t-first { color: var(--first); } .bg-first { background: var(--first); }
-  .t-second { color: var(--second); } .bg-second { background: var(--second); }
+  /* Team cards */
+  .topbar { display: flex; align-items: stretch; gap: 28px; flex: none; height: 156px; }
+  .topbar.small { height: 124px; }
+  .tcard { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 0 32px; border-radius: 36px; background: var(--surface); border: 4px solid var(--border); }
+  .tcard.on-first { background: var(--first-soft); border: 5px solid var(--first); box-shadow: 0 20px 50px rgba(77,163,240,.28); }
+  .tcard.on-second { background: var(--second-soft); border: 5px solid var(--second); box-shadow: 0 20px 50px rgba(245,138,43,.28); }
+  .small .tcard { flex: none; width: 520px; padding: 0 28px; border-radius: 32px; gap: 16px; }
+  .crest { width: 64px; height: 64px; border-radius: 50%; color: #fff; flex: none; font-size: 36px; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center; }
+  .small .crest { width: 54px; height: 54px; font-size: 30px; }
+  .crest.first { background: var(--first); } .crest.second { background: var(--second); }
+  .tinfo { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; margin-inline-start: 18px; }
+  .small .tinfo { margin-inline-start: 14px; }
+  .tname { font-size: 44px; font-weight: 900; line-height: 1.3; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .small .tname { font-size: 36px; }
+  .tmeta { display: flex; align-items: center; gap: 12px; }
+  .tscore { flex: none; font-size: 104px; line-height: 1; white-space: nowrap; }
+  .small .tscore { font-size: 72px; }
+  .side { display: flex; align-items: center; min-width: 0; }
+  .tcard > .side { flex: 1; }
+  .turnpill { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 999px;
+    background: var(--second); color: #fff; font-size: 22px; font-weight: 800; white-space: nowrap; }
+  .turnpill.first { background: var(--first-text); }
+  .turnpill.double { background: var(--red); }
+
+  /* A team's lifelines: its color while left, grey once used; «دبل» is red. */
+  .aids { display: flex; gap: 8px; }
+  .aid { width: 36px; height: 36px; border-radius: 50%; background: var(--surface); border: 2px solid; flex: none;
+    display: inline-flex; align-items: center; justify-content: center; }
+  .small .aid { width: 32px; height: 32px; }
+  .aid svg { width: 20px; height: 20px; }
+  .small .aid svg { width: 18px; height: 18px; }
+  .aid.first { color: var(--first-text); border-color: rgba(77,163,240,.4); }
+  .aid.second { color: var(--second-text); border-color: rgba(245,138,43,.4); }
+  .aid.double { color: var(--red); border-color: rgba(229,72,77,.4); }
+  .aid.used { color: var(--disabled); background: var(--raised); border-color: var(--border-strong); }
+  .aid.lit { color: #fff; background: var(--red); border-color: var(--red); }
 
   /* Board */
-  /* minmax(0, 1fr): both team banners the same width whatever the names,
-     so the turn panel stays in the middle. */
-  .banners { display: grid; grid-template-columns: minmax(0, 1fr) 380px minmax(0, 1fr); gap: 28px; height: 180px; }
-  .banner { display: flex; align-items: center; gap: 20px; padding: 0 44px; }
-  .banner.turn-first { border-color: var(--first); background: rgba(25,99,194,.10); }
-  .banner.turn-second { border-color: var(--second); background: rgba(25,99,194,.10); }
-  .banner .name { font-size: 44px; font-weight: 700; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .banner .score { font-size: 92px; font-weight: 700; flex: none; white-space: nowrap; }
-  .turn { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-width: 0; padding: 0 20px; }
-  .turn .who { font-size: 42px; font-weight: 700; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  /* One column per category: its name on top, its questions going down. */
-  .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 16px; margin-top: 16px; min-height: 0; }
-  .col { display: grid; grid-template-rows: 120px repeat(6, 1fr); gap: 12px; min-height: 0;
-    padding: 10px; border-radius: 30px; border: 2px solid rgba(25,99,194,.18); background: rgba(25,99,194,.04); }
-  .cat { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 12px;
-    font-size: 36px; font-weight: 700; line-height: 1.2; border-radius: 20px; background: var(--primary); border: 2px solid var(--primary-dark); color: #fff; overflow: hidden; min-width: 0; overflow-wrap: anywhere; }
-  .tile { display: flex; align-items: center; justify-content: center; border-radius: 20px; font-size: 52px; font-weight: 700;
-    background: var(--raised); border: 2px solid var(--border); }
-  .tile.used { background: rgba(11,18,32,.04); border-color: rgba(11,18,32,.08); color: var(--disabled); font-size: 40px; text-decoration: line-through; }
+  .mid { flex: none; width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+  .mid .logo { width: 104px; height: 104px; }
+  .progress { font-size: 26px; line-height: 1.2; color: var(--muted); }
+  /* One column per category: its picture and name on top, its questions going down. */
+  .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 18px; margin-top: 20px; min-height: 0; }
+  .col { display: grid; grid-template-rows: 116px repeat(6, minmax(0, 1fr)); gap: 18px; min-height: 0; }
+  .cat { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 0 12px; text-align: center;
+    border-radius: 26px; background: var(--surface); border: 3px solid var(--border); overflow: hidden; min-width: 0; }
+  .catimg { width: 72px; height: 72px; object-fit: contain; display: block; flex: none; }
+  .cat .name { font-size: 34px; font-weight: 900; line-height: 1.25; min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+  .tile { display: flex; align-items: center; justify-content: center; border-radius: 26px; font-size: 60px; line-height: 1;
+    background: var(--surface); border: 3px solid var(--border); box-shadow: 0 6px 0 var(--press); color: var(--first-text); }
+  .tile.v400 { color: var(--second-text); }
+  .tile.v600 { background: var(--tile600); border-color: var(--tile600-border); color: var(--tile600-text); }
+  .tile.used { background: var(--raised); border: 0; box-shadow: none; }
+  .tile i { width: 34px; height: 34px; border-radius: 50%; display: block; background: var(--nobody); box-shadow: 0 0 0 6px #fff; }
+  .tile i.first { background: var(--first); } .tile i.second { background: var(--second); }
 
   /* Question */
-  .meta { display: flex; align-items: center; gap: 20px; }
-  .meta .spacer { flex: 1; }
-  .qbody { flex: 1; display: flex; gap: 70px; align-items: center; margin: 36px 0; min-height: 0; }
-  .qmain { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
+  .midchips { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 20px; }
+  .catpill { display: inline-flex; align-items: center; gap: 16px; height: 92px; padding: 0 36px 0 36px; min-width: 0; border-radius: 999px;
+    background: var(--surface); border: 4px solid var(--border); }
+  .catpill .catimg { width: 68px; height: 68px; margin-inline-start: -20px; }
+  .catpill .name { font-size: 40px; font-weight: 900; line-height: 1.3; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .points { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 92px; padding: 0 34px; border-radius: 999px;
+    background: var(--gold-soft); border: 4px solid var(--gold-border); color: var(--gold-text); font-size: 52px; line-height: 1; }
+  .points.double { background: var(--red-soft); border-color: var(--red); color: var(--red-text); }
+  .points svg { width: 46px; height: 46px; color: var(--red); }
+  .qbody { flex: 1; display: flex; align-items: stretch; gap: 36px; min-height: 0; margin-top: 28px; }
+  .qcard { flex: 1; min-width: 0; position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 44px 60px; border-radius: 48px; background: var(--surface); border: 4px solid var(--border);
+    box-shadow: 0 30px 70px rgba(30,60,120,.1); overflow: hidden; }
+  .qcard .deco1 { position: absolute; top: 34px; left: 40px; }
+  .qcard .deco2 { position: absolute; bottom: 36px; right: 44px; }
+  .qmain { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; position: relative; }
   .qmain img { min-height: 0; border-radius: 28px; object-fit: contain; }
-  .zoombox { overflow: hidden; border-radius: 28px; flex: none; line-height: 0; }
+  .zoombox { overflow: hidden; border-radius: 28px; flex: none; line-height: 0; filter: drop-shadow(0 0 14px rgba(0, 0, 0, 0.7)); }
   .fullimg { padding: 40px; align-items: center; justify-content: center; }
   .fullimg .zoombox img { max-width: 1840px !important; }
   .zoombox img { transform-origin: 0 0; transition: transform 0.12s linear; }
-  .qtext { font-size: 76px; font-weight: 700; line-height: 1.5; text-align: center; }
-  .audio { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--gold-text); font-size: 40px; font-weight: 700; }
+  .qtext { font-size: 76px; font-weight: 800; line-height: 1.55; text-align: center; }
+  .audio { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--second-text); font-size: 40px; font-weight: 800; line-height: 1.3; }
   .audio .icon { font-size: 150px; line-height: 1; }
-  .timer { width: 360px; height: 360px; position: relative; flex: none; }
-  .timer svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+  .tcol { flex: none; width: 460px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-height: 0; }
+  .timer { width: 420px; height: 420px; position: relative; flex: none; }
+  .timer svg { display: block; width: 420px; height: 420px; }
+  .timer .arc { transition: stroke-dashoffset .95s linear, stroke .3s; }
   .timer .label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .timer .value { font-size: 130px; font-weight: 700; line-height: 1; }
-  .timer .state { font-size: 32px; margin-top: 10px; }
-  .footer { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-  .footer .panel { display: flex; align-items: center; gap: 16px; padding: 22px 40px; }
-  .footer .name { font-size: 38px; font-weight: 700; flex: 1; }
-  .footer .score { font-size: 60px; font-weight: 700; }
-  .footer .panel.hl-first { border-color: rgba(25,99,194,.45); }
-  .footer .panel.hl-second { border-color: rgba(25,99,194,.45); }
-  .footer .panel.with-aids { flex-wrap: wrap; row-gap: 14px; }
-  .footer .aids { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; }
-  .footer .aid { text-align: center; font-size: 24px; font-weight: 700; padding: 8px 6px; border-radius: 999px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    color: var(--gold-text); background: var(--gold-soft); border: 2px solid var(--gold-border); }
-  .footer .aid.used { color: var(--disabled); background: transparent; border-color: var(--soft); text-decoration: line-through; }
+  .timer .value { font-size: 176px; line-height: 1; }
+  .timer .state { font-size: 30px; font-weight: 800; line-height: 1.3; color: var(--muted); }
+  .timer .state.paused { color: var(--gold-text); }
+  .whose { max-width: 460px; height: 64px; padding: 0 28px; display: inline-flex; align-items: center; border-radius: 999px; flex: none;
+    font-size: 32px; font-weight: 800; border: 3px solid; }
+  .whose span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
+  .whose.first { background: var(--first-soft); border-color: var(--first); color: var(--first-text); }
+  .whose.second { background: var(--second-soft); border-color: var(--second); color: var(--second-text); }
+  .active { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; padding: 8px 22px; border-radius: 28px;
+    background: var(--gold); color: var(--ink); font-size: 24px; font-weight: 800; line-height: 1.35; text-align: center; }
+  .active svg { width: 30px; height: 30px; flex: none; }
+  .active.double { background: var(--red); color: #fff; }
+  .foot { flex: none; display: flex; align-items: center; justify-content: space-between; height: 44px; margin-top: 20px; font-size: 24px; font-weight: 800; color: var(--muted); }
+  .foot b { font-weight: 800; color: var(--ink); }
+  .foot .brandline { display: inline-flex; align-items: center; gap: 12px; font-size: 22px; color: #8A97AA; }
+  .foot .brandline img { width: 44px; height: 44px; object-fit: contain; display: block; }
 
   /* Answer */
-  .answer-card { width: 1400px; padding: 48px 60px 60px; border-radius: 44px; text-align: center;
-    background: #FFF8E1; border: 3px solid rgba(255,190,12,.7); }
-  .answer-card .label { font-size: 38px; font-weight: 600; color: var(--gold-text); }
-  .answer-card .value { font-size: 104px; font-weight: 700; line-height: 1.4; margin-top: 18px; }
+  .ansbody { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; margin-top: 20px; }
+  .ansbody .qtext { font-size: 48px; font-weight: 700; line-height: 1.5; color: var(--muted); }
+  .answer-card { width: 1400px; padding: 36px 60px 44px; border-radius: 48px; text-align: center; flex: none;
+    background: var(--surface); border: 5px solid var(--gold); box-shadow: 0 30px 70px rgba(255,197,61,.28); }
+  .answer-card .label { display: inline-block; padding: 2px 34px; border-radius: 999px; background: var(--gold-soft);
+    font-size: 36px; font-weight: 800; color: var(--gold-text); }
+  .answer-card .value { font-size: 104px; font-weight: 800; line-height: 1.35; margin-top: 12px; }
+  .answer-card .note { font-size: 34px; font-weight: 700; margin-top: 8px; color: var(--muted); }
   .reveal { animation: reveal .6s ease-out both; }
   @keyframes reveal { from { opacity: 0; transform: translateY(24px) scale(.96); } to { opacity: 1; transform: none; } }
 
   /* Categories & results */
-  .slots { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; gap: 32px; margin-top: 72px; align-content: start; }
-  .slot { border: 3px solid var(--border); border-radius: 32px; display: flex; align-items: center; gap: 28px; padding: 0 40px; font-size: 56px; font-weight: 700; }
-  .slot.filled { background: var(--gold-soft); border-color: var(--gold-border); }
+  .slots { flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 180px; gap: 32px; margin-top: 72px; align-content: start; }
+  .slot { border: 4px dashed var(--border-strong); border-radius: 36px; display: flex; align-items: center; gap: 28px; padding: 0 40px; font-size: 56px; font-weight: 800; min-width: 0; }
+  .slot.filled { background: var(--surface); border: 4px solid var(--gold-border); box-shadow: 0 16px 40px rgba(30,60,120,.08); }
   .slot .n { color: var(--gold-text); }
-  .results { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; margin-top: 72px; }
-  .result { display: flex; align-items: center; gap: 22px; padding: 44px 56px; border-radius: 40px; }
-  .result.win { border: 3px solid var(--gold); }
-  .result .name { font-size: 54px; font-weight: 700; flex: 1; text-align: start; }
-  .result .score { font-size: 110px; font-weight: 700; }
+  .ctiles { flex: 1; display: grid; gap: 12px; min-height: 0; }
+  .ctile { position: relative; display: flex; flex-direction: column; align-items: center; min-width: 0; min-height: 0; padding: 4%;
+    background: var(--surface); border: 4px solid var(--border); border-radius: 22px; }
+  .ctile .catimg { width: 52%; height: 52%; aspect-ratio: 1; }
+  .ctile .name { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; text-align: center;
+    font-weight: 800; line-height: 1.15; overflow: hidden; overflow-wrap: anywhere; }
+  .ctile .badge { display: none; position: absolute; top: 6px; inset-inline-start: 6px; width: 28%; aspect-ratio: 1; border-radius: 50%;
+    align-items: center; justify-content: center; background: var(--gold); }
+  .ctile.picked { background: var(--gold-soft); border-color: var(--gold-border); }
+  .ctile.picked .badge { display: flex; }
+  .ctile.dim { opacity: .4; }
+  .results { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; width: 100%; margin-top: 64px; }
+  .result { display: flex; align-items: center; gap: 22px; padding: 40px 48px; border-radius: 44px; min-width: 0; }
+  .result.win-first { border: 6px solid var(--first); background: var(--first-soft); box-shadow: 0 30px 70px rgba(77,163,240,.28); }
+  .result.win-second { border: 6px solid var(--second); background: var(--second-soft); box-shadow: 0 30px 70px rgba(245,138,43,.28); }
+  .result .name { font-size: 54px; font-weight: 900; line-height: 1.3; flex: 1; min-width: 0; text-align: start; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .result .score { font-size: 110px; line-height: 1; }
+  .guess { flex: 1; min-width: 0; flex-direction: column; gap: 2px; padding: 16px 24px; text-align: center; }
+  .guess .name { flex: none; font-size: 40px; max-width: 100%; }
+  .guess .score { font-size: 80px; }
+  .guess.win { border: 6px solid var(--gold); }
 
   #status { position: fixed; bottom: 16px; left: 16px; padding: 8px 16px; border-radius: 12px;
-    background: rgba(0,0,0,.6); color: var(--muted); font: 16px Plex, sans-serif; display: none; }
+    background: rgba(31,43,71,.85); color: #fff; font: 700 16px Cairo, sans-serif; display: none; }
 </style>
 </head>
 <body>
-<div id="stage"></div>
+<div id="stage">
+  <div class="blob" style="top:-260px;right:-200px;width:640px;height:640px;background:#FBDDBF"></div>
+  <div class="blob" style="top:-200px;left:-320px;width:700px;height:600px;background:#D7E9FA"></div>
+  <div class="blob" style="bottom:-320px;left:-220px;width:720px;height:680px;background:#DCEBFA"></div>
+  <div class="blob" style="bottom:-300px;right:-200px;width:600px;height:600px;background:#FBDFC4"></div>
+  <div id="view"></div>
+</div>
 <div id="status"></div>
 <script>
 (function () {
   var stage = document.getElementById('stage');
+  var view = document.getElementById('view');
   var statusEl = document.getElementById('status');
 
   function fit() {
@@ -144,72 +221,170 @@
     });
   }
   function points(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
-  function clock(s) { return s < 60 ? String(s) : Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
   function team(state, id) { for (var i = 0; i < state.teams.length; i++) if (state.teams[i].id === id) return state.teams[i]; }
+  function other(id) { return id === 'first' ? 'second' : 'first'; }
+
+  // A picture that may be missing (a player's own category has none): it
+  // just disappears.
+  function picture(src, cls) {
+    return '<img class="' + cls + '" src="' + src + '" alt="" onerror="this.style.display=\'none\'">';
+  }
+  function logo() { return picture('brand/logo.webp', 'logo'); }
+  // id is missing when the phone runs an older version of the app.
+  function categoryPicture(id) { return id ? picture('categories/' + encodeURIComponent(id) + '.webp', 'catimg') : ''; }
+
+  // «دبل» is a red flame and «استريح» an open hand.
+  var FLAME = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>';
+  function stroked(paths) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+      paths.map(function (d) { return '<path d="' + d + '"/>'; }).join('') + '</svg>';
+  }
+  // The four lifelines, in the app's order. desc is how the phone names one
+  // that is active on a question (Lifeline.description in lib/models/lifeline.dart).
+  var LIFELINES = [
+    { label: 'إجابتان', desc: 'يحق للفريق تقديم إجابتين', icon: stroked(['M2.5 12.5l4 4 8-9', 'M11.5 16.5l2 2 8-9']) },
+    { label: 'استريح', desc: 'لاعب من الخصم يستريح ولا يجاوب', icon: stroked(['M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2', 'M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2', 'M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8', 'M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15']) },
+    { label: 'دبل', desc: 'النقاط مضاعفة إذا جاوب الفريق صح', icon: FLAME },
+    { label: 'بوق السؤال', desc: 'الخصم ياخذ السؤال ويجاوب بروحه، وإذا غلط تروح النقاط لصاحب السؤال', icon: stroked(['M7 7h11l-3-3', 'M17 17H6l3 3']) }
+  ];
+  var DOUBLE = LIFELINES[2], STEAL = LIFELINES[3];
+  function isActive(q, lifeline) { return q.lifelines.indexOf(lifeline.desc) >= 0; }
+
+  // Whose time it is: the answering team (after «بوق السؤال», the one that
+  // took the question) for the first minute, then the other team.
+  function answering(q) { return isActive(q, STEAL) ? other(q.chosenBy) : q.chosenBy; }
+
+  // An older app sends only elapsed and running.
+  function timerOf(s) {
+    var t = s.timer;
+    if (t.remaining !== undefined) return t;
+    var flipped = t.elapsed >= 60, remaining = flipped ? Math.max(0, 90 - t.elapsed) : 60 - t.elapsed;
+    return { running: t.running, flipped: flipped, remaining: remaining, fraction: remaining / (flipped ? 30 : 60) };
+  }
 
   function idle() {
-    return '<div class="screen center"><div class="brand">؟</div>' +
-      '<h1 style="margin-top:48px">استفهام</h1>' +
-      '<div class="muted" style="font-size:40px;margin-top:20px">بانتظار بدء اللعبة</div></div>';
+    return '<div class="screen center">' + logo() +
+      '<h1 style="margin-top:24px">استفهام</h1>' +
+      '<div class="muted" style="font-size:40px;font-weight:700;margin-top:12px">بانتظار بدء اللعبة</div></div>';
+  }
+
+  // The whole catalog, so the room chooses together: the columns that give
+  // the biggest tiles with every category on screen.
+  function tileColumns(n, width, height, gap) {
+    var best = 1, bestSide = 0;
+    for (var c = 1; c <= Math.max(n, 1); c++) {
+      var rows = Math.ceil(n / c);
+      var side = Math.min((width - gap * (c - 1)) / c, (height - gap * (rows - 1)) / Math.max(rows, 1));
+      if (side > bestSide) { best = c; bestSide = side; }
+    }
+    return best;
+  }
+  function tileClass(c, s) {
+    return 'ctile' + (c.pick ? ' picked' : s.pickedCategories.length === s.categoryCount ? ' dim' : '');
+  }
+  function categoryTiles(s) {
+    var n = s.catalog.length, gap = 12, width = 1824, height = 900;
+    var cols = tileColumns(n, width, height, gap), rows = Math.ceil(n / cols);
+    var cell = (height - gap * (rows - 1)) / rows;
+    var tiles = s.catalog.map(function (c) {
+      return '<div class="' + tileClass(c, s) + '" data-id="' + esc(c.id) + '">' + categoryPicture(c.id) +
+        '<span class="name" style="font-size:' + Math.round(cell * 0.17) + 'px">' + esc(c.name) + '</span>' +
+        '<span class="badge num" style="font-size:' + Math.round(cell * 0.17) + 'px">' + (c.pick || '') + '</span></div>';
+    }).join('');
+    return '<div class="screen" style="padding:28px 48px 36px">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;height:96px;margin-bottom:16px;flex:none">' +
+      '<div style="font-size:60px;font-weight:900;line-height:1.3">اختيار الفئات</div>' +
+      '<div class="gold tilecount" style="font-size:48px;font-weight:800">' + tileCount(s) + '</div></div>' +
+      '<div class="ctiles" style="grid-template-columns:repeat(' + cols + ',minmax(0,1fr));grid-template-rows:repeat(' + rows + ',minmax(0,1fr))">' + tiles + '</div></div>';
+  }
+  function tileCount(s) {
+    return '<span class="num">' + s.pickedCategories.length + '</span> من <span class="num">' + s.categoryCount + '</span>';
+  }
+  // A pick only changes the marks: the pictures stay, with no flicker.
+  function patchTiles(s) {
+    if (s.status !== 'categories' || !s.catalog || !s.catalog.length) return false;
+    var tiles = stage.querySelectorAll('.ctile');
+    if (tiles.length !== s.catalog.length) return false;
+    for (var i = 0; i < tiles.length; i++) if (tiles[i].getAttribute('data-id') !== s.catalog[i].id) return false;
+    for (i = 0; i < tiles.length; i++) {
+      tiles[i].className = tileClass(s.catalog[i], s);
+      tiles[i].querySelector('.badge').textContent = s.catalog[i].pick || '';
+    }
+    stage.querySelector('.tilecount').innerHTML = tileCount(s);
+    return true;
   }
 
   function categories(s) {
+    // A phone on an older version of the app sends only the picks.
+    if (s.catalog && s.catalog.length) return categoryTiles(s);
     var slots = '';
     for (var i = 0; i < s.categoryCount; i++) {
       var name = s.pickedCategories[i];
       slots += name
-        ? '<div class="slot filled"><span class="n num">' + (i + 1) + '</span><span>' + esc(name) + '</span></div>'
+        ? '<div class="slot filled"><span class="n num">' + (i + 1) + '</span><span class="tname" style="font-size:56px">' + esc(name) + '</span></div>'
         : '<div class="slot"></div>';
     }
-    return '<div class="screen" style="padding:110px 160px;align-items:center">' +
-      '<div style="font-size:96px;font-weight:700">اختيار الفئات</div>' +
-      '<div class="gold" style="font-size:44px;font-weight:700;margin-top:16px">' + s.pickedCategories.length + ' من ' + s.categoryCount + '</div>' +
+    return '<div class="screen" style="padding:90px 160px;align-items:center">' +
+      '<div style="font-size:96px;font-weight:900;line-height:1.3">اختيار الفئات</div>' +
+      '<div class="gold" style="font-size:44px;font-weight:800;margin-top:8px"><span class="num">' + s.pickedCategories.length + '</span> من <span class="num">' + s.categoryCount + '</span></div>' +
       '<div class="slots" style="width:100%">' + slots + '</div></div>';
   }
 
-  function banner(s, id) {
+  // lit: the lifeline is in play right now (only «دبل» shows it here).
+  function aids(t, id, lit) {
+    return '<span class="aids">' + LIFELINES.map(function (l) {
+      var left = t.lifelinesLeft.indexOf(l.label) >= 0, on = lit && l === DOUBLE;
+      var cls = on ? 'lit' : left ? (l === DOUBLE ? 'double' : id) : 'used';
+      return '<span class="aid ' + cls + '">' + l.icon + '</span>';
+    }).join('') + '</span>';
+  }
+
+  // on: this team's turn, in its color. extra: what goes before its lifelines.
+  function teamCard(s, id, on, extra, lit) {
     var t = team(s, id);
-    return '<div class="panel banner' + (s.turn === id ? ' turn-' + id : '') + '">' +
-      '<span class="dot bg-' + id + '"></span>' +
-      '<div style="flex:1;min-width:0"><div class="name">' + esc(t.name) + '</div></div>' +
-      '<span class="score num">' + points(t.score) + '</span></div>';
+    return '<div class="tcard' + (on ? ' on-' + id : '') + '"><div class="side">' +
+      '<span class="crest ' + id + ' num">' + (id === 'first' ? '1' : '2') + '</span>' +
+      '<div class="tinfo"><div class="tname">' + esc(t.name) + '</div>' +
+      '<div class="tmeta">' + (extra || '') + aids(t, id, lit) + '</div></div></div>' +
+      '<span class="tscore num t-' + id + '">' + points(t.score) + '</span></div>';
   }
 
   function board(s) {
-    var turn = team(s, s.turn);
-    var last = '';
-    if (s.lastResult) {
-      last = s.lastResult === 'nobody'
-        ? '<span class="muted">السؤال السابق: لم يجب أحد</span>'
-        : '<span class="t-' + s.lastResult + '">السؤال السابق: ' + esc(team(s, s.lastResult).name) + '</span>';
+    function card(id) {
+      var on = s.turn === id, doubled = on && s.doubleNext;
+      var pill = !on ? '' : doubled
+        ? '<span class="turnpill double">دورهم — دبل</span>'
+        : '<span class="turnpill ' + id + '">دورهم</span>';
+      return teamCard(s, id, on, pill, doubled);
     }
     var columns = s.board.map(function (c) {
-      return '<div class="col"><div class="cat">' + esc(c.name) + '</div>' + c.questions.map(function (q) {
-        return q.used
-          ? '<div class="tile used num">' + q.value + '</div>'
-          : '<div class="tile num">' + q.value + '</div>';
+      return '<div class="col"><div class="cat">' + categoryPicture(c.id) + '<span class="name">' + esc(c.name) + '</span></div>' + c.questions.map(function (q) {
+        if (q.used) return '<div class="tile used"><i class="' + (q.by || '') + '"></i></div>';
+        return '<div class="tile num' + (q.value >= 600 ? ' v600' : q.value >= 400 ? ' v400' : '') + '">' + q.value + '</div>';
       }).join('') + '</div>';
     }).join('');
-    return '<div class="screen" style="padding:56px 96px 64px">' +
-      '<div class="banners">' + banner(s, 'first') +
-      '<div class="panel turn"><div class="muted" style="font-size:26px">دور الاختيار</div>' +
-      '<div class="who t-' + s.turn + '">' + esc(turn.name) + '</div>' +
-      // The picking team's «دبل»: yellow while it still has it, off once chosen.
-      '<span class="chip double' + (turn.lifelinesLeft.indexOf('دبل') >= 0 && !s.doubleNext ? '' : ' off') + '">دبل</span></div>' +
-      banner(s, 'second') + '</div>' +
-      '<div style="display:flex;justify-content:space-between;font-size:28px;margin-top:20px;height:44px">' +
-      '<span class="muted">السؤال ' + Math.min(s.answered + 1, s.total) + ' من ' + s.total + '</span>' + last + '</div>' +
+    return '<div class="screen">' +
+      '<div class="topbar">' + card('first') +
+      '<div class="mid">' + logo() + '<span class="progress num">' + Math.min(s.answered + 1, s.total) + ' / ' + s.total + '</span></div>' +
+      card('second') + '</div>' +
       '<div class="grid">' + columns + '</div></div>';
   }
 
-  function meta(s, trailing) {
-    var q = s.question;
-    var lifelines = q.lifelines.length
-      ? '<div style="display:flex;gap:16px;margin-top:22px;flex-wrap:wrap">' +
-        q.lifelines.map(function (l) { return '<span class="chip lifeline">' + esc(l) + '</span>'; }).join('') + '</div>'
-      : '';
-    return '<div><div class="meta"><span class="chip">' + esc(q.category) + '</span>' +
-      '<span class="chip gold gold"><span class="num">' + q.value + '</span> نقطة</span><span class="spacer"></span>' + trailing + '</div>' + lifelines + '</div>';
+  // The team cards and, between them, the category and the question's points:
+  // doubled and red with «دبل».
+  function questionTop(s, on) {
+    var q = s.question, doubled = isActive(q, DOUBLE);
+    function card(id) { return teamCard(s, id, on === id, '', doubled && q.chosenBy === id); }
+    return '<div class="topbar small">' + card('first') +
+      '<div class="midchips"><span class="catpill">' + categoryPicture(q.categoryId) + '<span class="name">' + esc(q.category) + '</span></span>' +
+      '<span class="points' + (doubled ? ' double' : '') + '">' + (doubled ? FLAME : '') + '<span class="num">' + (doubled ? q.value * 2 : q.value) + '</span></span></div>' +
+      card('second') + '</div>';
+  }
+
+  function foot(s, middle) {
+    return '<div class="foot"><span>السؤال <b class="num">' + Math.min(s.answered + 1, s.total) + '</b> من <b class="num">' + s.total + '</b></span>' +
+      (middle || '') +
+      '<span class="brandline">' + picture('brand/logo.webp', '') + '<span>استفهام</span></span></div>';
   }
 
   function media(q, maxHeight) {
@@ -217,7 +392,7 @@
     var file = window.cast && window.cast.framework ? q.mediaId : q.media;
     if (q.type === 'image' && file) {
       // In a clipping box, so the host's zoom (applyZoom) stays inside it.
-      return '<div class="zoombox"><img src="media/' + encodeURI(file) + '" alt="" style="height:' + maxHeight + 'px;width:auto;max-width:1000px"></div>';
+      return '<div class="zoombox"><img src="media/' + encodeURI(file) + '" alt="" style="height:' + maxHeight + 'px;width:auto;max-width:1120px"></div>';
     }
     if (q.type === 'hum') {
       return '<div class="audio"><svg class="icon" viewBox="0 0 24 24" width="150" height="150" fill="currentColor"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg>دندنها!</div>';
@@ -231,54 +406,61 @@
     return '';
   }
 
-  // The four lifelines, in the app's order.
-  var LIFELINES = ['إجابتان', 'استريح', 'دبل', 'بوق السؤال'];
-
-  // withAids: each team's lifelines under its name and score (on the question):
-  // gold while left, faded and struck out once used.
-  function footer(s, highlight, withAids) {
-    return '<div class="footer">' + ['first', 'second'].map(function (id) {
-      var t = team(s, id);
-      var aids = withAids ? '<div class="aids">' + LIFELINES.map(function (l) {
-        return '<span class="aid' + (t.lifelinesLeft.indexOf(l) < 0 ? ' used' : '') + '">' + esc(l) + '</span>';
-      }).join('') + '</div>' : '';
-      return '<div class="panel' + (highlight === id ? ' hl-' + id : '') + (withAids ? ' with-aids' : '') + '"><span class="dot bg-' + id + '"></span>' +
-        '<span class="name">' + esc(t.name) + '</span><span class="score num">' + points(t.score) + '</span>' + aids + '</div>';
-    }).join('') + '</div>';
+  // The ring's shape; paintTimer fills in the time, which changes every
+  // second without redrawing the page.
+  var RING = 2 * Math.PI * 70, lastFraction = 0;
+  function timerRing() {
+    return '<div class="timer"><svg viewBox="0 0 172 172">' +
+      '<circle cx="86" cy="86" r="70" fill="#FFFFFF" stroke="#E3EEF9" stroke-width="12"/>' +
+      '<circle class="arc" cx="86" cy="86" r="70" fill="none" stroke-width="12" stroke-linecap="round"' +
+      ' stroke-dasharray="' + RING + '" transform="rotate(-90 86 86)"/></svg>' +
+      '<div class="label"><span class="value num"></span><span class="state"></span></div></div>';
   }
-
-  function timer(s, color) {
-    var e = s.timer.elapsed, r = 170, c = 2 * Math.PI * r;
-    var progress = (e % 60) / 60;
-    return '<div class="timer"><svg viewBox="0 0 360 360">' +
-      '<circle cx="180" cy="180" r="' + r + '" fill="none" stroke="rgba(11,18,32,.08)" stroke-width="20"/>' +
-      '<circle cx="180" cy="180" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="20" stroke-linecap="round"' +
-      ' stroke-dasharray="' + c + '" stroke-dashoffset="' + c * (1 - progress) + '" style="transition:stroke-dashoffset .9s linear"/></svg>' +
-      '<div class="label"><span class="value num">' + clock(e) + '</span>' +
-      '<span class="state ' + (s.timer.running ? 'muted' : 'gold') + '">' + (s.timer.running ? 'جارٍ' : 'متوقف') + '</span></div></div>';
+  function paintTimer(s) {
+    var el = stage.querySelector('.timer');
+    if (!el || !s.question) return;
+    var t = timerOf(s), who = answering(s.question), now = t.flipped ? other(who) : who;
+    var arc = el.querySelector('.arc'), state = el.querySelector('.state');
+    // The ring only sweeps down; when it fills again at the flip it just jumps.
+    arc.style.transition = t.fraction > lastFraction ? 'none' : '';
+    lastFraction = t.fraction;
+    arc.style.strokeDashoffset = RING * (1 - t.fraction);
+    arc.style.stroke = now === 'first' ? '#4DA3F0' : '#F58A2B';
+    arc.style.opacity = t.running ? 1 : 0.45;
+    el.querySelector('.value').textContent = t.remaining;
+    var paused = !t.running && !(t.flipped && t.remaining === 0);
+    state.textContent = paused ? 'متوقف' : 'ثانية';
+    state.className = 'state' + (paused ? ' paused' : '');
   }
 
   function question(s) {
-    var q = s.question, chooser = team(s, q.chosenBy);
-    var color = q.chosenBy === 'first' ? 'var(--first)' : 'var(--second)';
-    var trailing = '<span class="muted" style="font-size:32px">اختيار <b class="t-' + q.chosenBy + '">' + esc(chooser.name) + '</b></span>';
-    var hasMedia = q.type !== 'text';
-    return '<div class="screen">' + meta(s, trailing) +
-      '<div class="qbody"><div class="qmain">' + media(q, 420) +
-      '<div class="qtext" style="font-size:' + (hasMedia ? 60 : 84) + 'px">' + esc(q.text) + '</div></div>' +
-      timer(s, color) + '</div>' + footer(s, q.chosenBy, true) + '</div>';
+    var q = s.question, t = timerOf(s), who = answering(q), now = t.flipped ? other(who) : who;
+    var name = esc(team(s, now).name);
+    var active = LIFELINES.filter(function (l) { return isActive(q, l); }).map(function (l) {
+      return l === DOUBLE
+        ? '<div class="active double">' + l.icon + '<span>دبل مفعّل — السؤال بـ <span class="num">' + q.value * 2 + '</span></span></div>'
+        : '<div class="active">' + l.icon + '<span>' + esc(l.desc) + '</span></div>';
+    }).join('');
+    return '<div class="screen">' + questionTop(s, now) +
+      '<div class="qbody"><div class="qcard fitbox">' +
+      '<svg class="deco1" width="64" height="64" viewBox="0 0 26 26" fill="none" stroke="#F5B840" stroke-width="3" stroke-linecap="round"><path d="M4 22l4-7"/><path d="M11 18l5-6"/><path d="M14 24l7-3"/></svg>' +
+      '<svg class="deco2" width="56" height="56" viewBox="0 0 24 24" fill="#FFC53D"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>' +
+      '<div class="qmain">' + media(q, 420) +
+      '<div class="qtext" style="font-size:' + (q.type === 'text' ? 76 : 56) + 'px">' + esc(q.text) + '</div></div></div>' +
+      '<div class="tcol">' + timerRing() +
+      '<div class="whose ' + now + '"><span>' + (t.flipped ? (name.indexOf('ال') === 0 ? 'انقلب لل' + name.slice(2) : 'انقلب لـ' + name) : 'دور ' + name) + '</span></div>' + active + '</div></div>' +
+      foot(s) + '</div>';
   }
 
   function answer(s) {
     var q = s.question;
-    var trailing = '<span class="chip" style="font-size:30px;font-weight:500;color:var(--muted)">بانتظار قرار المتحكم</span>';
-    return '<div class="screen">' + meta(s, trailing) +
-      '<div class="qmain" style="flex:1;gap:36px">' +
+    return '<div class="screen">' + questionTop(s, null) +
+      '<div class="ansbody fitbox">' +
       (q.type === 'image' ? media(q, 280) : '') +
-      '<div class="muted" style="font-size:52px;font-weight:600;text-align:center">' + esc(q.text) + '</div>' +
-      '<div class="answer-card reveal"><div class="label">✓ الإجابة الصحيحة</div><div class="value">' + esc(q.answer) + '</div>' +
-        (q.nearby ? '<div class="label" style="margin-top:12px;color:var(--muted)">يُقبل أيضاً: ' + q.nearby[0] + ' أو ' + q.nearby[1] + '</div>' : '') + '</div>' +
-      '</div>' + footer(s) + '</div>';
+      '<div class="qtext">' + esc(q.text) + '</div>' +
+      '<div class="answer-card reveal"><div class="label">الإجابة</div><div class="value">' + esc(q.answer) + '</div>' +
+        (q.nearby ? '<div class="note">يُقبل أيضاً: ' + q.nearby[0] + ' أو ' + q.nearby[1] + '</div>' : '') + '</div>' +
+      '</div>' + foot(s, '<span>بانتظار قرار المتحكم</span>') + '</div>';
   }
 
   // «سؤال فاصل»: the question; once revealed, the answer and both guesses.
@@ -288,37 +470,37 @@
     var result = '';
     if (t.answer !== null) {
       // The answer in the middle on top, the two teams under it on each side.
-      result = '<div class="answer-card reveal" style="width:640px;margin:20px auto 0;padding:18px 28px"><div class="label">✓ الجواب</div><div class="value num">' + esc(t.answer) + '</div></div>' +
-        '<div style="display:flex;gap:28px;margin-top:24px">' +
+      result = '<div class="answer-card reveal" style="width:640px;margin:16px auto 0;padding:12px 28px 16px"><div class="label" style="font-size:30px">الجواب</div><div class="value num" style="font-size:80px;line-height:1.2;margin-top:4px">' + esc(t.answer) + '</div></div>' +
+        '<div style="display:flex;gap:28px;margin-top:20px;flex:none">' +
         ['first', 'second'].map(function (id) {
           var win = t.winner === id, d = t.distances[id];
-          return '<div class="panel result' + (win ? ' win' : '') + '" style="flex:1;flex-direction:column;gap:6px;padding:24px">' +
+          return '<div class="panel result guess' + (win ? ' win' : '') + '">' +
             '<span class="name">' + esc(team(s, id).name) + '</span>' +
-            '<span class="score num">' + esc(t.guesses[id]) + '</span>' +
-            '<span class="' + (win ? 'gold' : 'muted') + '" style="font-size:30px">' + (d === 0 ? 'بالضبط!' : 'بعيد بـ ' + points(d)) + '</span></div>';
+            '<span class="score num t-' + id + '">' + esc(t.guesses[id]) + '</span>' +
+            '<span class="' + (win ? 'gold' : 'muted') + '" style="font-size:30px;font-weight:700">' + (d === 0 ? 'بالضبط!' : 'بعيد بـ ' + points(d)) + '</span></div>';
         }).join('') + '</div>' +
-        (t.winner ? '' : '<div class="gold" style="font-size:40px;font-weight:700;text-align:center;margin-top:20px">' + (t.distances.first === 0 && t.distances.second === 0 ? 'الثنين جابوها بالضبط!' : 'نفس البعد!') + ' سؤال ثاني يحسمها.</div>');
+        (t.winner ? '' : '<div class="gold" style="font-size:40px;font-weight:800;text-align:center;margin-top:16px">' + (t.distances.first === 0 && t.distances.second === 0 ? 'الثنين جابوها بالضبط!' : 'نفس البعد!') + ' سؤال ثاني يحسمها.</div>');
     }
     return '<div class="screen">' +
-      '<div style="display:flex;gap:20px"><span class="chip gold">سؤال فاصل</span><span class="chip">' + esc(t.category) + '</span></div>' +
-      '<div class="gold" style="font-size:40px;font-weight:600;margin-top:24px">تعادل! كل فريق يخمّن بالسر، والأقرب للجواب يفوز.</div>' +
-      '<div class="qmain" style="flex:1;margin-top:24px"><div style="font-size:72px;font-weight:700;text-align:center">' + esc(t.text) + '</div></div>' +
+      '<div style="display:flex;gap:20px;flex:none"><span class="chip gold">سؤال فاصل</span><span class="chip">' + esc(t.category) + '</span></div>' +
+      '<div class="gold" style="font-size:40px;font-weight:700;margin-top:16px;flex:none">تعادل! كل فريق يخمّن بالسر، والأقرب للجواب يفوز.</div>' +
+      '<div class="ansbody fitbox" style="margin-top:12px"><div class="qtext" style="font-size:72px;color:var(--ink);font-weight:800">' + esc(t.text) + '</div></div>' +
       result + '</div>';
   }
 
   function finished(s) {
-    var order = s.leader ? [s.leader, s.leader === 'first' ? 'second' : 'first'] : ['first', 'second'];
+    var order = s.leader ? [s.leader, other(s.leader)] : ['first', 'second'];
     var title = s.leader
       ? '<span class="t-' + s.leader + '">الفائز: ' + esc(team(s, s.leader).name) + '</span>'
       : '<span class="gold">تعادل!</span>';
     if (s.wonByTieBreak) title += ' <span class="gold" style="font-size:36px">(بالسؤال الفاصل)</span>';
-    return '<div class="screen center" style="padding:120px">' +
-      '<div class="brand" style="width:150px;height:150px;font-size:96px;border-radius:44px;margin-bottom:24px">؟</div><h1 style="font-size:110px">انتهت اللعبة</h1>' +
-      '<div style="font-size:48px;font-weight:700;margin-top:12px">' + title + '</div>' +
+    return '<div class="screen center" style="padding:80px 120px">' +
+      '<img class="logo" src="brand/logo.webp" alt="" style="width:200px;height:200px;margin-bottom:12px" onerror="this.style.display=\'none\'"><h1 style="font-size:110px">انتهت اللعبة</h1>' +
+      '<div style="font-size:48px;font-weight:800;line-height:1.4;margin-top:4px">' + title + '</div>' +
       '<div class="results">' + order.map(function (id) {
         var t = team(s, id), win = s.leader === id;
-        return '<div class="panel result' + (win ? ' win' : '') + '"><span class="dot bg-' + id + '" style="width:26px;height:26px"></span>' +
-          '<span class="name">' + esc(t.name) + '</span><span class="score num">' + points(t.score) + '</span></div>';
+        return '<div class="panel result' + (win ? ' win-' + id : '') + '"><span class="crest ' + id + ' num">' + (id === 'first' ? '1' : '2') + '</span>' +
+          '<span class="name">' + esc(t.name) + '</span><span class="score num t-' + id + '">' + points(t.score) + '</span></div>';
       }).join('') + '</div></div>';
   }
 
@@ -329,17 +511,31 @@
   }
 
   // Long names shrink until they fit their box (down to a limit): a team
-  // name in its banner (then it ends in «…»), so both banners stay the same
-  // width, and a category name in its column header.
+  // name in its card (then it ends in «…»), and a category name on top of
+  // its column. A long question or answer shrinks until its box holds it.
   function fitNames() {
-    var names = stage.querySelectorAll('.banner .name, .turn .who, .cat');
+    var names = stage.querySelectorAll('.tname, .cat .name, .catpill .name, .result .name, .ctile .name, .whose span');
     for (var i = 0; i < names.length; i++) {
       var el = names[i], size = parseFloat(getComputedStyle(el).fontSize);
-      while ((el.scrollWidth > el.clientWidth || el.scrollHeight > el.clientHeight) && size > 22) {
+      // Cairo's letters are taller than their line, so height is only checked
+      // on the category names, which may take two lines.
+      var cls = el.parentNode.className, tile = cls.indexOf('ctile') === 0, twoLines = cls === 'cat' || tile;
+      while ((el.scrollWidth > el.clientWidth || (twoLines && el.scrollHeight > size * 3.2)) && size > (tile ? 18 : 22)) {
         el.style.fontSize = (size -= 2) + 'px';
       }
     }
+    var box = stage.querySelector('.fitbox');
+    if (!box) return;
+    var texts = box.querySelectorAll('.qtext, .answer-card .value');
+    var sizes = [], k = 1, j;
+    for (j = 0; j < texts.length; j++) sizes.push(parseFloat(getComputedStyle(texts[j]).fontSize));
+    while (box.scrollHeight > box.clientHeight && k > 0.45) {
+      k -= 0.05;
+      for (j = 0; j < texts.length; j++) texts[j].style.fontSize = sizes[j] * k + 'px';
+    }
   }
+  // The fonts arrive after the first drawing, and text can grow with them.
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', fitNames);
 
   function render(s) {
     var html;
@@ -356,18 +552,20 @@
     if (s.zoom && s.question && s.question.type === 'image' && (s.status === 'question' || s.status === 'answer')) {
       html = fullImage(s);
     }
+    if (html !== lastHtml && patchTiles(s)) lastHtml = html;
     // Zoom updates arrive many times a second: keep the page, move the image.
     if (html !== lastHtml) {
-      // The timer redraws every second: keep the same image element, so a
-      // zoomed image does not jump back and reload.
+      // A score can change with an image open: keep the same image element,
+      // so a zoomed image does not jump back and reload.
       var old = stage.querySelector('.zoombox img');
-      stage.innerHTML = html;
+      view.innerHTML = html;
       lastHtml = html;
       var img = stage.querySelector('.zoombox img');
       if (old && img && old.src === img.src && old.style.height === img.style.height) img.replaceWith(old);
       else if (img) img.addEventListener('load', function () { applyZoom(lastZoom); });
       fitNames();
     }
+    paintTimer(s);
     lastZoom = s.zoom;
     applyZoom(s.zoom);
     playSound(s);

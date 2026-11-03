@@ -4,7 +4,7 @@
 
 ## الحقوق
 
-- الخط: IBM Plex Sans Arabic — رخصة SIL Open Font License (`fonts/OFL.txt`).
+- الخطوط: Cairo وBaloo Bhaijaan 2 وIBM Plex Sans Arabic — رخصة SIL Open Font License (`fonts/OFL.txt`).
 - الأعلام: Flagpedia (flagcdn.com) — ملكية عامة.
 - الصور والأصوات الأخرى من Wikimedia Commons، كل عمل برخصته. 
   أُعيد تحجيمها وضغطها، والأصوات قُصّت إلى أول 12 ثانية:
