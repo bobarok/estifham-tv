@@ -19,7 +19,7 @@
     --first: #4DA3F0; --first-text: #1C7DD6; --first-soft: #EAF4FD;
     --second: #F58A2B; --second-text: #E0721A; --second-soft: #FFF1E3;
     --red: #E5484D; --red-text: #C9353A; --red-soft: #FDECEC; --red-border: #F4B4B6;
-    --tile600: #FFF8E6; --tile600-border: #F3D27A; --tile600-text: #A86A05; --nobody: #B8C4D4;
+    --tile600: #FDECEC; --tile600-border: #F4B4B6; --tile600-text: #C9353A; --nobody: #B8C4D4;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 100%; height: 100%; background: var(--bg); overflow: hidden; }
@@ -118,7 +118,9 @@
   .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 18px; margin-top: 18px; min-height: 0; }
   .col { display: grid; grid-template-rows: 116px repeat(6, minmax(0, 1fr)); gap: 18px; min-height: 0; }
   .cat { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 0 12px; text-align: center;
-    border-radius: 26px; background: var(--surface); border: 3px solid var(--border); overflow: hidden; min-width: 0; }
+    border-radius: 26px; background: linear-gradient(180deg, #FFFFFF, #EAF4FD); border: 3px solid #CFE3F7;
+    box-shadow: 0 6px 0 #CFE3F7; overflow: hidden; min-width: 0; }
+  .cat .catimg { filter: drop-shadow(0 4px 6px rgba(31, 43, 71, .2)); }
   .catimg { width: 72px; height: 72px; object-fit: contain; display: block; flex: none; }
   .cat .name { font-size: 34px; font-weight: 900; line-height: 1.25; min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
   .tile { display: flex; align-items: center; justify-content: center; border-radius: 26px; font-size: 60px; line-height: 1;
