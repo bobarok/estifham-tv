@@ -73,25 +73,49 @@
   .turnpill.first { background: var(--first-text); }
   .turnpill.double { background: var(--red); }
 
-  /* A team's lifelines: its color while left, grey once used; «دبل» is red. */
+  /* A team's lifelines: solid in each one's own color while left, grey and
+     faded once used, ringed while in play (same colors as the app). */
   .aids { display: flex; gap: 8px; }
-  .aid { width: 36px; height: 36px; border-radius: 50%; background: var(--surface); border: 2px solid; flex: none;
+  .aid { width: 44px; height: 44px; border-radius: 50%; color: #fff; border: 2px solid transparent; flex: none;
     display: inline-flex; align-items: center; justify-content: center; }
+  .small .aids { gap: 5px; }
   .small .aid { width: 32px; height: 32px; }
-  .aid svg { width: 20px; height: 20px; }
-  .small .aid svg { width: 18px; height: 18px; }
-  .aid.first { color: var(--first-text); border-color: rgba(77,163,240,.4); }
-  .aid.second { color: var(--second-text); border-color: rgba(245,138,43,.4); }
-  .aid.double { color: var(--red); border-color: rgba(229,72,77,.4); }
-  .aid.used { color: var(--disabled); background: var(--raised); border-color: var(--border-strong); }
-  .aid.lit { color: #fff; background: var(--red); border-color: var(--red); }
+  .aid svg { width: 25px; height: 25px; }
+  .small .aid svg { width: 19px; height: 19px; }
+  .aid.used { color: var(--disabled); background: var(--raised) !important; border-color: var(--border-strong); opacity: .55; }
+  .aid.lit { box-shadow: 0 0 0 5px rgba(229,72,77,.5); }
+  /* Under a question whose answer is a year: a year before or after counts. */
+  .nearhint { align-self: center; display: inline-flex; align-items: center; gap: 12px; padding: 12px 30px; border-radius: 999px;
+    background: #FFF3D9; border: 3px solid #F5C342; color: #B8740A; font-size: 36px; font-weight: 800; line-height: 1.3; }
+  .nearhint svg { width: 40px; height: 40px; flex: none; }
+  /* The board's «دبل» bar for the team picking now. */
+  .dbl { align-self: center; flex: none; display: inline-flex; align-items: center; gap: 12px; height: 64px; margin-top: 18px; padding: 0 34px;
+    border-radius: 999px; font-size: 30px; font-weight: 900; line-height: 1.2; white-space: nowrap;
+    background: var(--red-soft); border: 3px solid var(--red); color: var(--red-text); }
+  .dbl svg { width: 38px; height: 38px; color: var(--red); }
+  .dbl.on { background: linear-gradient(180deg, #F0646A, #E5484D); border-color: transparent; color: #fff; box-shadow: 0 12px 36px rgba(229,72,77,.45); }
+  .dbl.on svg { color: #fff; }
+  .dbl.used { background: var(--raised); border-color: var(--border-strong); color: var(--muted); }
+  .dbl.used svg { color: var(--disabled); }
+  /* Under the question: the picking team's lifelines as big boxes. */
+  .boxes { flex: none; display: flex; gap: 18px; height: 76px; margin-top: 20px; }
+  .box { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 18px;
+    border-radius: 24px; border: 3px solid; background: var(--surface); color: var(--ink); font-size: 30px; font-weight: 900; line-height: 1.2; }
+  .box .ic { width: 48px; height: 48px; border-radius: 50%; flex: none; color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+  .box .ic svg { width: 28px; height: 28px; }
+  .box span.t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .box.on { color: #fff; }
+  .box.on .ic { background: #fff !important; }
+  .box.used { background: var(--raised); border-color: var(--border-strong) !important; color: var(--disabled); }
+  .box.used .ic { background: var(--border) !important; color: var(--disabled); }
+  .box.used span.t { text-decoration: line-through; }
 
   /* Board */
   .mid { flex: none; width: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
   .mid .logo { width: 104px; height: 104px; }
   .progress { font-size: 26px; line-height: 1.2; color: var(--muted); }
   /* One column per category: its picture and name on top, its questions going down. */
-  .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 18px; margin-top: 20px; min-height: 0; }
+  .grid { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 18px; margin-top: 18px; min-height: 0; }
   .col { display: grid; grid-template-rows: 116px repeat(6, minmax(0, 1fr)); gap: 18px; min-height: 0; }
   .cat { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 0 12px; text-align: center;
     border-radius: 26px; background: var(--surface); border: 3px solid var(--border); overflow: hidden; min-width: 0; }
@@ -144,9 +168,8 @@
   .whose.first { background: var(--first-soft); border-color: var(--first); color: var(--first-text); }
   .whose.second { background: var(--second-soft); border-color: var(--second); color: var(--second-text); }
   .active { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; padding: 8px 22px; border-radius: 28px;
-    background: var(--gold); color: var(--ink); font-size: 24px; font-weight: 800; line-height: 1.35; text-align: center; }
+    background: var(--gold); color: #fff; font-size: 24px; font-weight: 800; line-height: 1.35; text-align: center; }
   .active svg { width: 30px; height: 30px; flex: none; }
-  .active.double { background: var(--red); color: #fff; }
   .foot { flex: none; display: flex; align-items: center; justify-content: space-between; height: 44px; margin-top: 20px; font-size: 24px; font-weight: 800; color: var(--muted); }
   .foot b { font-weight: 800; color: var(--ink); }
   .foot .brandline { display: inline-flex; align-items: center; gap: 12px; font-size: 22px; color: #8A97AA; }
@@ -242,15 +265,25 @@
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
       paths.map(function (d) { return '<path d="' + d + '"/>'; }).join('') + '</svg>';
   }
-  // The four lifelines, in the app's order. desc is how the phone names one
-  // that is active on a question (Lifeline.description in lib/models/lifeline.dart).
+  // The lifelines, in the app's order, with their colors (AppColors.lifeline*).
+  // desc is how the phone names one that is active on a question
+  // (Lifeline.description in lib/models/lifeline.dart).
   var LIFELINES = [
-    { label: 'إجابتان', desc: 'يحق للفريق تقديم إجابتين', icon: stroked(['M2.5 12.5l4 4 8-9', 'M11.5 16.5l2 2 8-9']) },
-    { label: 'استريح', desc: 'لاعب من الخصم يستريح ولا يجاوب', icon: stroked(['M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2', 'M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2', 'M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8', 'M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15']) },
-    { label: 'دبل', desc: 'النقاط مضاعفة إذا جاوب الفريق صح', icon: FLAME },
-    { label: 'بوق السؤال', desc: 'الخصم ياخذ السؤال ويجاوب بروحه، وإذا غلط تروح النقاط لصاحب السؤال', icon: stroked(['M7 7h11l-3-3', 'M17 17H6l3 3']) }
+    { label: 'إجابتان', color: '#0E9C92', desc: 'يحق للفريق تقديم إجابتين', icon: stroked(['M2.5 12.5l4 4 8-9', 'M11.5 16.5l2 2 8-9']) },
+    { label: 'استريح', color: '#7C5CD6', desc: 'لاعب من الخصم يستريح ولا يجاوب', icon: stroked(['M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2', 'M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2', 'M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8', 'M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15']) },
+    { label: 'دبل', color: '#E5484D', desc: 'النقاط مضاعفة إذا جاوب الفريق صح', icon: FLAME },
+    { label: 'بدل السؤال', color: '#2E9E4F', desc: 'سؤال ثاني من نفس الفئة وبنفس النقاط', icon: stroked(['M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8', 'M21 3v5h-5', 'M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16', 'M8 16H3v5']) },
+    { label: 'بوق السؤال', color: '#D6408B', desc: 'الخصم ياخذ السؤال ويجاوب بروحه، وإذا غلط تروح النقاط لصاحب السؤال', icon: stroked(['M7 7h11l-3-3', 'M17 17H6l3 3']) }
   ];
-  var DOUBLE = LIFELINES[2], STEAL = LIFELINES[3];
+  var DOUBLE = LIFELINES[2], STEAL = LIFELINES[4];
+  // «تُقبل سنة قبل أو بعد»: arrows up and down.
+  var UPDOWN = stroked(['M7 15l5 5 5-5', 'M7 9l5-5 5 5']);
+  // The lifelines this phone's app has (an older one sends no list and has
+  // no «بدل السؤال»).
+  function lifelinesOf(s) {
+    var names = s.lifelines || ['إجابتان', 'استريح', 'دبل', 'بوق السؤال'];
+    return LIFELINES.filter(function (l) { return names.indexOf(l.label) >= 0; });
+  }
   function isActive(q, lifeline) { return q.lifelines.indexOf(lifeline.desc) >= 0; }
 
   // Whose time it is: the answering team (after «بوق السؤال», the one that
@@ -333,12 +366,35 @@
   }
 
   // lit: the lifeline is in play right now (only «دبل» shows it here).
-  function aids(t, id, lit) {
-    return '<span class="aids">' + LIFELINES.map(function (l) {
+  function aids(s, t, lit) {
+    return '<span class="aids">' + lifelinesOf(s).map(function (l) {
       var left = t.lifelinesLeft.indexOf(l.label) >= 0, on = lit && l === DOUBLE;
-      var cls = on ? 'lit' : left ? (l === DOUBLE ? 'double' : id) : 'used';
-      return '<span class="aid ' + cls + '">' + l.icon + '</span>';
+      return '<span class="aid' + (on ? ' lit' : left ? '' : ' used') + '" style="background:' + l.color + '">' + l.icon + '</span>';
     }).join('') + '</span>';
+  }
+
+  // The board's «دبل» bar for the team picking now.
+  function doubleBar(s) {
+    var name = esc(team(s, s.turn).name), left = team(s, s.turn).lifelinesLeft.indexOf(DOUBLE.label) >= 0;
+    var cls = s.doubleNext ? ' on' : left ? '' : ' used';
+    var text = s.doubleNext ? 'دبل! السؤال اللي يختاره ' + name + ' نقاطه مضاعفة'
+      : left ? 'دبل متاح لـ ' + name : name + ' استخدموا الدبل';
+    return '<div class="dbl' + cls + '">' + DOUBLE.icon + '<span>' + text + '</span></div>';
+  }
+
+  // Under the question: the picking team's lifelines as boxes («بوق السؤال»
+  // is the other team's): filled while in play, struck through once used.
+  // «دبل» is chosen on the board, so it shows here only when in play.
+  function boxes(s) {
+    var q = s.question;
+    return '<div class="boxes">' + lifelinesOf(s).filter(function (l) { return l !== DOUBLE || isActive(q, l); }).map(function (l) {
+      var who = l === STEAL ? other(q.chosenBy) : q.chosenBy;
+      var on = isActive(q, l), left = team(s, who).lifelinesLeft.indexOf(l.label) >= 0;
+      var cls = on ? ' on' : left ? '' : ' used';
+      var style = on ? 'background:' + l.color + ';border-color:' + l.color : 'border-color:' + l.color + '8C';
+      return '<div class="box' + cls + '" style="' + style + '"><span class="ic" style="background:' + l.color + ';color:' + (on ? l.color : '#fff') + '">' +
+        l.icon + '</span><span class="t">' + esc(l.label) + '</span></div>';
+    }).join('') + '</div>';
   }
 
   // on: this team's turn, in its color. extra: what goes before its lifelines.
@@ -347,7 +403,7 @@
     return '<div class="tcard' + (on ? ' on-' + id : '') + '"><div class="side">' +
       '<span class="crest ' + id + ' num">' + (id === 'first' ? '1' : '2') + '</span>' +
       '<div class="tinfo"><div class="tname">' + esc(t.name) + '</div>' +
-      '<div class="tmeta">' + (extra || '') + aids(t, id, lit) + '</div></div></div>' +
+      '<div class="tmeta">' + (extra || '') + aids(s, t, lit) + '</div></div></div>' +
       '<span class="tscore num t-' + id + '">' + points(t.score) + '</span></div>';
   }
 
@@ -369,7 +425,7 @@
       '<div class="topbar">' + card('first') +
       '<div class="mid">' + logo() + '<span class="progress num">' + Math.min(s.answered + 1, s.total) + ' / ' + s.total + '</span></div>' +
       card('second') + '</div>' +
-      '<div class="grid">' + columns + '</div></div>';
+      doubleBar(s) + '<div class="grid">' + columns + '</div></div>';
   }
 
   // The team cards and, between them, the category and the question's points:
@@ -439,19 +495,20 @@
     var q = s.question, t = timerOf(s), who = answering(q), now = t.flipped ? other(who) : who;
     var name = esc(team(s, now).name);
     var active = LIFELINES.filter(function (l) { return isActive(q, l); }).map(function (l) {
-      return l === DOUBLE
-        ? '<div class="active double">' + l.icon + '<span>دبل مفعّل — السؤال بـ <span class="num">' + q.value * 2 + '</span></span></div>'
-        : '<div class="active">' + l.icon + '<span>' + esc(l.desc) + '</span></div>';
+      return '<div class="active" style="background:' + l.color + '">' + l.icon + '<span>' + (l === DOUBLE
+        ? 'دبل مفعّل — السؤال بـ <span class="num">' + q.value * 2 + '</span>'
+        : esc(l.desc)) + '</span></div>';
     }).join('');
     return '<div class="screen">' + questionTop(s, now) +
       '<div class="qbody"><div class="qcard fitbox">' +
       '<svg class="deco1" width="64" height="64" viewBox="0 0 26 26" fill="none" stroke="#F5B840" stroke-width="3" stroke-linecap="round"><path d="M4 22l4-7"/><path d="M11 18l5-6"/><path d="M14 24l7-3"/></svg>' +
       '<svg class="deco2" width="56" height="56" viewBox="0 0 24 24" fill="#FFC53D"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>' +
       '<div class="qmain">' + media(q, 420) +
-      '<div class="qtext" style="font-size:' + (q.type === 'text' ? 76 : 56) + 'px">' + esc(q.text) + '</div></div></div>' +
+      '<div class="qtext" style="font-size:' + (q.type === 'text' ? 76 : 56) + 'px">' + esc(q.text) + '</div>' +
+      (q.nearbyHint ? '<div class="nearhint">' + UPDOWN + '<span>تُقبل سنة قبل أو بعد</span></div>' : '') + '</div></div>' +
       '<div class="tcol">' + timerRing() +
       '<div class="whose ' + now + '"><span>' + (t.flipped ? (name.indexOf('ال') === 0 ? 'انقلب لل' + name.slice(2) : 'انقلب لـ' + name) : 'دور ' + name) + '</span></div>' + active + '</div></div>' +
-      foot(s) + '</div>';
+      boxes(s) + foot(s) + '</div>';
   }
 
   function answer(s) {
