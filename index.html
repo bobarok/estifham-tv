@@ -205,6 +205,27 @@
   .ctile.picked { background: var(--gold-soft); border-color: var(--gold-border); }
   .ctile.picked .badge { display: flex; }
   .ctile.dim { opacity: .4; }
+  .gboxes { flex: 1; min-height: 0; }
+  .gshelf { display: flex; flex: none; }
+  .gshelf + .gshelf { margin-top: 12px; }
+  .gbox { position: relative; flex: none; height: 100%; background: var(--surface); border-radius: 21px; overflow: hidden; }
+  .gbox + .gbox { margin-right: 12px; }
+  .gbox::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; border: 3px solid var(--first-text); border-radius: 21px; pointer-events: none; }
+  .gbox.picked::after { border: 4px solid var(--gold); }
+  .ghead { display: flex; align-items: center; padding: 0 12px; background: var(--first-text); color: #fff; }
+  .ghead .catimg { margin-left: 8px; }
+  .gstar { margin-left: 8px; line-height: 1; color: var(--gold); }
+  .gname { flex: 1; min-width: 0; font-weight: 900; line-height: 1.15; white-space: nowrap; overflow: hidden; }
+  .gcount { display: flex; visibility: hidden; flex: none; align-items: center; justify-content: center; margin-right: 6px; border-radius: 50%; background: var(--gold); color: var(--ink); }
+  .gbox.picked .gcount { visibility: visible; }
+  .gcells { padding: 8px; }
+  .grow { display: flex; justify-content: center; }
+  .grow + .grow { margin-top: 6px; }
+  .grow .ctile { flex: none; justify-content: center; padding: 3px 2px; border: 0; border-radius: 14px; background: #EFF5FB; }
+  .grow .ctile + .ctile { margin-right: 6px; }
+  .grow .ctile .name { flex: 0 1 auto; line-height: 1.1; overflow-wrap: normal; }
+  .grow .ctile .badge { top: 3px; width: 30%; }
+  .grow .ctile.picked { background: var(--gold-soft); box-shadow: inset 0 0 0 3px var(--gold); }
   .results { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; width: 100%; margin-top: 64px; }
   .result { display: flex; align-items: center; gap: 22px; padding: 40px 48px; border-radius: 44px; min-width: 0; }
   .result.win-first { border: 6px solid var(--first); background: var(--first-soft); box-shadow: 0 30px 70px rgba(77,163,240,.28); }
@@ -334,18 +355,131 @@
       '<div class="gold tilecount" style="font-size:48px;font-weight:800">' + tileCount(s) + '</div></div>' +
       '<div class="ctiles" style="grid-template-columns:repeat(' + cols + ',minmax(0,1fr));grid-template-rows:repeat(' + rows + ',minmax(0,1fr))">' + tiles + '</div></div>';
   }
+  // Every group in its own box with its categories inside, all on one screen.
+  // The groups come from the phone; older phones send none and get the plain
+  // grid above. Same sums as _TvCategories in tv_display_screen.dart.
+  var BOX_GAP = 12, BOX_PAD = 8, CELL_GAP = 6, MIN_BOX = 195, BOXES_W = 1860, BOXES_H = 976;
+  function px(v) { return Math.round(v * 100) / 100 + 'px'; }
+  function headHeight(side) { return Math.max(39, side * 0.4); }
+  function boxWidth(n, rows, side) {
+    var cols = Math.ceil(n / rows);
+    return Math.max(MIN_BOX, cols * side + (cols - 1) * CELL_GAP + 2 * BOX_PAD);
+  }
+  function fitShelves(sizes, side) {
+    var n = sizes.length, tallest = Math.max.apply(null, sizes), best = [], pick = [], i, j, k, r;
+    best[n] = 0;
+    for (i = n - 1; i >= 0; i--) {
+      best[i] = Infinity;
+      for (j = i + 1; j <= n; j++) {
+        var rows = 0;
+        for (r = 1; r <= tallest && !rows; r++) {
+          var width = (j - i - 1) * BOX_GAP;
+          for (k = i; k < j; k++) width += boxWidth(sizes[k], r, side);
+          if (width <= BOXES_W) rows = r;
+        }
+        if (!rows) continue;
+        var height = headHeight(side) + 2 * BOX_PAD + rows * side + (rows - 1) * CELL_GAP + (j < n ? BOX_GAP : 0);
+        if (height + best[j] < best[i]) { best[i] = height + best[j]; pick[i] = { from: i, to: j, rows: rows }; }
+      }
+    }
+    if (best[0] > BOXES_H) return null;
+    var shelves = [];
+    for (i = 0; i < n; i = pick[i].to) shelves.push(pick[i]);
+    return shelves;
+  }
+  var packed = { key: '', side: 0, shelves: null };
+  function packGroups(sizes, count) {
+    var key = sizes.join(',');
+    if (packed.key === key) return packed;
+    var side = Math.min(210, Math.sqrt(BOXES_W * BOXES_H / Math.max(count, 1)));
+    var shelves = fitShelves(sizes, side);
+    while (!shelves && side > 15) { side -= 1.5; shelves = fitShelves(sizes, side); }
+    packed = { key: key, side: side, shelves: shelves };
+    return packed;
+  }
+  function catalogGroups(s) {
+    if (!s.catalogGroups || !s.catalogGroups.length) return null;
+    var byId = {}, out = [];
+    s.catalog.forEach(function (c) { byId[c.id] = c; });
+    s.catalogGroups.forEach(function (g) {
+      var list = g.ids.map(function (id) { return byId[id]; }).filter(Boolean);
+      if (list.length) out.push({ name: g.name, icon: g.icon, list: list });
+    });
+    return out.length ? out : null;
+  }
+  function sizedPicture(id, size) {
+    return categoryPicture(id).replace('class="catimg"', 'class="catimg" style="width:' + px(size) + ';height:' + px(size) + '"');
+  }
+  function groupTile(c, s, width, height) {
+    var unit = Math.min(height, width * 1.05);
+    return '<div class="' + tileClass(c, s) + '" data-id="' + esc(c.id) + '" style="width:' + px(width) + ';height:' + px(height) + '">' +
+      sizedPicture(c.id, unit * 0.54) +
+      '<span class="name" style="font-size:' + Math.round(unit * 0.18) + 'px">' + esc(c.name) + '</span>' +
+      '<span class="badge num" style="font-size:' + Math.round(unit * 0.19) + 'px">' + (c.pick || '') + '</span></div>';
+  }
+  function groupBox(g, s, rows, width, head, cellHeight) {
+    var n = g.list.length, cols = Math.ceil(n / rows), rowsHere = Math.ceil(n / cols), picked = 0;
+    var tileWidth = (width - 2 * BOX_PAD - (cols - 1) * CELL_GAP) / cols;
+    var tileHeight = (rows * cellHeight + (rows - 1) * CELL_GAP - (rowsHere - 1) * CELL_GAP) / rowsHere;
+    var lines = '';
+    for (var r = 0; r < rowsHere; r++) {
+      var line = '';
+      for (var i = r * cols; i < (r + 1) * cols && i < n; i++) {
+        if (g.list[i].pick) picked++;
+        line += groupTile(g.list[i], s, tileWidth, tileHeight);
+      }
+      lines += '<div class="grow">' + line + '</div>';
+    }
+    var icon = g.icon ? sizedPicture(g.icon, head * 0.8) : '<span class="gstar" style="font-size:' + px(head * 0.8) + '">★</span>';
+    return '<div class="gbox' + (picked ? ' picked' : '') + '" style="width:' + px(width) + '">' +
+      '<div class="ghead" style="height:' + px(head) + '">' + icon +
+      '<span class="gname" style="font-size:' + Math.round(head * 0.62) + 'px">' + esc(g.name) + '</span>' +
+      '<span class="gcount num" style="width:' + px(head * 0.72) + ';height:' + px(head * 0.72) + ';font-size:' + Math.round(head * 0.44) + 'px">' + (picked || '') + '</span></div>' +
+      '<div class="gcells">' + lines + '</div></div>';
+  }
+  function groupBoxes(s, groups) {
+    var sizes = groups.map(function (g) { return g.list.length; });
+    var pack = packGroups(sizes, s.catalog.length);
+    if (!pack.shelves) return categoryTiles(s);
+    var head = headHeight(pack.side), totalRows = 0, fixed = (pack.shelves.length - 1) * BOX_GAP;
+    pack.shelves.forEach(function (shelf) {
+      totalRows += shelf.rows;
+      fixed += head + 2 * BOX_PAD + (shelf.rows - 1) * CELL_GAP;
+    });
+    var cellHeight = (BOXES_H - fixed) / totalRows;
+    var shelves = pack.shelves.map(function (shelf) {
+      var natural = [], sum = 0, k;
+      for (k = shelf.from; k < shelf.to; k++) { natural.push(boxWidth(sizes[k], shelf.rows, pack.side)); sum += natural[natural.length - 1]; }
+      var free = BOXES_W - (shelf.to - shelf.from - 1) * BOX_GAP, boxes = '';
+      for (k = shelf.from; k < shelf.to; k++) boxes += groupBox(groups[k], s, shelf.rows, natural[k - shelf.from] * free / sum, head, cellHeight);
+      return '<div class="gshelf" style="height:' + px(head + 2 * BOX_PAD + shelf.rows * cellHeight + (shelf.rows - 1) * CELL_GAP) + '">' + boxes + '</div>';
+    }).join('');
+    return '<div class="screen" style="padding:12px 30px 21px">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;height:62px;margin-bottom:9px;flex:none">' +
+      '<div style="font-size:48px;font-weight:900;line-height:1.3">اختيار الفئات</div>' +
+      '<div class="gold tilecount" style="font-size:45px;font-weight:800;line-height:1.3">' + tileCount(s) + '</div></div>' +
+      '<div class="gboxes">' + shelves + '</div></div>';
+  }
   function tileCount(s) {
     return '<span class="num">' + s.pickedCategories.length + '</span> من <span class="num">' + s.categoryCount + '</span>';
   }
   // A pick only changes the marks: the pictures stay, with no flicker.
   function patchTiles(s) {
     if (s.status !== 'categories' || !s.catalog || !s.catalog.length) return false;
+    var groups = catalogGroups(s), list = s.catalog;
+    if (groups) list = groups.reduce(function (all, g) { return all.concat(g.list); }, []);
     var tiles = stage.querySelectorAll('.ctile');
-    if (tiles.length !== s.catalog.length) return false;
-    for (var i = 0; i < tiles.length; i++) if (tiles[i].getAttribute('data-id') !== s.catalog[i].id) return false;
+    if (tiles.length !== list.length) return false;
+    for (var i = 0; i < tiles.length; i++) if (tiles[i].getAttribute('data-id') !== list[i].id) return false;
     for (i = 0; i < tiles.length; i++) {
-      tiles[i].className = tileClass(s.catalog[i], s);
-      tiles[i].querySelector('.badge').textContent = s.catalog[i].pick || '';
+      tiles[i].className = tileClass(list[i], s);
+      tiles[i].querySelector('.badge').textContent = list[i].pick || '';
+    }
+    var boxes = stage.querySelectorAll('.gbox');
+    for (i = 0; i < boxes.length; i++) {
+      var picked = boxes[i].querySelectorAll('.ctile.picked').length;
+      boxes[i].className = 'gbox' + (picked ? ' picked' : '');
+      boxes[i].querySelector('.gcount').textContent = picked || '';
     }
     stage.querySelector('.tilecount').innerHTML = tileCount(s);
     return true;
@@ -353,7 +487,10 @@
 
   function categories(s) {
     // A phone on an older version of the app sends only the picks.
-    if (s.catalog && s.catalog.length) return categoryTiles(s);
+    if (s.catalog && s.catalog.length) {
+      var groups = catalogGroups(s);
+      return groups ? groupBoxes(s, groups) : categoryTiles(s);
+    }
     var slots = '';
     for (var i = 0; i < s.categoryCount; i++) {
       var name = s.pickedCategories[i];
@@ -582,18 +719,19 @@
     return range.getClientRects().length;
   }
   function fitNames() {
-    var names = stage.querySelectorAll('.tname, .cat .name, .catpill .name, .result .name, .ctile .name, .whose span');
+    var names = stage.querySelectorAll('.tname, .cat .name, .catpill .name, .result .name, .ctile .name, .gname, .whose span');
     for (var i = 0; i < names.length; i++) {
       var el = names[i], size = parseFloat(getComputedStyle(el).fontSize);
       // Cairo's letters are taller than their line, so height is only checked
       // on the category names, which may take two lines.
       var cls = el.parentNode.className, tile = cls.indexOf('ctile') === 0, twoLines = cls === 'cat' || tile;
+      var inBox = tile && el.parentNode.parentNode.className === 'grow';
       while ((el.scrollWidth > el.clientWidth || (twoLines && el.scrollHeight > size * 3.2) || (tile && lineCount(el) > 2)) &&
-          size > (tile ? 19 : 22)) {
+          size > (inBox || cls === 'ghead' ? 13 : tile ? 19 : 22)) {
         el.style.fontSize = (size -= 1) + 'px';
       }
       // Still too long to read in two lines: three, with a smaller picture.
-      if (tile && lineCount(el) > 2) {
+      if (tile && !inBox && lineCount(el) > 2) {
         var pic = el.parentNode.querySelector('.catimg');
         if (pic) pic.style.width = pic.style.height = '36%';
       }
