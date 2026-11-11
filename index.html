@@ -154,6 +154,13 @@
   .fullimg .zoombox img { max-width: 1840px !important; }
   .zoombox img { transform-origin: 0 0; transition: transform 0.12s linear; }
   .qtext { font-size: 76px; font-weight: 800; line-height: 1.55; text-align: center; }
+  /* «حروف متطايرة»: the letters bob and tilt, each on its own beat. */
+  .tiles { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 30px 34px; max-width: 1180px; padding: 26px 10px; }
+  .tile { width: 124px; height: 124px; box-sizing: border-box; border-radius: 32px; background: #fff; border: 7px solid var(--c); box-shadow: 0 11px 0 var(--c);
+    display: flex; align-items: center; justify-content: center; font-size: 76px; font-weight: 900; line-height: 1; padding-bottom: 8px; color: var(--ink);
+    animation: drift 4.6s ease-in-out infinite; }
+  @keyframes drift { 0% { transform: translate(0, 0) rotate(-9deg); } 33% { transform: translate(10px, -20px) rotate(6deg); }
+    66% { transform: translate(-8px, -6px) rotate(10deg); } 100% { transform: translate(0, 0) rotate(-9deg); } }
   .audio { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--second-text); font-size: 40px; font-weight: 800; line-height: 1.3; }
   .audio .icon { font-size: 150px; line-height: 1; }
   .tcol { flex: none; width: 460px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-height: 0; }
@@ -630,6 +637,12 @@
       // In a clipping box, so the host's zoom (applyZoom) stays inside it.
       return '<div class="zoombox"><img src="media/' + encodeURI(file) + '" alt="" style="height:' + maxHeight + 'px;width:auto;max-width:1120px"></div>';
     }
+    if (q.type === 'tiles' && q.tiles) {
+      var tones = ['#1C7DD6', '#F58A2B', '#22A06B', '#8B5CF6', '#E5484D', '#12A5A0', '#EC4899', '#C98A12'];
+      return '<div class="tiles">' + q.tiles.map(function (l, i) {
+        return '<span class="tile" style="--c:' + tones[i % tones.length] + ';animation-delay:-' + (i * 1.3 % 4.6).toFixed(1) + 's">' + esc(l) + '</span>';
+      }).join('') + '</div>';
+    }
     if (q.type === 'hum') {
       return '<div class="audio"><svg class="icon" viewBox="0 0 24 24" width="150" height="150" fill="currentColor"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg>دندنها!</div>';
     }
@@ -672,6 +685,8 @@
   function question(s) {
     var q = s.question, t = timerOf(s), who = answering(q), now = t.flipped ? other(who) : who;
     var name = esc(team(s, now).name);
+    // The letter boards of «حروف» and the floating letters go under the text.
+    var below = q.type === 'tiles' || (q.type === 'image' && !!q.media && q.media.indexOf('letters/') === 0);
     var active = LIFELINES.filter(function (l) { return isActive(q, l); }).map(function (l) {
       return '<div class="active" style="background:' + l.color + '">' + l.icon + '<span>' + (l === DOUBLE
         ? 'دبل مفعّل — السؤال بـ <span class="num">' + q.value * 2 + '</span>'
@@ -681,8 +696,9 @@
       '<div class="qbody"><div class="qcard fitbox">' +
       '<svg class="deco1" width="64" height="64" viewBox="0 0 26 26" fill="none" stroke="#F5B840" stroke-width="3" stroke-linecap="round"><path d="M4 22l4-7"/><path d="M11 18l5-6"/><path d="M14 24l7-3"/></svg>' +
       '<svg class="deco2" width="56" height="56" viewBox="0 0 24 24" fill="#FFC53D"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>' +
-      '<div class="qmain">' + media(q, 420) +
+      '<div class="qmain">' + (below ? '' : media(q, 420)) +
       '<div class="qtext" style="font-size:' + (q.type === 'text' ? 76 : 56) + 'px">' + esc(q.text) + '</div>' +
+      (below ? media(q, 420) : '') +
       (q.nearbyHint ? '<div class="nearhint">' + UPDOWN + '<span>تُقبل سنة قبل أو بعد</span></div>' : '') + '</div></div>' +
       '<div class="tcol">' + timerRing() +
       '<div class="whose ' + now + '"><span>' + (t.flipped ? (name.indexOf('ال') === 0 ? 'انقلب لل' + name.slice(2) : 'انقلب لـ' + name) : 'دور ' + name) + '</span></div>' + active + '</div></div>' +
