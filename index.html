@@ -662,7 +662,11 @@
     var file = window.cast && window.cast.framework ? q.mediaId : q.media;
     if (q.type === 'image' && file) {
       // In a clipping box, so the host's zoom (applyZoom) stays inside it.
-      return '<div class="zoombox"><img src="media/' + encodeURI(file) + '" alt="" style="height:' + maxHeight + 'px;width:auto;max-width:1120px"></div>';
+      // A picture that fails (a slow or dropped Wi-Fi, often on a Chromecast,
+      // which loads it from the internet) tries again on its own.
+      var src = 'media/' + encodeURI(file);
+      return '<div class="zoombox"><img src="' + src + '" data-src="' + src + '" onerror="estifhamRetryImage(this)" alt="" style="height:' +
+        maxHeight + 'px;width:auto;max-width:1120px"></div>';
     }
     if (q.type === 'tiles' && q.tiles) {
       var tones = ['#1C7DD6', '#F58A2B', '#22A06B', '#8B5CF6', '#E5484D', '#12A5A0', '#EC4899', '#C98A12'];
@@ -937,7 +941,9 @@
       view.innerHTML = html;
       lastHtml = html;
       var img = stage.querySelector('.zoombox img');
-      if (old && img && old.src === img.src && old.style.height === img.style.height) img.replaceWith(old);
+      // A picture loaded or still loading is kept; one that failed is not.
+      if (old && img && (old.naturalWidth > 0 || !old.complete) && old.getAttribute('data-src') === img.getAttribute('data-src') &&
+          old.style.height === img.style.height) img.replaceWith(old);
       else if (img) img.addEventListener('load', function () { applyZoom(lastZoom); });
       fitNames();
     }
@@ -1036,6 +1042,18 @@
   }
   // Also the entry point for other transports (e.g. a Chromecast receiver).
   window.estifhamRender = render;
+
+  // A question picture that did not load: again after 0.7, 1.4, 2.8… seconds
+  // (six tries), past any cache, while it is still on the screen. Without
+  // this the question stayed without its picture until the page was redrawn.
+  window.estifhamRetryImage = function (img) {
+    var n = +(img.getAttribute('data-try') || 0), src = img.getAttribute('data-src');
+    if (!src || n >= 6) return;
+    img.setAttribute('data-try', n + 1);
+    setTimeout(function () {
+      if (img.isConnected) img.src = src + (src.indexOf('?') < 0 ? '?' : '&') + 'try=' + (n + 1);
+    }, 700 * Math.pow(2, n));
+  };
 
   function showStatus(text) {
     statusEl.textContent = text;
