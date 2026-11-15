@@ -248,6 +248,25 @@
 
   #status { position: fixed; bottom: 16px; left: 16px; padding: 8px 16px; border-radius: 12px;
     background: rgba(31,43,71,.85); color: #fff; font: 700 16px Cairo, sans-serif; display: none; }
+
+  /* «لعبة اللستة»: the question, five boxes under it, the turn's clock beside it. */
+  .lsq { font-size: 72px; font-weight: 900; line-height: 1.4; padding: 0 64px; }
+  .lsq.hid { color: var(--muted); font-size: 60px; }
+  .lsboxes { flex: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; height: 230px; margin-top: 24px; }
+  .lsbox { position: relative; display: flex; align-items: center; justify-content: center; text-align: center; min-width: 0;
+    padding: 14px 16px; border-radius: 32px; background: var(--surface); border: 5px solid var(--border-strong); }
+  .lsbox .n { font-size: 112px; line-height: 1; color: var(--disabled); }
+  .lsbox .t { font-size: 40px; font-weight: 900; line-height: 1.25; overflow-wrap: anywhere; }
+  .lsbox .p { position: absolute; bottom: 8px; left: 0; right: 0; font-size: 28px; font-weight: 800; line-height: 1.2; }
+  .lsbox.open { padding-bottom: 46px; }
+  .lsbox.first { background: var(--first-soft); border-color: var(--first); color: var(--first-text); }
+  .lsbox.second { background: var(--second-soft); border-color: var(--second); color: var(--second-text); }
+  .lsbox.none { background: var(--raised); color: var(--muted); }
+  .lsbox.none.shown { padding-bottom: 46px; }
+  .lsaids { display: flex; gap: 6px; }
+  .lsaid { height: 32px; padding: 0 10px; border-radius: 999px; border: 2px solid var(--border-strong); background: var(--surface);
+    font-size: 19px; font-weight: 800; display: inline-flex; align-items: center; white-space: nowrap; }
+  .lsaid.used { text-decoration: line-through; color: var(--disabled); opacity: .7; }
 </style>
 </head>
 <body>
@@ -754,6 +773,66 @@
       }).join('') + '</div></div>';
   }
 
+  // «لعبة اللستة» (lib/lists/list_display.dart): its own state in s.list,
+  // sent instead of the main game's while it plays.
+  function listTeam(l, id) { return l.teams[0].id === id ? l.teams[0] : l.teams[1]; }
+  function listCard(l, id) {
+    var t = listTeam(l, id), live = l.phase === 'hidden' || l.phase === 'owner' || l.phase === 'other';
+    // The card's color says whose turn it is; the line under the name is
+    // for the three lifelines, which need its whole width.
+    var on = live && l.turn === id;
+    var aidsHtml = '<span class="lsaids">' + l.lifelines.map(function (label) {
+      // The first word is enough on the card («بدّل», «اكشف»), and fits beside a big score.
+      return '<span class="lsaid' + (t.lifelinesLeft.indexOf(label) >= 0 ? '' : ' used') + '">' + esc(label.split(' ')[0]) + '</span>';
+    }).join('') + '</span>';
+    return '<div class="tcard' + (on ? ' on-' + id : '') + '"><div class="side">' +
+      '<span class="crest ' + id + ' num">' + (id === 'first' ? '1' : '2') + '</span>' +
+      '<div class="tinfo"><div class="tname">' + esc(t.name) + '</div>' +
+      '<div class="tmeta">' + aidsHtml + '</div></div></div>' +
+      '<span class="tscore num t-' + id + '">' + points(t.score) + '</span></div>';
+  }
+  function listView(s) {
+    var l = s.list;
+    if (l.phase === 'finished') return finished({ leader: l.leader, teams: l.teams, wonByTieBreak: false });
+    var hidden = l.phase === 'hidden', name = esc(listTeam(l, hidden ? l.owner : l.turn).name);
+    var whose = hidden ? 'لستة ' + name : l.phase === 'owner' ? 'دور ' + name
+      : l.phase === 'other' ? (name.indexOf('ال') === 0 ? 'الباقي لل' + name.slice(2) : 'الباقي لـ' + name) : 'انتهت اللستة';
+    var boxesHtml = l.boxes.map(function (b, i) {
+      if (!b) return '<div class="lsbox"><span class="n num">' + (i + 1) + '</span></div>';
+      if (b.by) return '<div class="lsbox open ' + b.by + '"><span class="t">' + esc(b.text) + '</span><span class="p num">+' + b.points + '</span></div>';
+      return '<div class="lsbox none' + (b.lifeline ? ' shown' : '') + '"><span class="t">' + esc(b.text) + '</span>' +
+        (b.lifeline ? '<span class="p">مكشوفة</span>' : '') + '</div>';
+    }).join('');
+    return '<div class="screen"><div class="topbar small">' + listCard(l, 'first') +
+      '<div class="midchips"><span class="catpill"><span class="name">اللستة <span class="num">' + l.index + '</span> من <span class="num">' + l.total + '</span></span></span>' +
+      '<span class="points' + (l.doubled ? ' double' : '') + '">' + (l.doubled ? FLAME : '') + '<span class="num">' + l.boxPoints + '</span></span></div>' +
+      listCard(l, 'second') + '</div>' +
+      '<div class="qbody"><div class="qcard fitbox"><div class="lsq' + (hidden ? ' hid' : '') + '">' +
+      (hidden ? 'السؤال يطلع بعد قرار الدبل' : esc(l.text)) + '</div></div>' +
+      '<div class="tcol">' + timerRing() +
+      '<div class="whose ' + (l.phase === 'revealed' ? '' : l.turn) + '"><span>' + whose + '</span></div></div></div>' +
+      '<div class="lsboxes">' + boxesHtml + '</div>' +
+      '<div class="foot"><span>كل خانة <b class="num">' + l.boxPoints + '</b>' + (l.doubled ? ' لصاحب اللستة' : '') + '</span>' +
+      '<span class="brandline">' + picture('brand/logo.webp', '') + '<span>استفهام</span></span></div></div>';
+  }
+  // The list's clock is painted apart from the page, like the question's, so
+  // a second passing does not redraw the boxes.
+  function paintListTimer(s) {
+    var el = stage.querySelector('.timer');
+    if (!el || s.status !== 'list' || !s.list) return;
+    var l = s.list, f = l.limit ? l.seconds / l.limit : 0, timed = l.phase === 'owner' || l.phase === 'other';
+    var arc = el.querySelector('.arc'), state = el.querySelector('.state');
+    arc.style.transition = f > lastFraction ? 'none' : '';
+    lastFraction = f;
+    arc.style.strokeDashoffset = RING * (1 - f);
+    arc.style.stroke = l.phase === 'revealed' ? '#B8C4D4' : l.turn === 'first' ? '#4DA3F0' : '#F58A2B';
+    arc.style.opacity = l.running ? 1 : 0.45;
+    el.querySelector('.value').textContent = l.seconds;
+    var paused = timed && !l.running;
+    state.textContent = paused ? 'متوقف' : 'ثانية';
+    state.className = 'state' + (paused ? ' paused' : '');
+  }
+
   var lastHtml = null, lastZoom = null;
   var ownWindow = /[?&]window=1/.test(location.search);
 
@@ -813,6 +892,7 @@
       case 'answer': html = s.question ? answer(s) : idle(); break;
       case 'finished': html = finished(s); break;
       case 'tiebreak': html = tiebreak(s); break;
+      case 'list': html = s.list ? listView(s) : idle(); break;
       default: html = idle();
     }
     // The host opened the question image full screen on the phone.
@@ -833,6 +913,7 @@
       fitNames();
     }
     paintTimer(s);
+    paintListTimer(s);
     lastZoom = s.zoom;
     applyZoom(s.zoom);
     playSound(s);
