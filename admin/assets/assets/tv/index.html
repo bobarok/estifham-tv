@@ -154,6 +154,10 @@
   .fullimg .zoombox img { max-width: 1840px !important; }
   .zoombox img { transform-origin: 0 0; transition: transform 0.12s linear; }
   .qtext { font-size: 76px; font-weight: 800; line-height: 1.55; text-align: center; }
+  /* «حروف متطايرة»: the letters drift round an oval, as on the phone (flyLoop moves them). */
+  .flytiles { position: relative; width: 1120px; max-width: 100%; height: 400px; }
+  .flytile { position: absolute; left: 0; top: 0; box-sizing: border-box; background: #fff; border: 7px solid var(--c); box-shadow: 0 11px 0 var(--c);
+    display: flex; align-items: center; justify-content: center; font-weight: 900; line-height: 1; padding-bottom: 6px; color: var(--ink); will-change: transform; }
   .audio { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--second-text); font-size: 40px; font-weight: 800; line-height: 1.3; }
   .audio .icon { font-size: 150px; line-height: 1; }
   .tcol { flex: none; width: 460px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-height: 0; }
@@ -244,6 +248,45 @@
 
   #status { position: fixed; bottom: 16px; left: 16px; padding: 8px 16px; border-radius: 12px;
     background: rgba(31,43,71,.85); color: #fff; font: 700 16px Cairo, sans-serif; display: none; }
+
+  /* «لعبة اللستة»: the question, five boxes under it, the turn's clock beside it. */
+  .lsq { font-size: 72px; font-weight: 900; line-height: 1.4; padding: 0 64px; }
+  .lsq.hid { color: var(--muted); font-size: 60px; }
+  .lsboxes { flex: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; height: 230px; margin-top: 24px; }
+  .lsbox { position: relative; display: flex; align-items: center; justify-content: center; text-align: center; min-width: 0;
+    padding: 14px 16px; border-radius: 32px; background: var(--surface); border: 5px solid var(--border-strong); }
+  .lsbox .n { font-size: 112px; line-height: 1; color: var(--disabled); }
+  .lsbox .t { font-size: 40px; font-weight: 900; line-height: 1.25; overflow-wrap: anywhere; }
+  .lsbox .p { position: absolute; bottom: 8px; left: 0; right: 0; font-size: 28px; font-weight: 800; line-height: 1.2; }
+  .lsbox.open { padding-bottom: 46px; }
+  .lsbox.first { background: var(--first-soft); border-color: var(--first); color: var(--first-text); }
+  .lsbox.second { background: var(--second-soft); border-color: var(--second); color: var(--second-text); }
+  .lsbox.none { background: var(--raised); color: var(--muted); }
+  .lsbox.none.shown { padding-bottom: 46px; }
+  /* Between the question and the boxes: the owner's three lifelines by name,
+     for the audience (.boxes above); the clock is smaller to make room. */
+  .lsview .timer, .lsview .timer svg { width: 340px; height: 340px; }
+  .lsview .timer .value { font-size: 140px; }
+  .lsview .boxes { margin-top: 18px; }
+  .boxcap { flex: none; max-width: 420px; min-width: 0; display: flex; align-items: center; font-size: 30px; font-weight: 900; line-height: 1.3; }
+  .boxcap span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* «اللستة الفاصلة»: a long list, each team one answer per round. Under the
+     names, what each did this round; under the question, the answers named
+     in the team's color (all of them once the list is over). */
+  .tiemark { display: inline-flex; align-items: center; gap: 10px; font-size: 30px; font-weight: 900; line-height: 1.2; color: var(--muted); }
+  .tiemark .dot { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 24px; background: var(--disabled); }
+  .tiemark.right { color: #1B7F55; } .tiemark.right .dot { background: #22A06B; }
+  .tiemark.wrong { color: var(--red-text); } .tiemark.wrong .dot { background: var(--red); }
+  .tiemark.now { color: var(--ink); }
+  .tieans { flex: none; display: grid; gap: 14px; margin-top: 22px; }
+  .tiebox { display: flex; align-items: center; justify-content: center; text-align: center; min-width: 0; padding: 6px 10px;
+    border-radius: 22px; background: var(--surface); border: 4px solid var(--border-strong); font-weight: 900; line-height: 1.2; overflow: hidden; }
+  .tiebox .n { color: var(--disabled); }
+  .tiebox.first { background: var(--first-soft); border-color: var(--first); color: var(--first-text); }
+  .tiebox.second { background: var(--second-soft); border-color: var(--second); color: var(--second-text); }
+  .tiebox.none { background: var(--raised); color: var(--muted); }
+  .tienews { flex: none; text-align: center; font-size: 46px; font-weight: 900; line-height: 1.3; margin-top: 18px; }
 </style>
 </head>
 <body>
@@ -303,6 +346,14 @@
     { label: 'بوق السؤال', color: '#D6408B', desc: 'الخصم ياخذ السؤال ويجاوب بروحه، وإذا غلط تروح النقاط لصاحب السؤال', icon: stroked(['M7 7h11l-3-3', 'M17 17H6l3 3']) }
   ];
   var DOUBLE = LIFELINES[2], STEAL = LIFELINES[4];
+  // «لعبة اللستة» has three of its own, under the names its phone sends
+  // (ListLifeline in lib/lists/list_game.dart), in the app's colors.
+  var LIST_AIDS = {
+    'دبل': { color: DOUBLE.color, icon: FLAME },
+    'بدّل السؤال': { color: LIFELINES[3].color, icon: LIFELINES[3].icon },
+    'اكشف إجابة': { color: '#7C5CD6', icon: stroked(['M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z', 'M12 9.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5z']) }
+  };
+  function listAid(label) { return LIST_AIDS[label] || { color: '#8A97AA', icon: '' }; }
   // «تُقبل سنة قبل أو بعد»: arrows up and down.
   var UPDOWN = stroked(['M7 15l5 5 5-5', 'M7 9l5-5 5 5']);
   // The lifelines this phone's app has (an older one sends no list and has
@@ -627,7 +678,17 @@
     var file = window.cast && window.cast.framework ? q.mediaId : q.media;
     if (q.type === 'image' && file) {
       // In a clipping box, so the host's zoom (applyZoom) stays inside it.
-      return '<div class="zoombox"><img src="media/' + encodeURI(file) + '" alt="" style="height:' + maxHeight + 'px;width:auto;max-width:1120px"></div>';
+      // A picture that fails (a slow or dropped Wi-Fi, often on a Chromecast,
+      // which loads it from the internet) tries again on its own.
+      var src = 'media/' + encodeURI(file);
+      return '<div class="zoombox"><img src="' + src + '" data-src="' + src + '" onerror="estifhamRetryImage(this)" alt="" style="height:' +
+        maxHeight + 'px;width:auto;max-width:1120px"></div>';
+    }
+    if (q.type === 'tiles' && q.tiles) {
+      var tones = ['#1C7DD6', '#F58A2B', '#22A06B', '#8B5CF6', '#E5484D', '#12A5A0', '#EC4899', '#C98A12'];
+      return '<div class="flytiles">' + q.tiles.map(function (l, i) {
+        return '<span class="flytile" style="--c:' + tones[i % tones.length] + '">' + esc(l) + '</span>';
+      }).join('') + '</div>';
     }
     if (q.type === 'hum') {
       return '<div class="audio"><svg class="icon" viewBox="0 0 24 24" width="150" height="150" fill="currentColor"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg>دندنها!</div>';
@@ -671,6 +732,8 @@
   function question(s) {
     var q = s.question, t = timerOf(s), who = answering(q), now = t.flipped ? other(who) : who;
     var name = esc(team(s, now).name);
+    // The letter boards of «حروف» and the floating letters go under the text.
+    var below = q.type === 'tiles' || (q.type === 'image' && !!q.media && q.media.indexOf('letters/') === 0);
     var active = LIFELINES.filter(function (l) { return isActive(q, l); }).map(function (l) {
       return '<div class="active" style="background:' + l.color + '">' + l.icon + '<span>' + (l === DOUBLE
         ? 'دبل مفعّل — السؤال بـ <span class="num">' + q.value * 2 + '</span>'
@@ -680,8 +743,9 @@
       '<div class="qbody"><div class="qcard fitbox">' +
       '<svg class="deco1" width="64" height="64" viewBox="0 0 26 26" fill="none" stroke="#F5B840" stroke-width="3" stroke-linecap="round"><path d="M4 22l4-7"/><path d="M11 18l5-6"/><path d="M14 24l7-3"/></svg>' +
       '<svg class="deco2" width="56" height="56" viewBox="0 0 24 24" fill="#FFC53D"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>' +
-      '<div class="qmain">' + media(q, 420) +
+      '<div class="qmain">' + (below ? '' : media(q, 420)) +
       '<div class="qtext" style="font-size:' + (q.type === 'text' ? 76 : 56) + 'px">' + esc(q.text) + '</div>' +
+      (below ? media(q, 420) : '') +
       (q.nearbyHint ? '<div class="nearhint">' + UPDOWN + '<span>تُقبل سنة قبل أو بعد</span></div>' : '') + '</div></div>' +
       '<div class="tcol">' + timerRing() +
       '<div class="whose ' + now + '"><span>' + (t.flipped ? (name.indexOf('ال') === 0 ? 'انقلب لل' + name.slice(2) : 'انقلب لـ' + name) : 'دور ' + name) + '</span></div>' + active + '</div></div>' +
@@ -730,6 +794,7 @@
       ? '<span class="t-' + s.leader + '">الفائز: ' + esc(team(s, s.leader).name) + '</span>'
       : '<span class="gold">تعادل!</span>';
     if (s.wonByTieBreak) title += ' <span class="gold" style="font-size:36px">(بالسؤال الفاصل)</span>';
+    if (s.wonByList) title += ' <span class="gold" style="font-size:36px">(باللستة الفاصلة)</span>';
     return '<div class="screen center" style="padding:80px 120px">' +
       '<img class="logo" src="brand/logo.webp" alt="" style="width:200px;height:200px;margin-bottom:12px" onerror="this.style.display=\'none\'"><h1 style="font-size:110px">انتهت اللعبة</h1>' +
       '<div style="font-size:48px;font-weight:800;line-height:1.4;margin-top:4px">' + title + '</div>' +
@@ -738,6 +803,146 @@
         return '<div class="panel result' + (win ? ' win-' + id : '') + '"><span class="crest ' + id + ' num">' + (id === 'first' ? '1' : '2') + '</span>' +
           '<span class="name">' + esc(t.name) + '</span><span class="score num t-' + id + '">' + points(t.score) + '</span></div>';
       }).join('') + '</div></div>';
+  }
+
+  // «لعبة اللستة» (lib/lists/list_display.dart): its own state in s.list,
+  // sent instead of the main game's while it plays.
+  function listTeam(l, id) { return l.teams[0].id === id ? l.teams[0] : l.teams[1]; }
+  // The lifelines the owner used on this list (the first app with this game
+  // sends no inPlay, only whether «دبل» is on).
+  function listInPlay(l) { return l.inPlay || (l.doubled ? ['دبل'] : []); }
+  function listCard(l, id) {
+    var t = listTeam(l, id), live = l.phase === 'hidden' || l.phase === 'owner' || l.phase === 'other';
+    // The card's color says whose turn it is. Under the name, the team's
+    // lifelines as on the main game's cards: its color while left, ringed
+    // while in play on this list, grey once used.
+    var on = live && l.turn === id, inPlay = id === l.owner ? listInPlay(l) : [];
+    var aidsHtml = '<span class="aids">' + l.lifelines.map(function (label) {
+      var a = listAid(label), lit = inPlay.indexOf(label) >= 0, left = t.lifelinesLeft.indexOf(label) >= 0;
+      return '<span class="aid' + (lit || left ? '' : ' used') + '" style="background:' + a.color +
+        (lit ? ';box-shadow:0 0 0 5px ' + a.color + '80' : '') + '">' + a.icon + '</span>';
+    }).join('') + '</span>';
+    return '<div class="tcard' + (on ? ' on-' + id : '') + '"><div class="side">' +
+      '<span class="crest ' + id + ' num">' + (id === 'first' ? '1' : '2') + '</span>' +
+      '<div class="tinfo"><div class="tname">' + esc(t.name) + '</div>' +
+      '<div class="tmeta">' + aidsHtml + '</div></div></div>' +
+      '<span class="tscore num t-' + id + '">' + points(t.score) + '</span></div>';
+  }
+  // Whose lifelines, then each by name, as under a question of the main
+  // game: filled while in play on this list, struck through once used.
+  function listAids(l) {
+    var owner = listTeam(l, l.owner), inPlay = listInPlay(l);
+    return '<div class="boxes"><div class="boxcap t-' + l.owner + '"><span>وسائل ' + esc(owner.name) + '</span></div>' +
+      l.lifelines.map(function (label) {
+        var a = listAid(label), on = inPlay.indexOf(label) >= 0, left = owner.lifelinesLeft.indexOf(label) >= 0;
+        var style = on ? 'background:' + a.color + ';border-color:' + a.color : 'border-color:' + a.color + '8C';
+        return '<div class="box' + (on ? ' on' : left ? '' : ' used') + '" style="' + style + '"><span class="ic" style="background:' + a.color +
+          ';color:' + (on ? a.color : '#fff') + '">' + a.icon + '</span><span class="t">' + esc(label) + '</span></div>';
+      }).join('') + '</div>';
+  }
+  function listView(s) {
+    var l = s.list;
+    if (l.phase === 'finished') return finished({ leader: l.leader, teams: l.teams, wonByTieBreak: false, wonByList: !!l.wonByTie });
+    var hidden = l.phase === 'hidden', name = esc(listTeam(l, hidden ? l.owner : l.turn).name);
+    var whose = hidden ? 'لستة ' + name : l.phase === 'owner' ? 'دور ' + name
+      : l.phase === 'other' ? (name.indexOf('ال') === 0 ? 'الباقي لل' + name.slice(2) : 'الباقي لـ' + name) : 'انتهت اللستة';
+    var boxesHtml = l.boxes.map(function (b, i) {
+      if (!b) return '<div class="lsbox"><span class="n num">' + (i + 1) + '</span></div>';
+      if (b.by) return '<div class="lsbox open ' + b.by + '"><span class="t">' + esc(b.text) + '</span><span class="p num">+' + b.points + '</span></div>';
+      return '<div class="lsbox none' + (b.lifeline ? ' shown' : '') + '"><span class="t">' + esc(b.text) + '</span>' +
+        (b.lifeline ? '<span class="p">مكشوفة</span>' : '') + '</div>';
+    }).join('');
+    return '<div class="screen lsview"><div class="topbar small">' + listCard(l, 'first') +
+      '<div class="midchips"><span class="catpill"><span class="name">اللستة <span class="num">' + l.index + '</span> من <span class="num">' + l.total + '</span></span></span>' +
+      '<span class="points' + (l.doubled ? ' double' : '') + '">' + (l.doubled ? FLAME : '') + '<span class="num">' + l.boxPoints + '</span></span></div>' +
+      listCard(l, 'second') + '</div>' +
+      '<div class="qbody"><div class="qcard fitbox"><div class="lsq' + (hidden ? ' hid' : '') + '">' +
+      (hidden ? 'السؤال يطلع بعد قرار الدبل' : esc(l.text)) + '</div></div>' +
+      '<div class="tcol">' + timerRing() +
+      '<div class="whose ' + (l.phase === 'revealed' ? '' : l.turn) + '"><span>' + whose + '</span></div></div></div>' +
+      listAids(l) + '<div class="lsboxes">' + boxesHtml + '</div>' +
+      '<div class="foot"><span>كل خانة <b class="num">' + l.boxPoints + '</b>' + (l.doubled ? ' لصاحب اللستة' : '') + '</span>' +
+      '<span class="brandline">' + picture('brand/logo.webp', '') + '<span>استفهام</span></span></div></div>';
+  }
+  // The list's clock is painted apart from the page, like the question's, so
+  // a second passing does not redraw the boxes.
+  function paintListTimer(s) {
+    var el = stage.querySelector('.timer');
+    if (!el || s.status !== 'list' || !s.list) return;
+    var l = s.list, f = l.limit ? l.seconds / l.limit : 0, timed = l.phase === 'owner' || l.phase === 'other';
+    var arc = el.querySelector('.arc'), state = el.querySelector('.state');
+    arc.style.transition = f > lastFraction ? 'none' : '';
+    lastFraction = f;
+    arc.style.strokeDashoffset = RING * (1 - f);
+    arc.style.stroke = l.phase === 'revealed' ? '#B8C4D4' : l.turn === 'first' ? '#4DA3F0' : '#F58A2B';
+    arc.style.opacity = l.running ? 1 : 0.45;
+    el.querySelector('.value').textContent = l.seconds;
+    // Before the question shows, the minute waits for it.
+    var waiting = l.phase === 'hidden', paused = timed && !l.running;
+    state.textContent = waiting ? 'يبدأ مع السؤال' : paused ? 'متوقف' : 'ثانية';
+    state.className = 'state' + (paused || waiting ? ' paused' : '');
+  }
+
+  // «اللستة الفاصلة» (ListDisplay._tie in lib/lists/list_display.dart).
+  function tieName(t, id) { return t.teams[0].id === id ? t.teams[0].name : t.teams[1].name; }
+  function tieCard(t, id) {
+    var r = t.round[id], now = t.step === 'turn' && t.turn === id, won = t.winner === id;
+    var mark = r === true ? '<span class="tiemark right"><span class="dot">✓</span>جاوب صح</span>'
+      : r === false ? '<span class="tiemark wrong"><span class="dot">✕</span>ما جاوب</span>'
+      : now ? '<span class="tiemark now"><span class="dot" style="background:' + (id === 'first' ? '#4DA3F0' : '#F58A2B') + '">…</span>دوره الحين</span>'
+      : '<span class="tiemark"><span class="dot">·</span>' + (t.starter === id ? 'يبدأ' : 'بعده') + '</span>';
+    var team = t.teams[0].id === id ? t.teams[0] : t.teams[1];
+    return '<div class="tcard' + (now || won ? ' on-' + id : '') + '"><div class="side">' +
+      '<span class="crest ' + id + ' num">' + (id === 'first' ? '1' : '2') + '</span>' +
+      '<div class="tinfo"><div class="tname">' + esc(team.name) + '</div>' +
+      '<div class="tmeta">' + mark + '</div></div></div>' +
+      '<span class="tscore num t-' + id + '">' + points(team.score) + '</span></div>';
+  }
+  function tieView(s) {
+    var t = s.tie, hidden = t.step === 'hidden';
+    var starter = esc(tieName(t, t.starter)), other = esc(tieName(t, t.starter === 'first' ? 'second' : 'first'));
+    var bothMissed = t.round.first === false && t.round.second === false;
+    var whose = hidden ? 'يبدأ ' + starter : t.step === 'turn' ? 'دور ' + esc(tieName(t, t.turn))
+      : t.step === 'won' ? 'فاز ' + esc(tieName(t, t.winner)) : t.step === 'bothRight' ? 'جولة ثانية' : 'لستة ثانية';
+    var news = t.step === 'bothRight' ? '<div class="tienews" style="color:#1B7F55">الاثنين جاوبوا صح! جولة ثانية ويبدأ ' + starter + '</div>'
+      : t.step === 'listOver' ? '<div class="tienews gold">' + (bothMissed ? 'الاثنين ما جاوبوا' : 'خلصت إجابات اللستة') + '. لستة ثانية ويبدأ ' + other + '</div>'
+      : t.step === 'won' ? '<div class="tienews t-' + t.winner + '">فاز ' + esc(tieName(t, t.winner)) + ' باللستة الفاصلة!</div>' : '';
+    // Every answer has a box: named ones in the team's color, the rest
+    // closed until the list is over.
+    var n = t.total, cols = n <= 10 ? 5 : n <= 16 ? 8 : 10, rows = Math.ceil(n / cols);
+    var h = rows <= 2 ? 104 : rows === 3 ? 84 : 64, font = rows <= 2 ? 36 : rows === 3 ? 30 : 25;
+    var cells = '';
+    for (var i = 0; i < n; i++) {
+      var a = t.answers[i];
+      cells += !a ? '<div class="tiebox" style="font-size:' + font + 'px"><span class="n num">' + (i + 1) + '</span></div>'
+        : '<div class="tiebox ' + (a.by || 'none') + '" style="font-size:' + font + 'px"><span>' + esc(a.text) + '</span></div>';
+    }
+    return '<div class="screen lsview"><div class="topbar small">' + tieCard(t, 'first') +
+      '<div class="midchips"><span class="catpill"><span class="name">اللستة الفاصلة' + (t.number > 1 ? ' <span class="num">' + t.number + '</span>' : '') + '</span></span></div>' +
+      tieCard(t, 'second') + '</div>' +
+      '<div class="qbody"><div class="qcard fitbox"><div class="lsq' + (hidden ? ' hid' : '') + '">' +
+      (hidden ? 'تعادل! اللستة الفاصلة تحسمها' : esc(t.text)) + '</div></div>' +
+      '<div class="tcol">' + timerRing() +
+      '<div class="whose ' + (t.step === 'turn' ? t.turn : t.step === 'won' ? t.winner : '') + '"><span>' + whose + '</span></div></div></div>' +
+      news +
+      (hidden ? '' : '<div class="tieans" style="grid-template-columns:repeat(' + cols + ',minmax(0,1fr));grid-auto-rows:' + h + 'px">' + cells + '</div>') +
+      '<div class="foot"><span>كل فريق يقول إجابة وحدة بـ <b class="num">' + t.limit + '</b> ثانية · واحد صح والثاني لا = فوز</span>' +
+      '<span class="brandline">' + picture('brand/logo.webp', '') + '<span>استفهام</span></span></div></div>';
+  }
+  function paintTieTimer(s) {
+    var el = stage.querySelector('.timer');
+    if (!el || s.status !== 'listTie' || !s.tie) return;
+    var t = s.tie, f = t.limit ? t.seconds / t.limit : 0;
+    var arc = el.querySelector('.arc'), state = el.querySelector('.state'), timed = t.step === 'turn';
+    arc.style.transition = f > lastFraction ? 'none' : '';
+    lastFraction = f;
+    arc.style.strokeDashoffset = RING * (1 - f);
+    arc.style.stroke = !timed ? '#B8C4D4' : t.turn === 'first' ? '#4DA3F0' : '#F58A2B';
+    arc.style.opacity = t.running ? 1 : 0.45;
+    el.querySelector('.value').textContent = t.seconds;
+    var waiting = t.step === 'hidden', paused = timed && !t.running;
+    state.textContent = waiting ? 'يبدأ مع السؤال' : paused ? 'متوقف' : 'ثانية';
+    state.className = 'state' + (paused || waiting ? ' paused' : '');
   }
 
   var lastHtml = null, lastZoom = null;
@@ -799,6 +1004,8 @@
       case 'answer': html = s.question ? answer(s) : idle(); break;
       case 'finished': html = finished(s); break;
       case 'tiebreak': html = tiebreak(s); break;
+      case 'list': html = s.list ? listView(s) : idle(); break;
+      case 'listTie': html = s.tie ? tieView(s) : idle(); break;
       default: html = idle();
     }
     // The host opened the question image full screen on the phone.
@@ -814,11 +1021,15 @@
       view.innerHTML = html;
       lastHtml = html;
       var img = stage.querySelector('.zoombox img');
-      if (old && img && old.src === img.src && old.style.height === img.style.height) img.replaceWith(old);
+      // A picture loaded or still loading is kept; one that failed is not.
+      if (old && img && (old.naturalWidth > 0 || !old.complete) && old.getAttribute('data-src') === img.getAttribute('data-src') &&
+          old.style.height === img.style.height) img.replaceWith(old);
       else if (img) img.addEventListener('load', function () { applyZoom(lastZoom); });
       fitNames();
     }
     paintTimer(s);
+    paintListTimer(s);
+    paintTieTimer(s);
     lastZoom = s.zoom;
     applyZoom(s.zoom);
     playSound(s);
@@ -913,6 +1124,18 @@
   // Also the entry point for other transports (e.g. a Chromecast receiver).
   window.estifhamRender = render;
 
+  // A question picture that did not load: again after 0.7, 1.4, 2.8… seconds
+  // (six tries), past any cache, while it is still on the screen. Without
+  // this the question stayed without its picture until the page was redrawn.
+  window.estifhamRetryImage = function (img) {
+    var n = +(img.getAttribute('data-try') || 0), src = img.getAttribute('data-src');
+    if (!src || n >= 6) return;
+    img.setAttribute('data-try', n + 1);
+    setTimeout(function () {
+      if (img.isConnected) img.src = src + (src.indexOf('?') < 0 ? '?' : '&') + 'try=' + (n + 1);
+    }, 700 * Math.pow(2, n));
+  };
+
   function showStatus(text) {
     statusEl.textContent = text;
     statusEl.style.display = text ? 'block' : 'none';
@@ -990,6 +1213,33 @@
   if (window.cast && window.cast.framework) receive();
   else if (location.protocol.indexOf('http') === 0) connect();
 })();
+
+  // «حروف متطايرة»: the same motion as the phone (FloatingTiles): the letters
+  // go round an oval once in 40 seconds, each bobbing and tilting on its own.
+  (function flyLoop() {
+    var box = document.querySelector('.flytiles');
+    if (box) {
+      var tiles = box.querySelectorAll('.flytile');
+      var n = tiles.length, w = box.clientWidth, h = box.clientHeight;
+      var t = (Date.now() % 40000) / 40000 * 2 * Math.PI;
+      var size = Math.min(h * 0.34, w * 0.2, Math.PI * (w + h) / 2 / Math.max(n, 1) * 0.62, 150);
+      var rx = Math.max(w / 2 - size * 0.62, 0), ry = Math.max(h / 2 - size * 0.62, 0);
+      for (var i = 0; i < n; i++) {
+        var a = 2 * Math.PI * i / n + t;
+        var x = w / 2 + Math.cos(a) * rx * (0.92 + 0.08 * Math.sin(t * 7 + i));
+        var y = h / 2 + Math.sin(a) * ry * (0.9 + 0.1 * Math.cos(t * 5 + i * 2)) + Math.sin(t * 9 + i * 1.7) * size * 0.06;
+        var el = tiles[i], st = el.style;
+        if (el.dataset.size !== String(Math.round(size))) {
+          el.dataset.size = String(Math.round(size));
+          st.width = st.height = size + 'px';
+          st.borderRadius = size * 0.26 + 'px';
+          st.fontSize = size * 0.56 + 'px';
+        }
+        st.transform = 'translate(' + (x - size / 2) + 'px,' + (y - size / 2) + 'px) rotate(' + Math.sin(t * 6 + i * 1.3) * 0.28 + 'rad)';
+      }
+    }
+    requestAnimationFrame(flyLoop);
+  })();
 </script>
 </body>
 </html>

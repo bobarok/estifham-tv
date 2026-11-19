@@ -270,6 +270,23 @@
   .lsview .boxes { margin-top: 18px; }
   .boxcap { flex: none; max-width: 420px; min-width: 0; display: flex; align-items: center; font-size: 30px; font-weight: 900; line-height: 1.3; }
   .boxcap span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* «اللستة الفاصلة»: a long list, each team one answer per round. Under the
+     names, what each did this round; under the question, the answers named
+     in the team's color (all of them once the list is over). */
+  .tiemark { display: inline-flex; align-items: center; gap: 10px; font-size: 30px; font-weight: 900; line-height: 1.2; color: var(--muted); }
+  .tiemark .dot { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 24px; background: var(--disabled); }
+  .tiemark.right { color: #1B7F55; } .tiemark.right .dot { background: #22A06B; }
+  .tiemark.wrong { color: var(--red-text); } .tiemark.wrong .dot { background: var(--red); }
+  .tiemark.now { color: var(--ink); }
+  .tieans { flex: none; display: grid; gap: 14px; margin-top: 22px; }
+  .tiebox { display: flex; align-items: center; justify-content: center; text-align: center; min-width: 0; padding: 6px 10px;
+    border-radius: 22px; background: var(--surface); border: 4px solid var(--border-strong); font-weight: 900; line-height: 1.2; overflow: hidden; }
+  .tiebox .n { color: var(--disabled); }
+  .tiebox.first { background: var(--first-soft); border-color: var(--first); color: var(--first-text); }
+  .tiebox.second { background: var(--second-soft); border-color: var(--second); color: var(--second-text); }
+  .tiebox.none { background: var(--raised); color: var(--muted); }
+  .tienews { flex: none; text-align: center; font-size: 46px; font-weight: 900; line-height: 1.3; margin-top: 18px; }
 </style>
 </head>
 <body>
@@ -778,6 +795,7 @@
       ? '<span class="t-' + s.leader + '">الفائز: ' + esc(team(s, s.leader).name) + '</span>'
       : '<span class="gold">تعادل!</span>';
     if (s.wonByTieBreak) title += ' <span class="gold" style="font-size:36px">(بالسؤال الفاصل)</span>';
+    if (s.wonByList) title += ' <span class="gold" style="font-size:36px">(باللستة الفاصلة)</span>';
     return '<div class="screen center" style="padding:80px 120px">' +
       '<img class="logo" src="brand/logo.webp" alt="" style="width:200px;height:200px;margin-bottom:12px" onerror="this.style.display=\'none\'"><h1 style="font-size:110px">انتهت اللعبة</h1>' +
       '<div style="font-size:48px;font-weight:800;line-height:1.4;margin-top:4px">' + title + '</div>' +
@@ -825,7 +843,7 @@
   }
   function listView(s) {
     var l = s.list;
-    if (l.phase === 'finished') return finished({ leader: l.leader, teams: l.teams, wonByTieBreak: false });
+    if (l.phase === 'finished') return finished({ leader: l.leader, teams: l.teams, wonByTieBreak: false, wonByList: !!l.wonByTie });
     var hidden = l.phase === 'hidden', name = esc(listTeam(l, hidden ? l.owner : l.turn).name);
     var whose = hidden ? 'لستة ' + name : l.phase === 'owner' ? 'دور ' + name
       : l.phase === 'other' ? (name.indexOf('ال') === 0 ? 'الباقي لل' + name.slice(2) : 'الباقي لـ' + name) : 'انتهت اللستة';
@@ -862,6 +880,68 @@
     el.querySelector('.value').textContent = l.seconds;
     // Before the question shows, the minute waits for it.
     var waiting = l.phase === 'hidden', paused = timed && !l.running;
+    state.textContent = waiting ? 'يبدأ مع السؤال' : paused ? 'متوقف' : 'ثانية';
+    state.className = 'state' + (paused || waiting ? ' paused' : '');
+  }
+
+  // «اللستة الفاصلة» (ListDisplay._tie in lib/lists/list_display.dart).
+  function tieName(t, id) { return t.teams[0].id === id ? t.teams[0].name : t.teams[1].name; }
+  function tieCard(t, id) {
+    var r = t.round[id], now = t.step === 'turn' && t.turn === id, won = t.winner === id;
+    var mark = r === true ? '<span class="tiemark right"><span class="dot">✓</span>جاوب صح</span>'
+      : r === false ? '<span class="tiemark wrong"><span class="dot">✕</span>ما جاوب</span>'
+      : now ? '<span class="tiemark now"><span class="dot" style="background:' + (id === 'first' ? '#4DA3F0' : '#F58A2B') + '">…</span>دوره الحين</span>'
+      : '<span class="tiemark"><span class="dot">·</span>' + (t.starter === id ? 'يبدأ' : 'بعده') + '</span>';
+    var team = t.teams[0].id === id ? t.teams[0] : t.teams[1];
+    return '<div class="tcard' + (now || won ? ' on-' + id : '') + '"><div class="side">' +
+      '<span class="crest ' + id + ' num">' + (id === 'first' ? '1' : '2') + '</span>' +
+      '<div class="tinfo"><div class="tname">' + esc(team.name) + '</div>' +
+      '<div class="tmeta">' + mark + '</div></div></div>' +
+      '<span class="tscore num t-' + id + '">' + points(team.score) + '</span></div>';
+  }
+  function tieView(s) {
+    var t = s.tie, hidden = t.step === 'hidden';
+    var starter = esc(tieName(t, t.starter)), other = esc(tieName(t, t.starter === 'first' ? 'second' : 'first'));
+    var bothMissed = t.round.first === false && t.round.second === false;
+    var whose = hidden ? 'يبدأ ' + starter : t.step === 'turn' ? 'دور ' + esc(tieName(t, t.turn))
+      : t.step === 'won' ? 'فاز ' + esc(tieName(t, t.winner)) : t.step === 'bothRight' ? 'جولة ثانية' : 'لستة ثانية';
+    var news = t.step === 'bothRight' ? '<div class="tienews" style="color:#1B7F55">الاثنين جاوبوا صح! جولة ثانية ويبدأ ' + starter + '</div>'
+      : t.step === 'listOver' ? '<div class="tienews gold">' + (bothMissed ? 'الاثنين ما جاوبوا' : 'خلصت إجابات اللستة') + '. لستة ثانية ويبدأ ' + other + '</div>'
+      : t.step === 'won' ? '<div class="tienews t-' + t.winner + '">فاز ' + esc(tieName(t, t.winner)) + ' باللستة الفاصلة!</div>' : '';
+    // Every answer has a box: named ones in the team's color, the rest
+    // closed until the list is over.
+    var n = t.total, cols = n <= 10 ? 5 : n <= 16 ? 8 : 10, rows = Math.ceil(n / cols);
+    var h = rows <= 2 ? 104 : rows === 3 ? 84 : 64, font = rows <= 2 ? 36 : rows === 3 ? 30 : 25;
+    var cells = '';
+    for (var i = 0; i < n; i++) {
+      var a = t.answers[i];
+      cells += !a ? '<div class="tiebox" style="font-size:' + font + 'px"><span class="n num">' + (i + 1) + '</span></div>'
+        : '<div class="tiebox ' + (a.by || 'none') + '" style="font-size:' + font + 'px"><span>' + esc(a.text) + '</span></div>';
+    }
+    return '<div class="screen lsview"><div class="topbar small">' + tieCard(t, 'first') +
+      '<div class="midchips"><span class="catpill"><span class="name">اللستة الفاصلة' + (t.number > 1 ? ' <span class="num">' + t.number + '</span>' : '') + '</span></span></div>' +
+      tieCard(t, 'second') + '</div>' +
+      '<div class="qbody"><div class="qcard fitbox"><div class="lsq' + (hidden ? ' hid' : '') + '">' +
+      (hidden ? 'تعادل! اللستة الفاصلة تحسمها' : esc(t.text)) + '</div></div>' +
+      '<div class="tcol">' + timerRing() +
+      '<div class="whose ' + (t.step === 'turn' ? t.turn : t.step === 'won' ? t.winner : '') + '"><span>' + whose + '</span></div></div></div>' +
+      news +
+      (hidden ? '' : '<div class="tieans" style="grid-template-columns:repeat(' + cols + ',minmax(0,1fr));grid-auto-rows:' + h + 'px">' + cells + '</div>') +
+      '<div class="foot"><span>كل فريق يقول إجابة وحدة بـ <b class="num">' + t.limit + '</b> ثانية · واحد صح والثاني لا = فوز</span>' +
+      '<span class="brandline">' + picture('brand/logo.webp', '') + '<span>استفهام</span></span></div></div>';
+  }
+  function paintTieTimer(s) {
+    var el = stage.querySelector('.timer');
+    if (!el || s.status !== 'listTie' || !s.tie) return;
+    var t = s.tie, f = t.limit ? t.seconds / t.limit : 0;
+    var arc = el.querySelector('.arc'), state = el.querySelector('.state'), timed = t.step === 'turn';
+    arc.style.transition = f > lastFraction ? 'none' : '';
+    lastFraction = f;
+    arc.style.strokeDashoffset = RING * (1 - f);
+    arc.style.stroke = !timed ? '#B8C4D4' : t.turn === 'first' ? '#4DA3F0' : '#F58A2B';
+    arc.style.opacity = t.running ? 1 : 0.45;
+    el.querySelector('.value').textContent = t.seconds;
+    var waiting = t.step === 'hidden', paused = timed && !t.running;
     state.textContent = waiting ? 'يبدأ مع السؤال' : paused ? 'متوقف' : 'ثانية';
     state.className = 'state' + (paused || waiting ? ' paused' : '');
   }
@@ -926,6 +1006,7 @@
       case 'finished': html = finished(s); break;
       case 'tiebreak': html = tiebreak(s); break;
       case 'list': html = s.list ? listView(s) : idle(); break;
+      case 'listTie': html = s.tie ? tieView(s) : idle(); break;
       default: html = idle();
     }
     // The host opened the question image full screen on the phone.
@@ -949,6 +1030,7 @@
     }
     paintTimer(s);
     paintListTimer(s);
+    paintTieTimer(s);
     lastZoom = s.zoom;
     applyZoom(s.zoom);
     playSound(s);
